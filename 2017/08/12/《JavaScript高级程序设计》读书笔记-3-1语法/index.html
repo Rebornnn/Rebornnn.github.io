@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="小记," />
+  <meta name="keywords" content="JavaScript,系统学习," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="日常测试用">
-<meta name="keywords" content="小记">
+<meta name="description" content="边看边思考边记录">
+<meta name="keywords" content="JavaScript,系统学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="http://yoursite.com/2017/08/10/测试/index.html">
+<meta property="og:title" content="《JavaScript高级程序设计》读书笔记-3.1语法">
+<meta property="og:url" content="http://yoursite.com/2017/08/12/《JavaScript高级程序设计》读书笔记-3-1语法/index.html">
 <meta property="og:site_name" content="博言">
-<meta property="og:description" content="日常测试用">
+<meta property="og:description" content="边看边思考边记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-10T13:12:31.164Z">
+<meta property="og:updated_time" content="2017-08-12T12:17:40.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试">
-<meta name="twitter:description" content="日常测试用">
+<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记-3.1语法">
+<meta name="twitter:description" content="边看边思考边记录">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/10/测试/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/12/《JavaScript高级程序设计》读书笔记-3-1语法/"/>
 
 
 
 
 
-  <title>测试 | 博言</title>
+  <title>《JavaScript高级程序设计》读书笔记-3.1语法 | 博言</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/测试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/12/《JavaScript高级程序设计》读书笔记-3-1语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liborn">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">测试</h1>
+          <h1 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记-3.1语法</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T21:06:30+08:00">
-                2017-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-12T20:04:20+08:00">
+                2017-08-12
               </time>
             
 
@@ -335,8 +335,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/日记/" itemprop="url" rel="index">
-                    <span itemprop="name">日记</span>
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《JavaScript高级程序设计》/" itemprop="url" rel="index">
+                    <span itemprop="name">《JavaScript高级程序设计》</span>
                   </a>
                 </span>
 
@@ -359,7 +370,7 @@
 
           
               <div class="post-description">
-                  日常测试用
+                  边看边思考边记录
               </div>
           
 
@@ -376,7 +387,21 @@
       
 
       
-        <p>本人第一篇博文，纪念一下。</p>
+        <h3 id="1-区分大小写"><a href="#1-区分大小写" class="headerlink" title="1. 区分大小写"></a>1. 区分大小写</h3><h3 id="2-标识符"><a href="#2-标识符" class="headerlink" title="2.标识符"></a>2.标识符</h3><p><strong>标识符</strong>指变量、属性、函数的名字，以及函数的参数。      </p>
+<ul>
+<li>标识符组成规则：<ul>
+<li>第一个字符必须是一个字母、下划线_或美元符号$</li>
+<li>其他字符可以是字母、数字、下划线_或美元符号$</li>
+<li>最好采用驼峰大小写格式</li>
+<li>不能把关键字、保留字、true、false、null用作标识符。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3. 严格模式"></a>3. 严格模式</h3><p>在==ECMAScript5==中才引入严格模式。<br>在整个脚本启用，需在顶部添加代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div></pre></td></tr></table></figure></p>
+<p>指定函数启用，需在函数内部顶部加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function doSomething()&#123;</div><div class="line">    &quot;use strict&quot;;</div><div class="line">    //函数体；</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-关键字和保留字"><a href="#4-关键字和保留字" class="headerlink" title="4. 关键字和保留字"></a>4. 关键字和保留字</h3><p><strong>关键字</strong>，用于表示控制语句的开始和结束，或用于执行特定操作等。共计26个。<br><strong>保留字</strong>，顾名思义，目前无任何特定用途，但将来可能被用作关键字。ECMA-262第三版共计31个。</p>
+<h3 id="5-变量"><a href="#5-变量" class="headerlink" title="5. 变量"></a>5. 变量</h3><p>ECMAScript的变量是==松散类型==，松散类型可以用来保存任何类型的数据。<br>变量的数据类型可以在修改变量值时被隐式转换。<br><em>++用var操作符定义的变量将成为定义该变量的作用域中的局部变量++。</em> 例如，在函数中使用var定义一个变量，此变量在函数退出后被销毁。<br>省略var，可以创建一个全局变量。<br>一条语句定义多个变量，用逗号隔开。<br><strong>变量声明提升：</strong> JavaScript会提升变量声明。这意味着var表达式和function声明都将会被提升到当前作用域的顶部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">bar();</div><div class="line">var bar = function() &#123;&#125;;</div><div class="line">var someValue = 42;</div><div class="line"></div><div class="line">test();</div><div class="line">function test(data) &#123;</div><div class="line">    if (false) &#123;</div><div class="line">        goo = 1;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        var goo = 2;</div><div class="line">    &#125;</div><div class="line">    for(var i = 0; i &lt; 100; i++) &#123;</div><div class="line">        var e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//等价于</div><div class="line"></div><div class="line">// var 表达式被移动到这里</div><div class="line">var bar, someValue; // 缺省值是 &apos;undefined&apos;</div><div class="line"></div><div class="line">// 函数声明也会提升</div><div class="line">function test(data) &#123;</div><div class="line">    var goo, i, e; // 没有块级作用域，这些变量被移动到函数顶部</div><div class="line">    if (false) &#123;</div><div class="line">        goo = 1;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        goo = 2;</div><div class="line">    &#125;</div><div class="line">    for(i = 0; i &lt; 100; i++) &#123;</div><div class="line">        e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar(); // 出错：TypeError，因为 bar 依然是 &apos;undefined&apos;</div><div class="line">someValue = 42; // 赋值语句不会被提升规则（hoisting）影响</div><div class="line">bar = function() &#123;&#125;;</div><div class="line"></div><div class="line">test();</div></pre></td></tr></table></figure></p>
+<p>++在原来代码中，if 表达式看起来修改了全局变量 goo，实际上在提升规则被应用后，却是在修改局部变量。++<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">更加生动形象的例子</div><div class="line">var myvar = &apos;my value&apos;;  </div><div class="line"></div><div class="line">(function() &#123;  </div><div class="line">    alert(myvar); // undefined  </div><div class="line">    var myvar = &apos;local value&apos;;  </div><div class="line">&#125;)();  </div><div class="line"></div><div class="line">//等价于</div><div class="line"></div><div class="line">var myvar = &apos;my value&apos;;  </div><div class="line"></div><div class="line">(function() &#123;  </div><div class="line">    var myvar；</div><div class="line">    alert(myvar); // undefined  </div><div class="line">    myvar = &apos;local value&apos;;  </div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -402,7 +427,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/小记/" rel="tag"># 小记</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
           
         </div>
       
@@ -415,15 +442,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/10/测试/" rel="next" title="测试">
+                <i class="fa fa-chevron-left"></i> 测试
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/12/《JavaScript高级程序设计》读书笔记-3-1语法/" rel="prev" title="《JavaScript高级程序设计》读书笔记-3.1语法">
-                《JavaScript高级程序设计》读书笔记-3.1语法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -573,6 +609,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-区分大小写"><span class="nav-number">1.</span> <span class="nav-text">1. 区分大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-标识符"><span class="nav-number">2.</span> <span class="nav-text">2.标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-严格模式"><span class="nav-number">3.</span> <span class="nav-text">3. 严格模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-关键字和保留字"><span class="nav-number">4.</span> <span class="nav-text">4. 关键字和保留字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-变量"><span class="nav-number">5.</span> <span class="nav-text">5. 变量</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
