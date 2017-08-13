@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -55,17 +62,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -102,7 +127,7 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="边看边思考边记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-12T15:28:57.259Z">
+<meta property="og:updated_time" content="2017-08-12T15:50:44.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记-3.1语法">
 <meta name="twitter:description" content="边看边思考边记录">
@@ -397,11 +422,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3. 严格模式"></a>3. 严格模式</h3><p>在==ECMAScript5==中才引入严格模式。<br>在整个脚本启用，需在顶部添加代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div></pre></td></tr></table></figure></p>
-<p>指定函数启用，需在函数内部顶部加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function doSomething()&#123;</div><div class="line">    &quot;use strict&quot;;</div><div class="line">    //函数体；</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3. 严格模式"></a>3. 严格模式</h3><p>在==ECMAScript5==中才引入严格模式。<br>在整个脚本启用，需在顶部添加代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">"use strict"</span>;</div></pre></td></tr></table></figure></p>
+<p>指定函数启用，需在函数内部顶部加入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line">    <span class="comment">//函数体；</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="4-关键字和保留字"><a href="#4-关键字和保留字" class="headerlink" title="4. 关键字和保留字"></a>4. 关键字和保留字</h3><p><strong>关键字</strong>，用于表示控制语句的开始和结束，或用于执行特定操作等。共计26个。<br><strong>保留字</strong>，顾名思义，目前无任何特定用途，但将来可能被用作关键字。ECMA-262第三版共计31个。</p>
-<h3 id="5-变量"><a href="#5-变量" class="headerlink" title="5. 变量"></a>5. 变量</h3><p>ECMAScript的变量是==松散类型==，松散类型可以用来保存任何类型的数据。<br>变量的数据类型可以在修改变量值时被隐式转换。<br><em>++用var操作符定义的变量将成为定义该变量的作用域中的局部变量++。</em> 例如，在函数中使用var定义一个变量，此变量在函数退出后被销毁。<br>省略var，可以创建一个全局变量。<br>一条语句定义多个变量，用逗号隔开。<br><strong>变量声明提升：</strong> JavaScript会提升变量声明。这意味着var表达式和function声明都将会被提升到当前作用域的顶部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">bar();</div><div class="line">var bar = function() &#123;&#125;;</div><div class="line">var someValue = 42;</div><div class="line"></div><div class="line">test();</div><div class="line">function test(data) &#123;</div><div class="line">    if (false) &#123;</div><div class="line">        goo = 1;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        var goo = 2;</div><div class="line">    &#125;</div><div class="line">    for(var i = 0; i &lt; 100; i++) &#123;</div><div class="line">        var e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//等价于</div><div class="line"></div><div class="line">// var 表达式被移动到这里</div><div class="line">var bar, someValue; // 缺省值是 &apos;undefined&apos;</div><div class="line"></div><div class="line">// 函数声明也会提升</div><div class="line">function test(data) &#123;</div><div class="line">    var goo, i, e; // 没有块级作用域，这些变量被移动到函数顶部</div><div class="line">    if (false) &#123;</div><div class="line">        goo = 1;</div><div class="line"></div><div class="line">    &#125; else &#123;</div><div class="line">        goo = 2;</div><div class="line">    &#125;</div><div class="line">    for(i = 0; i &lt; 100; i++) &#123;</div><div class="line">        e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar(); // 出错：TypeError，因为 bar 依然是 &apos;undefined&apos;</div><div class="line">someValue = 42; // 赋值语句不会被提升规则（hoisting）影响</div><div class="line">bar = function() &#123;&#125;;</div><div class="line"></div><div class="line">test();</div></pre></td></tr></table></figure></p>
-<p>++在原来代码中，if 表达式看起来修改了全局变量 goo，实际上在提升规则被应用后，却是在修改局部变量++。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">更加生动形象的例子</div><div class="line">var myvar = &apos;my value&apos;;  </div><div class="line"></div><div class="line">(function() &#123;  </div><div class="line">    alert(myvar); // undefined  </div><div class="line">    var myvar = &apos;local value&apos;;  </div><div class="line">&#125;)();  </div><div class="line"></div><div class="line">//等价于</div><div class="line"></div><div class="line">var myvar = &apos;my value&apos;;  </div><div class="line"></div><div class="line">(function() &#123;  </div><div class="line">    var myvar；</div><div class="line">    alert(myvar); // undefined  </div><div class="line">    myvar = &apos;local value&apos;;  </div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<h3 id="5-变量"><a href="#5-变量" class="headerlink" title="5. 变量"></a>5. 变量</h3><p>ECMAScript的变量是<strong>松散类型</strong>，松散类型可以用来保存任何类型的数据。<br>变量的数据类型可以在修改变量值时被隐式转换。<br><em>++用var操作符定义的变量将成为定义该变量的作用域中的局部变量++。</em> 例如，在函数中使用var定义一个变量，此变量在函数退出后被销毁。<br>省略var，可以创建一个全局变量。<br>一条语句定义多个变量，用逗号隔开。<br><strong>变量声明提升：</strong> JavaScript会提升变量声明。这意味着var表达式和function声明都将会被提升到当前作用域的顶部<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">bar();</div><div class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> someValue = <span class="number">42</span>;</div><div class="line"></div><div class="line">test();</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">        goo = <span class="number">1</span>;</div><div class="line"></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">var</span> goo = <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</div><div class="line">        <span class="keyword">var</span> e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//等价于</span></div><div class="line"></div><div class="line"><span class="comment">// var 表达式被移动到这里</span></div><div class="line"><span class="keyword">var</span> bar, someValue; <span class="comment">// 缺省值是 'undefined'</span></div><div class="line"></div><div class="line"><span class="comment">// 函数声明也会提升</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> goo, i, e; <span class="comment">// 没有块级作用域，这些变量被移动到函数顶部</span></div><div class="line">    <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</div><div class="line">        goo = <span class="number">1</span>;</div><div class="line"></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        goo = <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</div><div class="line">        e = data[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bar(); <span class="comment">// 出错：TypeError，因为 bar 依然是 'undefined'</span></div><div class="line">someValue = <span class="number">42</span>; <span class="comment">// 赋值语句不会被提升规则（hoisting）影响</span></div><div class="line">bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line">test();</div></pre></td></tr></table></figure></p>
+<p>在原来代码中，if 表达式看起来修改了全局变量 goo，实际上在提升规则被应用后，却是在修改局部变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">更加生动形象的例子</div><div class="line"><span class="keyword">var</span> myvar = <span class="string">'my value'</span>;  </div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">    alert(myvar); <span class="comment">// undefined  </span></div><div class="line">    <span class="keyword">var</span> myvar = <span class="string">'local value'</span>;  </div><div class="line">&#125;)();  </div><div class="line"></div><div class="line"><span class="comment">//等价于</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myvar = <span class="string">'my value'</span>;  </div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">    <span class="keyword">var</span> myvar；</div><div class="line">    alert(myvar); <span class="comment">// undefined  </span></div><div class="line">    myvar = <span class="string">'local value'</span>;  </div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -572,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -741,15 +766,15 @@
   
 
 
+
+
+
+
+
+
+
+
   
-
-
-
-
-
-
-
-
 
 
 
@@ -772,7 +797,7 @@
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
   
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
 
 
   

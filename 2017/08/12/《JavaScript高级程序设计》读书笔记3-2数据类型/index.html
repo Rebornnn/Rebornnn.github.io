@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -55,17 +62,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -102,7 +127,7 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="边看边思考边记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-12T14:45:38.263Z">
+<meta property="og:updated_time" content="2017-08-12T15:54:52.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记3.2数据类型">
 <meta name="twitter:description" content="边看边思考边记录">
@@ -388,7 +413,7 @@
 
       
         <ul>
-<li>==5种简单数据类型（基本类型）+1种复杂数据类型==：<ul>
+<li>5种简单数据类型（基本类型）+1种复杂数据类型：<ul>
 <li>Undefined</li>
 <li>Null</li>
 <li>Boolean</li>
@@ -405,13 +430,13 @@
 <h3 id="2-Undefined类型"><a href="#2-Undefined类型" class="headerlink" title="2. Undefined类型"></a>2. Undefined类型</h3><ul>
 <li>只有一个值—<em>undefined</em>   </li>
 <li>变量只声明没有初始化，自动被赋予undefined值。    </li>
-<li>对未初始化的变量和未声明的变量执行typeof都会返回undefined值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var message;//变量声明后默认取得undefined值</div><div class="line">//下面这个变量没有声明</div><div class="line">//var age</div><div class="line"></div><div class="line">alert(message); //&quot;undefined&quot;</div><div class="line">alert(age);     //产生错误</div><div class="line"></div><div class="line">alert(typeof message); //&quot;undefined&quot;</div><div class="line">alert(typeof age);     //&quot;undefined&quot;</div></pre></td></tr></table></figure>
+<li>对未初始化的变量和未声明的变量执行typeof都会返回undefined值。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;<span class="comment">//变量声明后默认取得undefined值</span></div><div class="line"><span class="comment">//下面这个变量没有声明</span></div><div class="line"><span class="comment">//var age</span></div><div class="line"></div><div class="line">alert(message); <span class="comment">//"undefined"</span></div><div class="line">alert(age);     <span class="comment">//产生错误</span></div><div class="line"></div><div class="line">alert(<span class="keyword">typeof</span> message); <span class="comment">//"undefined"</span></div><div class="line">alert(<span class="keyword">typeof</span> age);     <span class="comment">//"undefined"</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="3-Null类型"><a href="#3-Null类型" class="headerlink" title="3. Null类型"></a>3. Null类型</h3><ul>
 <li>只有一个值—<em>null</em>     </li>
 <li>逻辑角度来看，null值表示一个空对象指针，typeof操作符会返回“object”。因为JS中没有指针概念，空对象指针当作空对象，更好理解。    </li>
-<li>undefined值派生自null值，因此ECMA-262规定对它们的相等性测试要返回true.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(null==undefined);//true</div></pre></td></tr></table></figure>
+<li>undefined值派生自null值，因此ECMA-262规定对它们的相等性测试要返回true.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(<span class="literal">null</span>==<span class="literal">undefined</span>);<span class="comment">//true</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><strong>“undefined值派生自null值”的理解:</strong> <em>如果把null理解为给变量创建一个空对象，即空的状态(与{}不一样)；undefined理解为什么都没给变量,即无的状态。</em><br><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">undefined与null的区别</a></p>
@@ -472,12 +497,12 @@
 <ul>
 <li>Number()复杂且不够合理，不常用</li>
 <li>parseInt()字符串转换成整数。可以设置基数</li>
-<li>parseFloat()字符串可以转换成浮点数值和十进制整数值.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var num1=parseInt(&quot;123blue&quot;); //123</div><div class="line">var num2=parseInt(&quot;&quot;);        //NaN</div><div class="line">var num3=parseInt(&quot;0xA&quot;);     //10(十六进制)</div><div class="line">var num4=parseInt(22.5);      //22</div><div class="line">var num5=parseInt(&quot;070&quot;);     //56(八进制)</div><div class="line">var num6=parseInt(&quot;70&quot;);      //70</div><div class="line">var num7=parseInt(&quot;0xf&quot;，16);     //15(十六进制)</div></pre></td></tr></table></figure>
-</li>
+<li>parseFloat()字符串可以转换成浮点数值和十进制整数值.</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var num1=parseFloat(&quot;123blue&quot;); //123(整数)</div><div class="line">var num2=parseFloat(&quot;0xA&quot;);     //0</div><div class="line">var num3=parseFloat(&quot;22.5&quot;);    //22</div><div class="line">var num4=parseFloat(&quot;22.34.5&quot;); //22.34</div><div class="line">var num5=parseFloat(&quot;0908.5&quot;);  //908.5</div><div class="line">var num6=parseFloat(&quot;3.125e7&quot;)；//31250000</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num1=<span class="built_in">parseInt</span>(<span class="string">"123blue"</span>); <span class="comment">//123</span></div><div class="line"><span class="keyword">var</span> num2=<span class="built_in">parseInt</span>(<span class="string">""</span>);        <span class="comment">//NaN</span></div><div class="line"><span class="keyword">var</span> num3=<span class="built_in">parseInt</span>(<span class="string">"0xA"</span>);     <span class="comment">//10(十六进制)</span></div><div class="line"><span class="keyword">var</span> num4=<span class="built_in">parseInt</span>(<span class="number">22.5</span>);      <span class="comment">//22</span></div><div class="line"><span class="keyword">var</span> num5=<span class="built_in">parseInt</span>(<span class="string">"070"</span>);     <span class="comment">//56(八进制)</span></div><div class="line"><span class="keyword">var</span> num6=<span class="built_in">parseInt</span>(<span class="string">"70"</span>);      <span class="comment">//70</span></div><div class="line"><span class="keyword">var</span> num7=<span class="built_in">parseInt</span>(<span class="string">"0xf"</span>，<span class="number">16</span>);     <span class="comment">//15(十六进制)</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num1=<span class="built_in">parseFloat</span>(<span class="string">"123blue"</span>); <span class="comment">//123(整数)</span></div><div class="line"><span class="keyword">var</span> num2=<span class="built_in">parseFloat</span>(<span class="string">"0xA"</span>);     <span class="comment">//0</span></div><div class="line"><span class="keyword">var</span> num3=<span class="built_in">parseFloat</span>(<span class="string">"22.5"</span>);    <span class="comment">//22</span></div><div class="line"><span class="keyword">var</span> num4=<span class="built_in">parseFloat</span>(<span class="string">"22.34.5"</span>); <span class="comment">//22.34</span></div><div class="line"><span class="keyword">var</span> num5=<span class="built_in">parseFloat</span>(<span class="string">"0908.5"</span>);  <span class="comment">//908.5</span></div><div class="line"><span class="keyword">var</span> num6=<span class="built_in">parseFloat</span>(<span class="string">"3.125e7"</span>)；<span class="comment">//31250000</span></div></pre></td></tr></table></figure>
 <h3 id="6-String类型"><a href="#6-String类型" class="headerlink" title="6.String类型"></a>6.String类型</h3><ul>
 <li>用于表示由零个或多个16位Unicode字符组成的字符序列。     </li>
 <li>不分(‘)和(“)。     </li>
@@ -488,7 +513,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="7-Object类型"><a href="#7-Object类型" class="headerlink" title="7.Object类型"></a>7.Object类型</h3><p>ECMAScript中的对象是一组数据和功能的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var o=new Object();</div></pre></td></tr></table></figure></p>
+<h3 id="7-Object类型"><a href="#7-Object类型" class="headerlink" title="7.Object类型"></a>7.Object类型</h3><p>ECMAScript中的对象是一组数据和功能的集合。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure></p>
 <p><strong>一个重要思想：</strong> 在ECMAScript中,Object是所有它的实例的基础。换句话说，<em>Object类型所具有的任何属性和方法也同样存在于更具体的对象中</em>。   </p>
 <ul>
 <li>所有对象都具有以下属性和方法：<ul>
@@ -569,6 +594,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/13/《JavaScript高级程序设计》读书笔记3-3操作符/" rel="prev" title="《JavaScript高级程序设计》读书笔记3.3操作符">
+                《JavaScript高级程序设计》读书笔记3.3操作符 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -668,7 +697,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -837,15 +866,15 @@
   
 
 
+
+
+
+
+
+
+
+
   
-
-
-
-
-
-
-
-
 
 
 
@@ -868,7 +897,7 @@
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
   
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
 
 
   
