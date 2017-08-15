@@ -122,17 +122,15 @@
 <meta name="description" content="边看边思考边记录">
 <meta name="keywords" content="JavaScript,系统学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
-<meta property="og:url" content="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/index.html">
+<meta property="og:title" content="《JavaScript高级程序设计》读书笔记5-6基本包装类型">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/index.html">
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="边看边思考边记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
-<meta property="og:updated_time" content="2017-08-13T05:23:54.442Z">
+<meta property="og:updated_time" content="2017-08-15T12:49:06.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
+<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记5-6基本包装类型">
 <meta name="twitter:description" content="边看边思考边记录">
-<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
 
 
 
@@ -161,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/"/>
 
 
 
 
 
-  <title>《JavaScript高级程序设计》读书笔记4.2执行环境及作用域 | 博言</title>
+  <title>《JavaScript高级程序设计》读书笔记5-6基本包装类型 | 博言</title>
   
 
 
@@ -320,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liborn">
@@ -337,7 +335,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记4.2执行环境及作用域</h2>
+          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记5-6基本包装类型</h2>
         
 
         <div class="post-meta">
@@ -349,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-13T13:19:58+08:00">
-                2017-08-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T20:45:46+08:00">
+                2017-08-15
               </time>
             
 
@@ -424,39 +422,76 @@
       
 
       
-        <p>执行环境和作用域的关系？<br><strong>执行环境，也称执行上下文（Execution context，EC），都有与之关联的作用域（链）</strong>。每个执行环境会向上搜索作用域链进而形成一个自己的作用域。</p>
-<h3 id="1-执行环境及作用域"><a href="#1-执行环境及作用域" class="headerlink" title="1.执行环境及作用域"></a>1.执行环境及作用域</h3><ul>
-<li><strong>执行环境（环境）：</strong> 定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的==变量对象==，环境中定义的所有变量和函数都保存在这个变量对象中。</li>
-<li>全局执行环境是最外围的一个执行环境。在浏览器中，全局执行环境就是window对象。</li>
-<li>执行环境分全局执行环境（全局环境）和函数执行环境。每个函数都有自己的执行环境。    </li>
-<li>ECMAScript执行流机制：当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。<strong>等价于</strong>：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。</li>
-<li><strong>作用域链</strong>： 当代码在一个环境中执行时，会创建变量对象的一个作用域链。其<strong>用途</strong>，是保证对执行环境有权访问的变量和函数的有序访问。</li>
-<li><p>作用域链<strong>结构</strong>：作用域链前端，始终是当前执行的代码所在环境的变量对象，而下一个变量对象则是来自包含它的外部环境。这样，一直延续到全局执行环境。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">"blue"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(color===<span class="string">"blue"</span>)&#123;</div><div class="line">        color=<span class="string">"red"</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        color=<span class="string">"blue"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">changeColor();</div><div class="line">alert(<span class="string">"Color is now"</span>+color);   <span class="comment">//结果是red</span></div><div class="line"></div><div class="line"><span class="comment">//函数changeColor()作用域链包含两个变量对象：</span></div><div class="line"><span class="comment">//自己的变量对象（其中定义着arguments对象）</span></div><div class="line"><span class="comment">//全局环境的变量对象。</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>局部作用域中定义的变量可以在局部环境中与全局变量互换使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">"blue"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> anotherColor=<span class="string">"red"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">swapColors</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> tempColor=anotherColor;</div><div class="line">        anotherColor=color;</div><div class="line">        color=tempColor;</div><div class="line">        <span class="comment">//这里可以访问color、anotherColor和tempColor</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//这里可以访问color、anotherColor,不能访问tempColor</span></div><div class="line">    swapColors();</div><div class="line">&#125;</div><div class="line"><span class="comment">//这里只能访问color</span></div><div class="line">changeColor();</div></pre></td></tr></table></figure>
-</li>
+        <ul>
+<li><strong><code>Boolean</code>、<code>Number</code>、<code>String</code>，3中特殊的引用类型就是基本包装类型</strong></li>
+<li><strong>作用</strong>：每当读取一个基本类型的值的时候，后台就会创建一个对应的基本包装类型的对象，从而能够调用一些方法操作数据。</li>
+<li><strong>区别</strong>：引用类型和基本包装类型主要区别是<strong>对象的生存期</strong>。</li>
+<li>不建议显示创建基本包装类型的对象。</li>
 </ul>
-<p>作用域如下图：<br><img src="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png" alt="阿迪"><br><strong>作用域链规则</strong>：执行环境之间的联系是线性、单向、有次序的。<br><em>每个环境可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另一个执行环境。</em></p>
-<h3 id="2-延长作用域链"><a href="#2-延长作用域链" class="headerlink" title="2.延长作用域链"></a>2.延长作用域链</h3><ul>
-<li>怎么延长：有些语句在（其父）作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被移除。</li>
-<li>两个语句：<ul>
-<li><code>with</code>语句:将指定对象添加到(其父)作用域的前端</li>
-<li><code>try-catch</code>语句的catch块：会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildUrl</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> qs=<span class="string">"?debug=true"</span>;</div><div class="line">    <span class="keyword">with</span>(location)&#123;</div><div class="line">        <span class="keyword">var</span> url=href+qs;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> url;</div><div class="line">&#125;</div><div class="line"><span class="comment">//with语句将其变量对象添加到buildUrl()作用域链前端，buildUrl()可以访问url变量了。</span></div></pre></td></tr></table></figure>
-</li>
+<h4 id="1-Boolean类型"><a href="#1-Boolean类型" class="headerlink" title="1.Boolean类型"></a>1.Boolean类型</h4><p>永远不要使用Boolean对象</p>
+<h4 id="2-Number类型"><a href="#2-Number类型" class="headerlink" title="2.Number类型"></a>2.Number类型</h4><p>不建议使用</p>
+<h4 id="3-String类型"><a href="#3-String类型" class="headerlink" title="3.String类型"></a>3.String类型</h4><ul>
+<li><code>String</code>类型是字符串的对象包装类型。</li>
+<li><code>String</code>类型的每个实例都有一个<code>length</code>属性，表示字符串中包含多个字符。</li>
+<li>字符方法：<ul>
+<li><code>charAt()</code>：返回指定位置的字符</li>
+<li><code>charCodeAt()</code>：返回指定位置的字符的编码</li>
+<li>方括号[]+数字索引返回指定位置字符。</li>
 </ul>
 </li>
+<li>字符串操作方法<ul>
+<li><code>concat()</code>:将一个或多个字符串拼接起来，返回拼接得到的新字符串。</li>
+<li>实践中很多使用+号（不是一元+）</li>
+<li><code>slice()</code>、<code>substr()</code>、<code>substring()</code>都会返回被操作字符串的一个子字符串，都接受一到两个参数。具体方法见P123。</li>
 </ul>
-<h3 id="3-没有块级作用域"><a href="#3-没有块级作用域" class="headerlink" title="3.没有块级作用域"></a>3.没有块级作用域</h3><p>块级作用域指：类C语言中，花括号封闭的代码块都有自己的作用域（EMAScript中是执行环境），花括号内的代码执行完后变量和函数定义会被销毁。而Javascript没有块级作用域。</p>
-<h5 id="3-1-声明变量"><a href="#3-1-声明变量" class="headerlink" title="3.1 声明变量"></a>3.1 声明变量</h5><ul>
-<li>使用var声明的变量会自动被添加到最近的环境中。</li>
-<li>在函数内部，最接近环境是函数的局部变量</li>
-<li>在with语句中，最接近环境的函数环境。</li>
+</li>
 </ul>
-<h5 id="3-2-查询标识符"><a href="#3-2-查询标识符" class="headerlink" title="3.2 查询标识符"></a>3.2 查询标识符</h5><ul>
-<li>从作用域前端开始，逐渐向上查询，查到就停止。</li>
-<li>访问局部变量比全局变量快。   </li>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>第一个参数</th>
+<th>第二个参数</th>
+<th>参数为负值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slice()</td>
+<td>子字符串开始位置</td>
+<td>子字符串最后一个字符后面的位置</td>
+<td>负值与字符串长度相加</td>
+</tr>
+<tr>
+<td>substring()</td>
+<td>子字符串开始位置（从小到大原则）</td>
+<td>子字符串最后一个字符后面的位置</td>
+<td>都转为0</td>
+</tr>
+<tr>
+<td>substr()</td>
+<td>子字符串开始位置</td>
+<td>返回的字符个数</td>
+<td>第一个参数与字符串长度相加，第二个参数转为0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>字符串位置方法</p>
+<ul>
+<li><code>indexOf()</code>：由前往后搜索，没有返回-1，可选第二个参数；</li>
+<li><code>lastIndexOf()</code>:由后往前搜索，没有返回-1，可选第二个参数；</li>
+<li>找到所有匹配字符串方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> stringValue=<span class="string">"Lorem ipsum dolor sit amet, consectetur adipisicing elit"</span>;</div><div class="line"><span class="keyword">var</span> positions=<span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="keyword">var</span> pos=stringValue.indexOf(<span class="string">"e"</span>);</div><div class="line"></div><div class="line"><span class="keyword">while</span>(pos&gt;<span class="number">-1</span>)&#123;</div><div class="line">    positions.push(pos);</div><div class="line">    pos=stringValue.indexOf(<span class="string">"e"</span>,pos+<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(positions);    <span class="comment">//"3,24,32,35,52"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>trim()</code>方法：ECMAScript5,创建一个副本，删除前置及后缀的所有空格。</p>
+</li>
+<li>字符串大小写转换方法：<code>toLowerCase()</code>、<code>toUpperCae()</code>、<code>toLocaleLowerCase()</code>、<code>toLocaleUpperCase()</code></li>
+<li>字符串的模式匹配方法：<code>match()</code>、<code>search()</code>、<code>replace()</code>、<code>split()</code>.详情见P126.</li>
+<li><code>localeCompare()</code>：详情见P129</li>
+<li><code>fromCharCode()</code>方法：详情见P130</li>
+<li>HTML方法：详情见P130</li>
 </ul>
 
       
@@ -486,7 +521,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/" title="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/</a>
+    <a href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/" title="《JavaScript高级程序设计》读书笔记5-6基本包装类型">http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -516,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/13/《JavaScript高级程序设计》读书笔记4-1基本类型和引用类型的值/" rel="next" title="《JavaScript高级程序设计》读书笔记4.1基本类型和引用类型的值">
-                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记4.1基本类型和引用类型的值
+              <a href="/2017/08/15/《JavaScript高级程序设计》读书笔记5-5Function类型/" rel="next" title="《JavaScript高级程序设计》读书笔记5.5Function类型">
+                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记5.5Function类型
               </a>
             
           </div>
@@ -526,8 +561,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/" rel="prev" title="《JavaScript高级程序设计》读书笔记5.2Array类型">
-                《JavaScript高级程序设计》读书笔记5.2Array类型 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/" rel="prev" title="《JavaScript高级程序设计》读书笔记5-7单体内置对象">
+                《JavaScript高级程序设计》读书笔记5-7单体内置对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -720,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-执行环境及作用域"><span class="nav-number">1.</span> <span class="nav-text">1.执行环境及作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-延长作用域链"><span class="nav-number">2.</span> <span class="nav-text">2.延长作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-没有块级作用域"><span class="nav-number">3.</span> <span class="nav-text">3.没有块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-声明变量"><span class="nav-number">3.0.1.</span> <span class="nav-text">3.1 声明变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-查询标识符"><span class="nav-number">3.0.2.</span> <span class="nav-text">3.2 查询标识符</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Boolean类型"><span class="nav-number">1.</span> <span class="nav-text">1.Boolean类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Number类型"><span class="nav-number">2.</span> <span class="nav-text">2.Number类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-String类型"><span class="nav-number">3.</span> <span class="nav-text">3.String类型</span></a></li></ol></div>
             
 
           </div>

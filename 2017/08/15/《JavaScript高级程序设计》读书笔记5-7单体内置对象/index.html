@@ -122,17 +122,18 @@
 <meta name="description" content="边看边思考边记录">
 <meta name="keywords" content="JavaScript,系统学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
-<meta property="og:url" content="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/index.html">
+<meta property="og:title" content="《JavaScript高级程序设计》读书笔记5-7单体内置对象">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/index.html">
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="边看边思考边记录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
-<meta property="og:updated_time" content="2017-08-13T05:23:54.442Z">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/04/22/58fafccbd3937.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/04/22/58faff4127452.png">
+<meta property="og:updated_time" content="2017-08-15T12:52:11.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
+<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记5-7单体内置对象">
 <meta name="twitter:description" content="边看边思考边记录">
-<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/04/22/58fafccbd3937.png">
 
 
 
@@ -161,13 +162,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/"/>
 
 
 
 
 
-  <title>《JavaScript高级程序设计》读书笔记4.2执行环境及作用域 | 博言</title>
+  <title>《JavaScript高级程序设计》读书笔记5-7单体内置对象 | 博言</title>
   
 
 
@@ -320,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liborn">
@@ -337,7 +338,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记4.2执行环境及作用域</h2>
+          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记5-7单体内置对象</h2>
         
 
         <div class="post-meta">
@@ -349,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-13T13:19:58+08:00">
-                2017-08-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T20:50:03+08:00">
+                2017-08-15
               </time>
             
 
@@ -424,40 +425,37 @@
       
 
       
-        <p>执行环境和作用域的关系？<br><strong>执行环境，也称执行上下文（Execution context，EC），都有与之关联的作用域（链）</strong>。每个执行环境会向上搜索作用域链进而形成一个自己的作用域。</p>
-<h3 id="1-执行环境及作用域"><a href="#1-执行环境及作用域" class="headerlink" title="1.执行环境及作用域"></a>1.执行环境及作用域</h3><ul>
-<li><strong>执行环境（环境）：</strong> 定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的==变量对象==，环境中定义的所有变量和函数都保存在这个变量对象中。</li>
-<li>全局执行环境是最外围的一个执行环境。在浏览器中，全局执行环境就是window对象。</li>
-<li>执行环境分全局执行环境（全局环境）和函数执行环境。每个函数都有自己的执行环境。    </li>
-<li>ECMAScript执行流机制：当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。<strong>等价于</strong>：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。</li>
-<li><strong>作用域链</strong>： 当代码在一个环境中执行时，会创建变量对象的一个作用域链。其<strong>用途</strong>，是保证对执行环境有权访问的变量和函数的有序访问。</li>
-<li><p>作用域链<strong>结构</strong>：作用域链前端，始终是当前执行的代码所在环境的变量对象，而下一个变量对象则是来自包含它的外部环境。这样，一直延续到全局执行环境。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">"blue"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(color===<span class="string">"blue"</span>)&#123;</div><div class="line">        color=<span class="string">"red"</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        color=<span class="string">"blue"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">changeColor();</div><div class="line">alert(<span class="string">"Color is now"</span>+color);   <span class="comment">//结果是red</span></div><div class="line"></div><div class="line"><span class="comment">//函数changeColor()作用域链包含两个变量对象：</span></div><div class="line"><span class="comment">//自己的变量对象（其中定义着arguments对象）</span></div><div class="line"><span class="comment">//全局环境的变量对象。</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>局部作用域中定义的变量可以在局部环境中与全局变量互换使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">"blue"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> anotherColor=<span class="string">"red"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">swapColors</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> tempColor=anotherColor;</div><div class="line">        anotherColor=color;</div><div class="line">        color=tempColor;</div><div class="line">        <span class="comment">//这里可以访问color、anotherColor和tempColor</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//这里可以访问color、anotherColor,不能访问tempColor</span></div><div class="line">    swapColors();</div><div class="line">&#125;</div><div class="line"><span class="comment">//这里只能访问color</span></div><div class="line">changeColor();</div></pre></td></tr></table></figure>
-</li>
+        <h3 id="两个-Global和Math"><a href="#两个-Global和Math" class="headerlink" title="两个:Global和Math"></a>两个:Global和Math</h3><h4 id="1-Global对象"><a href="#1-Global对象" class="headerlink" title="1.Global对象"></a>1.Global对象</h4><p><em>不属于任何其他对象的属性和方法，最终都是它的属性和方法</em>。</p>
+<ul>
+<li>URI编码方法<ul>
+<li><code>encodeURI()</code>:对整个URI编码，只替换空格。</li>
+<li><code>encodeURIComponent()</code>：对URI中某一段进行编码，替换所有非字母数字字符。</li>
 </ul>
-<p>作用域如下图：<br><img src="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png" alt="阿迪"><br><strong>作用域链规则</strong>：执行环境之间的联系是线性、单向、有次序的。<br><em>每个环境可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另一个执行环境。</em></p>
-<h3 id="2-延长作用域链"><a href="#2-延长作用域链" class="headerlink" title="2.延长作用域链"></a>2.延长作用域链</h3><ul>
-<li>怎么延长：有些语句在（其父）作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被移除。</li>
-<li>两个语句：<ul>
-<li><code>with</code>语句:将指定对象添加到(其父)作用域的前端</li>
-<li><code>try-catch</code>语句的catch块：会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildUrl</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> qs=<span class="string">"?debug=true"</span>;</div><div class="line">    <span class="keyword">with</span>(location)&#123;</div><div class="line">        <span class="keyword">var</span> url=href+qs;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> url;</div><div class="line">&#125;</div><div class="line"><span class="comment">//with语句将其变量对象添加到buildUrl()作用域链前端，buildUrl()可以访问url变量了。</span></div></pre></td></tr></table></figure>
+</li>
+<li><code>eval()</code>方法<br>像是一个完整的解析器，只接受要执行的JS字符串。</li>
+<li>Global对象的属性<br><img src="https://ooo.0o0.ooo/2017/04/22/58fafccbd3937.png" alt="所有属性"></li>
+<li>window对象<br>浏览器将Global对象作为window对象的一部分加以实现的。</li>
+</ul>
+<h4 id="2-Math对象"><a href="#2-Math对象" class="headerlink" title="2.Math对象"></a>2.Math对象</h4><ul>
+<li>Math对象的属性<br><img src="https://ooo.0o0.ooo/2017/04/22/58faff4127452.png" alt="">       </li>
+<li><p><code>min()</code>和<code>max()</code>方法</p>
+<ul>
+<li>经常用于避免使用多余的循环和if语句中确定一组数的最大值。</li>
+<li>找数组中最大值和最小值技巧<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> values=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</div><div class="line"><span class="keyword">var</span> max=<span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>,values);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
+<li><p>舍入方法</p>
+<ul>
+<li><code>Math.ceil()</code>:执行向上舍入</li>
+<li><code>Math.floor()</code>：执行向下舍入</li>
+<li><code>Math.round()</code>:执行四舍五入</li>
 </ul>
-<h3 id="3-没有块级作用域"><a href="#3-没有块级作用域" class="headerlink" title="3.没有块级作用域"></a>3.没有块级作用域</h3><p>块级作用域指：类C语言中，花括号封闭的代码块都有自己的作用域（EMAScript中是执行环境），花括号内的代码执行完后变量和函数定义会被销毁。而Javascript没有块级作用域。</p>
-<h5 id="3-1-声明变量"><a href="#3-1-声明变量" class="headerlink" title="3.1 声明变量"></a>3.1 声明变量</h5><ul>
-<li>使用var声明的变量会自动被添加到最近的环境中。</li>
-<li>在函数内部，最接近环境是函数的局部变量</li>
-<li>在with语句中，最接近环境的函数环境。</li>
+</li>
+<li><code>random()</code>方法<br>返回大于等于0小于1的一个随机数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">计算一个介于两数之间的函数</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectForm</span>(<span class="params">lowerValue,upperValue</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> choices=upperValue-lowerValue+<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*choices+lowerValue);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> num=selectorForm(<span class="number">2</span>,<span class="number">10</span>);</div><div class="line">alert(num);     <span class="comment">//介于2和10之间之间的一个数值</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h5 id="3-2-查询标识符"><a href="#3-2-查询标识符" class="headerlink" title="3.2 查询标识符"></a>3.2 查询标识符</h5><ul>
-<li>从作用域前端开始，逐渐向上查询，查到就停止。</li>
-<li>访问局部变量比全局变量快。   </li>
-</ul>
+<p>利用这个函数，可以方便地从数组中随机取出一项。</p>
 
       
     </div>
@@ -486,7 +484,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/" title="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/</a>
+    <a href="http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/" title="《JavaScript高级程序设计》读书笔记5-7单体内置对象">http://yoursite.com/2017/08/15/《JavaScript高级程序设计》读书笔记5-7单体内置对象/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -516,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/13/《JavaScript高级程序设计》读书笔记4-1基本类型和引用类型的值/" rel="next" title="《JavaScript高级程序设计》读书笔记4.1基本类型和引用类型的值">
-                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记4.1基本类型和引用类型的值
+              <a href="/2017/08/15/《JavaScript高级程序设计》读书笔记5-6基本包装类型/" rel="next" title="《JavaScript高级程序设计》读书笔记5-6基本包装类型">
+                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记5-6基本包装类型
               </a>
             
           </div>
@@ -525,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/" rel="prev" title="《JavaScript高级程序设计》读书笔记5.2Array类型">
-                《JavaScript高级程序设计》读书笔记5.2Array类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -720,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-执行环境及作用域"><span class="nav-number">1.</span> <span class="nav-text">1.执行环境及作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-延长作用域链"><span class="nav-number">2.</span> <span class="nav-text">2.延长作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-没有块级作用域"><span class="nav-number">3.</span> <span class="nav-text">3.没有块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-声明变量"><span class="nav-number">3.0.1.</span> <span class="nav-text">3.1 声明变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-查询标识符"><span class="nav-number">3.0.2.</span> <span class="nav-text">3.2 查询标识符</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个-Global和Math"><span class="nav-number">1.</span> <span class="nav-text">两个:Global和Math</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Global对象"><span class="nav-number">1.1.</span> <span class="nav-text">1.Global对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Math对象"><span class="nav-number">1.2.</span> <span class="nav-text">2.Math对象</span></a></li></ol></li></ol></div>
             
 
           </div>
