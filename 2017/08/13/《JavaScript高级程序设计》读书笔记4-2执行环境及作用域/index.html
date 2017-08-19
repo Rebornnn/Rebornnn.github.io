@@ -119,19 +119,19 @@
 
 
 
-<meta name="description" content="边看边思考边记录">
+<meta name="description" content="ECMAScript运行机制的基础">
 <meta name="keywords" content="JavaScript,系统学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/index.html">
 <meta property="og:site_name" content="博言">
-<meta property="og:description" content="边看边思考边记录">
+<meta property="og:description" content="ECMAScript运行机制的基础">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
-<meta property="og:updated_time" content="2017-08-13T05:23:54.442Z">
+<meta property="og:updated_time" content="2017-08-17T12:19:26.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
-<meta name="twitter:description" content="边看边思考边记录">
+<meta name="twitter:description" content="ECMAScript运行机制的基础">
 <meta name="twitter:image" content="https://ooo.0o0.ooo/2017/04/12/58ee22b477fa4.png">
 
 
@@ -407,7 +407,7 @@
 
           
               <div class="post-description">
-                  边看边思考边记录
+                  ECMAScript运行机制的基础
               </div>
           
 
@@ -426,7 +426,7 @@
       
         <p>执行环境和作用域的关系？<br><strong>执行环境，也称执行上下文（Execution context，EC），都有与之关联的作用域（链）</strong>。每个执行环境会向上搜索作用域链进而形成一个自己的作用域。</p>
 <h3 id="1-执行环境及作用域"><a href="#1-执行环境及作用域" class="headerlink" title="1.执行环境及作用域"></a>1.执行环境及作用域</h3><ul>
-<li><strong>执行环境（环境）：</strong> 定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的==变量对象==，环境中定义的所有变量和函数都保存在这个变量对象中。</li>
+<li><strong>执行环境（环境）：</strong> 定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个变量对象中。</li>
 <li>全局执行环境是最外围的一个执行环境。在浏览器中，全局执行环境就是window对象。</li>
 <li>执行环境分全局执行环境（全局环境）和函数执行环境。每个函数都有自己的执行环境。    </li>
 <li>ECMAScript执行流机制：当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。<strong>等价于</strong>：某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。</li>
@@ -628,7 +628,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
