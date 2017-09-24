@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,系统学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="介绍5种高级函数（方法）">
+<meta name="keywords" content="JavaScript,系统学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计》读书笔记22.1高级函数">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/《JavaScript高级程序设计》读书笔记22-1高级函数/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="介绍5种高级函数（方法）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-20T14:42:02.255Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记22.1高级函数">
+<meta name="twitter:description" content="介绍5种高级函数（方法）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/18/《JavaScript高级程序设计》读书笔记22-1高级函数/"/>
+
+
+
+
+
+  <title>《JavaScript高级程序设计》读书笔记22.1高级函数 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/《JavaScript高级程序设计》读书笔记22-1高级函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记22.1高级函数</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T09:22:23+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《JavaScript高级程序设计》/" itemprop="url" rel="index">
+                    <span itemprop="name">《JavaScript高级程序设计》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  介绍5种高级函数（方法）
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-安全的类型检测"><a href="#1-安全的类型检测" class="headerlink" title="1. 安全的类型检测"></a>1. 安全的类型检测</h3><p>在任何值上调用Object类型原生的<code>toString()</code>方法，都会返回一个<code>[Object NativeConstructorName]</code>格式的字符串。且每个<em>类</em>（<em>我认为是引用类型</em>）在内部都有一个<code>[[class]]</code>属性，这个属性中就指定了上述字符串中构造函数名。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value)==<span class="string">'[object Array]'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">is</span>(<span class="params">type, obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> clas = <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>, <span class="number">-1</span>);</div><div class="line">    <span class="keyword">return</span> obj !== <span class="literal">undefined</span> &amp;&amp; obj !== <span class="literal">null</span> &amp;&amp; clas === type;</div><div class="line">&#125;</div><div class="line"></div><div class="line">is(<span class="string">'String'</span>, <span class="string">'test'</span>); <span class="comment">// true</span></div><div class="line">is(<span class="string">'String'</span>, <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'test'</span>)); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> Object类型原生的<code>toString()</code>方法只能检测原生构造函数的构造函数名。因此，开发人员定义的任何构造函数都返回[object Object]。</p>
+<h3 id="2-作用域安全的构造函数"><a href="#2-作用域安全的构造函数" class="headerlink" title="2. 作用域安全的构造函数"></a>2. 作用域安全的构造函数</h3><p>问题：构造函数当普通函数使用时，函数内的this对象会被绑定window对象（全局执行环境==全局作用域），从而可能会导致页面上出现错误，因此作用域不安全。<br>解决方法：首先确认<code>this</code>对象是正确类型的实例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> <span class="keyword">instanceof</span> Person)&#123;</div><div class="line">        <span class="keyword">this</span>.name=name;</div><div class="line">        <span class="keyword">this</span>.age=age;</div><div class="line">        <span class="keyword">this</span>.job=job;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Person(name,age,job);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1=Person(<span class="string">'li'</span>,<span class="number">29</span>,<span class="string">'software engineer'</span>);</div><div class="line">alert(<span class="built_in">window</span>.name);             <span class="comment">//''</span></div><div class="line">alert(person1.name);            <span class="comment">//'li'</span></div></pre></td></tr></table></figure></p>
+<p><strong>后遗症</strong>:使用作用域安全的构造函数，就锁定了可以调用构造函数的环境。也就是说其作用域只有自己的变量对象和全局变量对象，不能被其他函数借用。使用借用构造函数模式继承，那么这个继承可能被破坏。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Polygon</span>(<span class="params">sides</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> Polygon) &#123;</div><div class="line">        <span class="keyword">this</span>.sides = sides;</div><div class="line">        <span class="keyword">this</span>.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Polygon(sides);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">width, height</span>)</span>&#123;</div><div class="line">    Polygon.call(<span class="keyword">this</span>, <span class="number">2</span>);</div><div class="line">    <span class="keyword">this</span>.width = width;</div><div class="line">    <span class="keyword">this</span>.height = height;</div><div class="line">    <span class="keyword">this</span>.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.width * <span class="keyword">this</span>.height;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle(<span class="number">5</span>, <span class="number">10</span>);</div><div class="line">alert(rect.sides); <span class="comment">//undefined</span></div><div class="line"></div><div class="line"><span class="comment">//这个实例应该继承Polygon的sides属性，实际上没有</span></div></pre></td></tr></table></figure></p>
+<p>解释：由于Polygon作用域是安全的，<code>this</code>对象不是Polygon的实例，所以会创建一个新Polygon对象。Rectangle构造函数中是this对象并没有得到增长，同时<code>Polygon.call()</code>返回的值也没有用到，所以Recanglt实例中不会有sides属性。<br><strong>解决后遗症方法</strong>：<del>借用构造模式结合使用原型链</del> 组合继承或者寄生组合式继承。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Polygon</span>(<span class="params">sides</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> Polygon) &#123;</div><div class="line">        <span class="keyword">this</span>.sides = sides;</div><div class="line">        <span class="keyword">this</span>.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Polygon(sides);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">width, height</span>)</span>&#123;</div><div class="line">    Polygon.call(<span class="keyword">this</span>, <span class="number">2</span>);          <span class="comment">//第二次调用Polygon()</span></div><div class="line">    <span class="keyword">this</span>.width = width;</div><div class="line">    <span class="keyword">this</span>.height = height;</div><div class="line">    <span class="keyword">this</span>.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.width * <span class="keyword">this</span>.height;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Rectangle.prototype = <span class="keyword">new</span> Polygon();  <span class="comment">//增加这一行，就成为组合继承模式。第一次调用Polygon()</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> rect = <span class="keyword">new</span> Rectangle(<span class="number">5</span>, <span class="number">10</span>);</div><div class="line">alert(rect.sides); <span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<p><strong>解释：</strong> 第一次调用时，在Rectangle原型上添加了sides属性，第二次调用时，<code>this</code>代表的rect实例的instanceof指向Polygon，所以<code>Polygon.call()</code>会照原意执行。</p>
+<h3 id="3-惰性载入函数"><a href="#3-惰性载入函数" class="headerlink" title="3. 惰性载入函数"></a>3. 惰性载入函数</h3><p><strong>惰性载入:</strong> 表示函数执行的分支仅会发生一次。两种实现惰性载入的方式：<em>一是在函数被调用时再处理函数</em>，<em>二是声明函数时就指定恰当的函数。</em></p>
+<ol>
+<li>在函数被调用时再处理函数：在第一次调用的过程中，该函数会被覆盖为另一个按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行的分支了。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createXHR</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">"undefined"</span>)&#123;</div><div class="line">        createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;           <span class="comment">//新增按合适方式执行的函数</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXObject != <span class="string">"undefined"</span>)&#123;</div><div class="line">        createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;           <span class="comment">//新增按合适方式执行的函数</span></div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">"string"</span>)&#123;</div><div class="line">                <span class="keyword">var</span> versions = [<span class="string">"MSXML2.XMLHttp.6.0"</span>, <span class="string">"MSXML2.XMLHttp.3.0"</span>,<span class="string">"MSXML2.XMLHttp"</span>],</div><div class="line">                    i, len;</div><div class="line">                </div><div class="line">                <span class="keyword">for</span> (i=<span class="number">0</span>,len=versions.length; i &lt; len; i++)&#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        <span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">                        <span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125; <span class="keyword">catch</span> (ex)&#123;</div><div class="line">                        <span class="comment">//skip</span></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        createXHR = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"No XHR object available."</span>);</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> createXHR();                    <span class="comment">//新增按合适方式执行的函数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>代码解释：这个惰性载入的<code>createXHR()</code>中，if语句的每一个分支都会为createXHR变量赋值，有效覆盖了原有的函数。最后一步便是调用新赋的函数。下一次调用<code>createXHR()</code>时，会直接调用被分配的函数。</p>
+<ol>
+<li>在声明函数时就指定适当的函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createXHR = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> XMLHttpRequest != <span class="string">"undefined"</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> ActiveXObject != <span class="string">"undefined"</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>.callee.activeXString != <span class="string">"string"</span>)&#123;</div><div class="line">                <span class="keyword">var</span> versions = [<span class="string">"MSXML2.XMLHttp.6.0"</span>, <span class="string">"MSXML2.XMLHttp.3.0"</span>,<span class="string">"MSXML2.XMLHttp"</span>],</div><div class="line">                    i, len;</div><div class="line">                <span class="keyword">for</span> (i=<span class="number">0</span>,len=versions.length; i &lt; len; i++)&#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        <span class="keyword">new</span> ActiveXObject(versions[i]);</div><div class="line">                        <span class="built_in">arguments</span>.callee.activeXString = versions[i];</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125; <span class="keyword">catch</span> (ex)&#123;</div><div class="line">                        <span class="comment">//skip</span></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="built_in">arguments</span>.callee.activeXString);</div><div class="line">        &#125;;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"No XHR object available."</span>);</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="4-函数绑定"><a href="#4-函数绑定" class="headerlink" title="4. 函数绑定"></a>4. 函数绑定</h3><p><strong>函数绑定：</strong> 要创建一个函数，可以在特定的<code>this</code>环境中以指定参数调用另一个函数。<br><strong>用处：</strong> 和回调函数、事件处理程序、setTimeout()、setInterval()一起使用，以便在将函数作为变量传递的同时保留代码执行环境。<br>函数<code>bind()</code>：接受一个函数和一个环境，并返回一个在给定环境中调用给定函数的函数，并且将所有参数原封不动传递过去。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">fn,context</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.apply(context,<span class="built_in">arguments</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用</span></div><div class="line"><span class="keyword">var</span> handler = &#123;</div><div class="line">    message: <span class="string">"Event handled"</span>,</div><div class="line">    handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">        alert(<span class="keyword">this</span>.message + <span class="string">":"</span> + event.type);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"my-btn"</span>);</div><div class="line">EventUtil.addHandler(btn, <span class="string">"click"</span>, bind(handler.handleClick, handler));</div><div class="line">EventUtil.addHandler(btn, <span class="string">"click"</span>, handler.handleClick.bind(handler));</div></pre></td></tr></table></figure></p>
+<p><strong>ECMA5方法原生bind()</strong>，IE9+、FireFox 4+和Chrome。</p>
+<h3 id="5-函数柯里化"><a href="#5-函数柯里化" class="headerlink" title="5. 函数柯里化"></a>5. 函数柯里化</h3><p><strong>用处：</strong> 用于创建已经设置好了一个或多个参数的函数。<br><strong>方法：</strong> 使用闭包返回一个函数。<br><strong>创建步骤：</strong> 调用另一个函数并为它传入要柯里化的函数和必要参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn</span>)</span>&#123;          <span class="comment">//不止一个参数</span></div><div class="line">    <span class="keyword">var</span> args=<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> innerArgs=<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line">        <span class="keyword">var</span> finalArgs=args.concat(innerArgs);</div><div class="line">        <span class="keyword">return</span> fn.apply(<span class="literal">null</span>,finalArgs);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>curry()</code> 工作目的：将被返回函数的参数进行排序。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1,num2</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> num1+num2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> curriedAdd=curry(add,<span class="number">5</span>);</div><div class="line">alert(curriedAdd(<span class="number">3</span>));    <span class="comment">//8</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> curriedAdd=curry(add,<span class="number">5</span>，<span class="number">12</span>);</div><div class="line">alert(curriedAdd());    <span class="comment">//17</span></div></pre></td></tr></table></figure></p>
+<p><strong>更复杂的bind()函数：</strong> 函数柯里化作为函数绑定一部分<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">fn,context</span>)</span>&#123;     <span class="comment">//不止两个参数</span></div><div class="line">    <span class="keyword">var</span> args=<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">2</span>);</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> innerArgs=<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line">        <span class="keyword">var</span> finalArgs=args.contact(innerArgs);</div><div class="line">        <span class="keyword">return</span> fn.apply(context,finalArgs);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ECMA5的<code>bind()</code>方法也实现函数柯里化，再传入另一个参数即可。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/09/18/《JavaScript高级程序设计》读书笔记22-1高级函数/" title="《JavaScript高级程序设计》读书笔记22.1高级函数">http://yoursite.com/2017/09/18/《JavaScript高级程序设计》读书笔记22-1高级函数/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/15/《JavaScript高级程序设计》读书笔记21-5其他跨域技术/" rel="next" title="《JavaScript高级程序设计》读书笔记21.5其他跨域技术">
+                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记21.5其他跨域技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/《JavaScript高级程序设计》读书笔记22-2防篡改对象/" rel="prev" title="《JavaScript高级程序设计》读书笔记22.2防篡改对象">
+                《JavaScript高级程序设计》读书笔记22.2防篡改对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="liborn" />
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安全的类型检测"><span class="nav-number">1.</span> <span class="nav-text">1. 安全的类型检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-作用域安全的构造函数"><span class="nav-number">2.</span> <span class="nav-text">2. 作用域安全的构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-惰性载入函数"><span class="nav-number">3.</span> <span class="nav-text">3. 惰性载入函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-函数绑定"><span class="nav-number">4.</span> <span class="nav-text">4. 函数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-函数柯里化"><span class="nav-number">5.</span> <span class="nav-text">5. 函数柯里化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
