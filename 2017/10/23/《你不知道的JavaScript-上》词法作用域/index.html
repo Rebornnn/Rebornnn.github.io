@@ -127,12 +127,12 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="词法作用域，在书写代码时就被确定了">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ouiijxbcw.bkt.clouddn.com/17-9-11/19374769.jpg">
-<meta property="og:updated_time" content="2017-10-23T14:27:59.349Z">
+<meta property="og:image" content="http://img.aisss.top/17-9-11/19374769.jpg">
+<meta property="og:updated_time" content="2018-12-06T06:43:47.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《你不知道的JavaScript-上》词法作用域">
 <meta name="twitter:description" content="词法作用域，在书写代码时就被确定了">
-<meta name="twitter:image" content="http://ouiijxbcw.bkt.clouddn.com/17-9-11/19374769.jpg">
+<meta name="twitter:image" content="http://img.aisss.top/17-9-11/19374769.jpg">
 
 
 
@@ -426,7 +426,7 @@
       
         <p><strong>作用域有两种工作模式：词法作用域、动态作用域。</strong></p>
 <h2 id="词法阶段"><a href="#词法阶段" class="headerlink" title="词法阶段"></a>词法阶段</h2><p>词法作用域是定义在词法阶段（编译的第一步）的作用域。也就是，词法作用域是由你在写代码时将变量和块级作用域写在哪里来决定的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> b=a*<span class="number">2</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">c</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a,b,c);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    bar(b*<span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(<span class="number">2</span>);</div></pre></td></tr></table></figure></p>
-<p>将上列函数的作用域想象成几个逐级包含的气泡：<br><img src="http://ouiijxbcw.bkt.clouddn.com/17-9-11/19374769.jpg" alt=""><br>气泡1包含着整个全局作用域， 其中只有一个标识符： foo 。<br>气泡2包含着foo 所创建的作用域， 其中有三个标识符： a 、 bar 和b 。<br>气泡3包含着bar 所创建的作用域， 其中只有一个标识符： c 。       </p>
+<p>将上列函数的作用域想象成几个逐级包含的气泡：<br><img src="http://img.aisss.top/17-9-11/19374769.jpg" alt=""><br>气泡1包含着整个全局作用域， 其中只有一个标识符： foo 。<br>气泡2包含着foo 所创建的作用域， 其中有三个标识符： a 、 bar 和b 。<br>气泡3包含着bar 所创建的作用域， 其中只有一个标识符： c 。       </p>
 <p>作用域气泡由对应的作用域块代码写在哪里决定的。</p>
 <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>作用域气泡的结构和互相之间的位置关系能够给引擎查找提供足够的位置信息。<br>遮蔽效应：内部的标识符会“遮蔽”外部的标识符。<br>全局变量自动成为全局对象的属性，可以通过这种属性<code>window.a</code>访问那些被同名变量所遮蔽的全局变量。</p>
 <h2 id="欺骗词法"><a href="#欺骗词法" class="headerlink" title="欺骗词法"></a>欺骗词法</h2><p>两种欺骗词法的方法：<code>eval()</code>、<code>with</code>。<br>两种方法会导致性能下降。</p>

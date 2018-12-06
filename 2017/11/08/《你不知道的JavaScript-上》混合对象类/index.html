@@ -127,12 +127,12 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="本章主要了解类的概念">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ouiijxbcw.bkt.clouddn.com/17-10-22/52022745.jpg">
-<meta property="og:updated_time" content="2017-11-08T12:17:40.686Z">
+<meta property="og:image" content="http://img.aisss.top/17-10-22/52022745.jpg">
+<meta property="og:updated_time" content="2018-12-06T06:43:47.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《你不知道的JavaScript-上》混合对象“类”">
 <meta name="twitter:description" content="本章主要了解类的概念">
-<meta name="twitter:image" content="http://ouiijxbcw.bkt.clouddn.com/17-10-22/52022745.jpg">
+<meta name="twitter:image" content="http://img.aisss.top/17-10-22/52022745.jpg">
 
 
 
@@ -446,7 +446,7 @@
 <p>在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义。代码例子中的两个drive()和两个ignition()。       </p>
 <p>一个问题，在<code>polot()</code>中通过相对多态引用了（继承来的）Vehicle中的<code>dirve()</code>。但是那个<code>dirve()</code>方法直接通过名字引用了<code>ignition()</code>方法。那么语言引擎会使用哪个<code>ignition()</code>呢？<br>它会使用SpeedBoat的<code>ignition()</code>。如果你直接实例化了Vehicle类然后调用它的<code>drive()</code>，那么语言引擎就会使用Vehicle中的<code>ignition()</code>方法。<br>换言之，<code>ignition()</code>方法定义的多态性取决于你是哪个类的实例中引起它。        </p>
 <p>在子类中也可以相对引用它继承的父类，这种相对引用通常被称为<code>super</code>。<br>需要注意，子类得到的仅仅是继承自父类行为的一份副本。<br>类的继承其实就是复制。</p>
-<p><img src="http://ouiijxbcw.bkt.clouddn.com/17-10-22/52022745.jpg" alt=""><br>注意实例a1、a2、b1、b2和继承bar，箭头表示复制操作。     </p>
+<p><img src="http://img.aisss.top/17-10-22/52022745.jpg" alt=""><br>注意实例a1、a2、b1、b2和继承bar，箭头表示复制操作。     </p>
 <h3 id="2-多重继承"><a href="#2-多重继承" class="headerlink" title="2.多重继承"></a>2.多重继承</h3><p>多重继承指：有些面向类的语言允许你继承多个“父类”，意味着所有父类的定义都会被复制到子类中。<br>多个父类情况下，多重继承会导致不能确定引用哪个父类方法的问题。      </p>
 <p>JS并不提供“多重继承”功能。但开发者有各种各样方法来实现多重继承。    </p>
 <h2 id="混入"><a href="#混入" class="headerlink" title="混入"></a>混入</h2><p>继承或者实例化时，JS的对象机制并不会自动执行复制行为。简单说，JS中只有对象，并不存在可以被实例化的“类”。一个对象并不会被复制到其他对象，他们会被关联起来。<br>但其他语言中表现出来都是复制行为，因此JS开发者想出模拟类的复制行为，就是<strong>混入</strong>。<br>两种类型的混入：显式和隐式。    </p>
