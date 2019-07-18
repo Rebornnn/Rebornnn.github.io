@@ -79,4 +79,4 @@ theme: next
 deploy:
   type: git
   repository: ssh://git@github.com/Rebornnn/Rebornnn.github.io
-  branch: public
+  branch: master
