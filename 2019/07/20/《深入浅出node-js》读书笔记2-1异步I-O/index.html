@@ -103,7 +103,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="JavaScript,系统学习,">
+  <meta name="keywords" content="系统学习,node,">
 
 
 
@@ -119,18 +119,25 @@
 
 
 
-<meta name="description" content="CORS是W3C的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通">
-<meta name="keywords" content="JavaScript,系统学习">
+<meta name="description" content="I/O操作">
+<meta name="keywords" content="系统学习,node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《JavaScript高级程序设计》读书笔记21.4跨域资源共享">
-<meta property="og:url" content="http://yoursite.com/2017/09/14/《JavaScript高级程序设计》读书笔记21-4跨域资源共享/index.html">
+<meta property="og:title" content="《深入浅出node.js》读书笔记2-1异步I&#x2F;O">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/《深入浅出node-js》读书笔记2-1异步I-O/index.html">
 <meta property="og:site_name" content="博言">
-<meta property="og:description" content="CORS是W3C的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通">
+<meta property="og:description" content="I/O操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T05:20:39.496Z">
+<meta property="og:image" content="http://img.aisss.top/Fsjqd1KdO_IozBEa08X8LTTorf6w">
+<meta property="og:image" content="http://img.aisss.top/Fg_ATIRzMltfGXwvWSP6JhxEJ7Sh">
+<meta property="og:image" content="http://img.aisss.top/Fu5K7fS6xdAWUZiiZhTW2_ZfRpgR">
+<meta property="og:image" content="http://img.aisss.top/FmhDKFFTAEujsfiNSAfim1wjIAPt">
+<meta property="og:image" content="http://img.aisss.top/FngCvUm8tT3EOxpcn30pgHOtIhxv">
+<meta property="og:image" content="http://img.aisss.top/Fsy8jcIVCSJ87cLqDB9LVfmfXVpd">
+<meta property="og:updated_time" content="2019-07-25T08:53:36.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记21.4跨域资源共享">
-<meta name="twitter:description" content="CORS是W3C的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通">
+<meta name="twitter:title" content="《深入浅出node.js》读书笔记2-1异步I&#x2F;O">
+<meta name="twitter:description" content="I/O操作">
+<meta name="twitter:image" content="http://img.aisss.top/Fsjqd1KdO_IozBEa08X8LTTorf6w">
 
 
 
@@ -159,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/14/《JavaScript高级程序设计》读书笔记21-4跨域资源共享/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/20/《深入浅出node-js》读书笔记2-1异步I-O/">
 
 
 
 
 
-  <title>《JavaScript高级程序设计》读书笔记21.4跨域资源共享 | 博言</title>
+  <title>《深入浅出node.js》读书笔记2-1异步I/O | 博言</title>
   
 
 
@@ -318,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/《JavaScript高级程序设计》读书笔记21-4跨域资源共享/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/《深入浅出node-js》读书笔记2-1异步I-O/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liborn">
@@ -335,7 +342,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记21.4跨域资源共享</h2>
+          <h2 class="post-title" itemprop="name headline">《深入浅出node.js》读书笔记2-1异步I/O</h2>
         
 
         <div class="post-meta">
@@ -347,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T09:30:41+08:00">
-                2017-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T00:01:56+08:00">
+                2019-07-20
               </time>
             
 
@@ -381,8 +388,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/《JavaScript高级程序设计》/" itemprop="url" rel="index">
-                    <span itemprop="name">《JavaScript高级程序设计》</span>
+                  <a href="/categories/读书笔记/《深入浅出node-js》/" itemprop="url" rel="index">
+                    <span itemprop="name">《深入浅出node.js》</span>
                   </a>
                 </span>
 
@@ -405,7 +412,7 @@
 
           
               <div class="post-description">
-                  CORS是W3C的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通
+                  I/O操作
               </div>
           
 
@@ -422,42 +429,29 @@
       
 
       
-        <p><strong>默认情况下，XHR对象只能访问与包含它的页面位于同一个域中的资源。</strong>    </p>
-<p><strong>CORS</strong>（Cross-Origin Resource Sharing，跨源资源共享）是W3C的一个工作草案，定义了在必须访问跨源资源时，浏览器与服务器应该如何沟通。      </p>
-<p>CORS的 <strong>基本思想</strong>，就是使用自定义的 HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功，还是应该失败。</p>
-<h3 id="1-IE对CORS的实现"><a href="#1-IE对CORS的实现" class="headerlink" title="1. IE对CORS的实现"></a>1. IE对CORS的实现</h3><ul>
-<li>引入了 XDR（XDomainRequest）类型,与XHR类似，但有4点不同</li>
-</ul>
-<ol>
-<li>cookie不会随请求发送，也不会随响应返回。 </li>
-<li>只能设置请求头部信息中的 Content-Type 字段。</li>
-<li>不能访问响应头部信息。 </li>
-<li>只支持 GET 和 POST 请求。<br>这些变化使 CSRF（Cross-Site Request Forgery，跨站点请求伪造）和 XSS（Cross-Site Scripting，跨<br>站点脚本）的问题得到了缓解。</li>
-</ol>
+        <p><img src="http://img.aisss.top/Fsjqd1KdO_IozBEa08X8LTTorf6w" alt></p>
+<h2 id="系统的异步I-O实现现状"><a href="#系统的异步I-O实现现状" class="headerlink" title="系统的异步I/O实现现状"></a>系统的异步I/O实现现状</h2><h3 id="异步I-O与非阻塞I-O"><a href="#异步I-O与非阻塞I-O" class="headerlink" title="异步I/O与非阻塞I/O"></a>异步I/O与非阻塞I/O</h3><p>从计算机内核I/O而言，异步/同步和阻塞/非阻塞实际上是两回事。<br>操作系统内核对于I/O只有两种方式：</p>
 <ul>
-<li><p>使用方法：创建一个XDomainRequest的实例，调用<code>open()</code>方法，再调用 <code>send()</code>方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest(); </span><br><span class="line">xdr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    alert(xdr.responseText); </span><br><span class="line">&#125;; </span><br><span class="line">xdr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    alert(<span class="string">"An error occurred."</span>); </span><br><span class="line">&#125;; </span><br><span class="line">xdr.open(<span class="string">"get"</span>, <span class="string">"http://www.somewhere-else.com/page/"</span>);</span><br><span class="line">xdr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>为支持 POST 请求，XDR对象提供了 contentType属性，用来表示发送数据的格式，如下面的例子所示</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest(); </span><br><span class="line">xdr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    alert(xdr.responseText); </span><br><span class="line">&#125;; </span><br><span class="line">xdr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    alert(<span class="string">"An error occurred."</span>); </span><br><span class="line">&#125;; </span><br><span class="line">xdr.open(<span class="string">"post"</span>, <span class="string">"http://www.somewhere-else.com/page/"</span>); </span><br><span class="line">xdr.contentType = <span class="string">"application/x-www-form-urlencoded"</span>; </span><br><span class="line">xdr.send(<span class="string">"name1=value1&amp;name2=value2"</span>);</span><br></pre></td></tr></table></figure>
+<li>阻塞。调用阻塞I/O时，应用程序需要等待I/O完成才返回。</li>
+<li>非阻塞。调用阻塞I/O时，会立即返回。   </li>
+</ul>
+<p>非阻塞需要通过轮询去确认是否完全完成数据获取。<br>理想的非阻塞异步I/O = 非阻塞 + 异步 ：应用程序发起非阻塞调用，无须通过遍历或者事件唤醒等方式轮询，可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序。</p>
+<h2 id="Node的异步I-O"><a href="#Node的异步I-O" class="headerlink" title="Node的异步I/O"></a>Node的异步I/O</h2><h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><p>Node进程启动时，Node便会创建一个类似while(true)的循环，每执行一次循环体的过程我们称为Tick。每个Tick的过程就是查看是否有事件待处理，如果有，就取出事件及其相关的回调函数。如果存在关联的回调函数，就执行他们。然后进入下一个循环，如果不再有事件处理，就退出进程。流程图如下：<br><img src="http://img.aisss.top/Fg_ATIRzMltfGXwvWSP6JhxEJ7Sh" alt><br><img src="http://img.aisss.top/Fu5K7fS6xdAWUZiiZhTW2_ZfRpgR" alt></p>
+<h3 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h3><p>事件循环是一个典型的生产者/消费者模型。异步I/O、网络请求等则是事件的生产者，源源不断为Node提供不同类型的事件，这些事件被传递到对应的观察者那里，事件循环则从观察者那里取出事件处理。<br>在Windows下，这个循环基于IOCP创建，而在*nix下则基于多线程创建。 </p>
+<h3 id="请求对象"><a href="#请求对象" class="headerlink" title="请求对象"></a>请求对象</h3><p>从Javascript发起调用到内核执行完I/O操作的过渡过程中，存在一种中间产物，它叫<strong>请求对象</strong>。<br>下面以最简单的<code>fs.open()</code>(windows下)方法为例，探索Node与底层之间如何执行异步I/O调用以及回调函数究竟是如何被调用执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fs.open = <span class="function"><span class="keyword">function</span>(<span class="params">path, flags, mode, callback</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    binding.open(pathModule._makeLong(path),</span><br><span class="line">                    stringToFlags(flags),</span><br><span class="line">                    mode,</span><br><span class="line">                    callback); </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h3 id="2-其他浏览器对CORS的实现"><a href="#2-其他浏览器对CORS的实现" class="headerlink" title="2.其他浏览器对CORS的实现"></a>2.其他浏览器对CORS的实现</h3><ul>
-<li>请求位于另一个域中的资源，使用标准的XHR对象并在open()方法中传入绝对URL即可。</li>
-<li>跨域的限制：</li>
-</ul>
-<ol>
-<li>不能使用<code>setRequestHeader()</code>设置自定义头部。 </li>
-<li>不能发送和接收 cookie。 </li>
-<li>调用 <code>getAllResponseHeaders()</code>方法总会返回空字符串。</li>
-</ol>
+<p>调用示意图如下：<br><img src="http://img.aisss.top/FmhDKFFTAEujsfiNSAfim1wjIAPt" alt><br>在libuv封装层中，<code>uv_fs_open()</code>的调用过程中，我们创建了一个<code>FSReqWrap</code>请求对象。从Javascript层传入的参数和回调函数都被封装在这个请求对象中。对象包装完毕后，在Windows平台下，则调用<code>QueueUserWorkItem()</code>方法将这个<code>FSReqWrap</code>对象推入线程池中等待执行。<br>至此，Javascript调用立即返回，由Javascript层面发起的异步调用的第一阶段就此结束。Javascript线程可以继续执行当前任务的后续操作。当前的I/O操作在线程池中等待执行，不会影响Javascript线程，如此达到异步的目的。<br>请求对象是异步I/O过程中的重要中间产物，所有的状态都保存在这个对象中，包括送入线程池等待执行以及I/O操作完毕后的回调处理。    </p>
+<h3 id="执行回调"><a href="#执行回调" class="headerlink" title="执行回调"></a>执行回调</h3><p>组装好请求对象，送入I/O线程池等待执行，这是第一部分，回调通知是第二部分。<br>线程池中的I/O操作调用完毕之后，会将获取的结果储存在请求对象的result属性上，然后通过IOCP，告知当前对象操作已经完成。<br>这个过程中，还动用了事件循环的I/O观察者。在每次Tick的执行中，观察者会检查线程池中是否有执行完的请求，如果存在，会将请求对象加入到I/O观察者的队列中，然后将其当做事件处理。<br>I/O观察者回调函数的行为就是取出请求对象的result属性作为参数，取出回调函数，然后调用执行，以此达到调用Javascript中传入的回调函数的目的。<br>至此，整个异步I/O的流程完全结束。<br><img src="http://img.aisss.top/FngCvUm8tT3EOxpcn30pgHOtIhxv" alt><br>事件循环、观察者、请求对象、I/O线程池这四者共同构建了Node异步I/O模型的基本要素。    </p>
+<h2 id="非I-O的异步API"><a href="#非I-O的异步API" class="headerlink" title="非I/O的异步API"></a>非I/O的异步API</h2><p><code>setTimeout()</code>、<code>setInterval()</code>、<code>setImmediate()</code>、<code>process.nextTick()</code> </p>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p><code>setTimeout()</code>、<code>setInterval()</code>的实现原理与异步I/O比较类似，只是不需要I/O线程池的参与。创建的定时器被插入到定时器观察者内部的一个红黑树中。每次Tick执行时，会从该红黑树中迭代取出定时器对象，检查是否超过定时时间，如果超过，就形成一个事件，它的回调函数立即执行。<br><img src="http://img.aisss.top/Fsy8jcIVCSJ87cLqDB9LVfmfXVpd" alt></p>
+<h3 id="process-nextTick-、setImmediate"><a href="#process-nextTick-、setImmediate" class="headerlink" title="process.nextTick()、setImmediate()"></a>process.nextTick()、setImmediate()</h3><p><code>process.nextTick()</code>、<code>setImmediate()</code>十分类似，都是将回调函数延迟执行。但是<code>process.nextTick()</code>属于微任务micro-task。  </p>
 <ul>
-<li>对于本地资源，最好使用相对 URL，在访<br>问远程资源时再使用绝对 URL</li>
+<li>从结果来看，<code>process.nextTick()</code>中的回调函数执行的优先级要高于<code>setImmediate()</code>；    </li>
+<li>在具体实现上，<code>process.nextTick()</code>的回调函数保存在一个数组中，<code>setImmediate()</code>的回调则是保存在链表中；  </li>
+<li>行为上，<code>process.nextTick()</code>在每轮循环中会将数组中的回调函数全部执行完，而<code>setImmediate()</code>在每轮循环中执行链表中的一个回调函数。<br>setTimeout(()=&gt;{<br>  console.log(‘timer1’)<br>  Promise.resolve().then(function() {<pre><code>console.log(&apos;promise1&apos;)</code></pre>  })<br>}, 0)<br>setTimeout(()=&gt;{<br>  console.log(‘timer2’)<br>  Promise.resolve().then(function() {<pre><code>console.log(&apos;promise2&apos;)</code></pre>  })<br>}, 0)</li>
 </ul>
-<h3 id="3-Preflighted-Reqeusts"><a href="#3-Preflighted-Reqeusts" class="headerlink" title="3. Preflighted Reqeusts"></a>3. Preflighted Reqeusts</h3><p>IE10及以前都不支持</p>
-<h3 id="4-带凭据的请求"><a href="#4-带凭据的请求" class="headerlink" title="4. 带凭据的请求"></a>4. 带凭据的请求</h3><p>IE10及以前都不支持</p>
-<h3 id="5-跨浏览器的CORS"><a href="#5-跨浏览器的CORS" class="headerlink" title="5. 跨浏览器的CORS"></a>5. 跨浏览器的CORS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createCORSRequest</span>(<span class="params">method, url</span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest(); </span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"withCredentials"</span> <span class="keyword">in</span> xhr)&#123; </span><br><span class="line">        xhr.open(method, url, <span class="literal">true</span>); </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> XDomainRequest != <span class="string">"undefined"</span>)&#123;</span><br><span class="line">        xhr = <span class="keyword">new</span> XDomainRequest(); </span><br><span class="line">        xhr.open(method, url); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        xhr = <span class="literal">null</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> xhr; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> request = createCORSRequest(<span class="string">"get"</span>, <span class="string">"http://www.somewhere-else.com/page/"</span>); </span><br><span class="line"><span class="keyword">if</span> (request)&#123; </span><br><span class="line">    request.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">        <span class="comment">//对 request.responseText 进行处理 </span></span><br><span class="line">    &#125;; </span><br><span class="line">    request.send(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -485,7 +479,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/09/14/《JavaScript高级程序设计》读书笔记21-4跨域资源共享/" title="《JavaScript高级程序设计》读书笔记21.4跨域资源共享">http://yoursite.com/2017/09/14/《JavaScript高级程序设计》读书笔记21-4跨域资源共享/</a>
+    <a href="http://yoursite.com/2019/07/20/《深入浅出node-js》读书笔记2-1异步I-O/" title="《深入浅出node.js》读书笔记2-1异步I/O">http://yoursite.com/2019/07/20/《深入浅出node-js》读书笔记2-1异步I-O/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -500,9 +494,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
             <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+            <a href="/tags/node/" rel="tag"># node</a>
           
         </div>
       
@@ -515,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/《JavaScript高级程序设计》读书笔记21-1XMLHttpRequest对象/" rel="next" title="《JavaScript高级程序设计》读书笔记21.1XMLHttpRequest对象">
-                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记21.1XMLHttpRequest对象
+              <a href="/2019/07/18/《深入浅出node-js》读书笔记1-1模块机制/" rel="next" title="《深入浅出node.js》读书笔记1-1模块机制">
+                <i class="fa fa-chevron-left"></i> 《深入浅出node.js》读书笔记1-1模块机制
               </a>
             
           </div>
@@ -524,10 +518,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/15/《JavaScript高级程序设计》读书笔记21-5其他跨域技术/" rel="prev" title="《JavaScript高级程序设计》读书笔记21.5其他跨域技术">
-                《JavaScript高级程序设计》读书笔记21.5其他跨域技术 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -717,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-IE对CORS的实现"><span class="nav-number">1.</span> <span class="nav-text">1. IE对CORS的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-其他浏览器对CORS的实现"><span class="nav-number">2.</span> <span class="nav-text">2.其他浏览器对CORS的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Preflighted-Reqeusts"><span class="nav-number">3.</span> <span class="nav-text">3. Preflighted Reqeusts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-带凭据的请求"><span class="nav-number">4.</span> <span class="nav-text">4. 带凭据的请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-跨浏览器的CORS"><span class="nav-number">5.</span> <span class="nav-text">5. 跨浏览器的CORS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统的异步I-O实现现状"><span class="nav-number">1.</span> <span class="nav-text">系统的异步I/O实现现状</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步I-O与非阻塞I-O"><span class="nav-number">1.1.</span> <span class="nav-text">异步I/O与非阻塞I/O</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node的异步I-O"><span class="nav-number">2.</span> <span class="nav-text">Node的异步I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环"><span class="nav-number">2.1.</span> <span class="nav-text">事件循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者"><span class="nav-number">2.2.</span> <span class="nav-text">观察者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求对象"><span class="nav-number">2.3.</span> <span class="nav-text">请求对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行回调"><span class="nav-number">2.4.</span> <span class="nav-text">执行回调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非I-O的异步API"><span class="nav-number">3.</span> <span class="nav-text">非I/O的异步API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定时器"><span class="nav-number">3.1.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#process-nextTick-、setImmediate"><span class="nav-number">3.2.</span> <span class="nav-text">process.nextTick()、setImmediate()</span></a></li></ol></li></ol></div>
             
 
           </div>
