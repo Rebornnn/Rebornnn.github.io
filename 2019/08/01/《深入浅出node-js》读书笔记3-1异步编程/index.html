@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="异步编程范式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-01T08:54:14.263Z">
+<meta property="og:updated_time" content="2019-08-02T02:39:52.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入浅出node.js》读书笔记3-1异步编程">
 <meta name="twitter:description" content="异步编程范式">
@@ -422,7 +422,13 @@
       
 
       
-        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2>
+        <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程是Javascript异步编程的基础。</p>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><p>通常的语言中，函数的参数只接受基本的数据类型或是对象引用，返回值也只是基本数据类型和对象引用。<br>高阶函数在Javascript中比比皆是，一些复杂业务逻辑的解耦，受益于高阶函数。    </p>
+<h3 id="偏函数用法"><a href="#偏函数用法" class="headerlink" title="偏函数用法"></a>偏函数用法</h3><p>偏函数： 指定部分参数来产生一个新的定制函数的形式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例子</span></span><br><span class="line"><span class="keyword">var</span> toString = <span class="built_in">Object</span>.prototype.toString();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> isString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> toString.call(obj) == <span class="string">'[object String]'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> isFunction = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> toStrinf.call(obj) == <span class="string">'[object Function]'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用偏函数后</span></span><br><span class="line"><span class="keyword">var</span> isType = <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object '</span> + type + <span class="string">']'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> isString = isType(<span class="string">'String'</span>);</span><br><span class="line"><span class="keyword">var</span> isFunction = isType(<span class="string">'Function'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="异步编程的优势与难点"><a href="#异步编程的优势与难点" class="headerlink" title="异步编程的优势与难点"></a>异步编程的优势与难点</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>1、基于事件驱动的非阻塞I/O模型，在分布式和云服务上的高并行使得各个单点之间能够更有效的组织起来。<br>2、Node的V8引擎能够调用C/C++扩展模块，性能可以逼近C语言。<br>3、合理利用Node的异步模型与V8的高性能，就可以充分发挥CPU和I/O资源的优势。</p>
+<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3>
       
     </div>
     
@@ -678,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.</span> <span class="nav-text">函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.1.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏函数用法"><span class="nav-number">1.2.</span> <span class="nav-text">偏函数用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步编程的优势与难点"><span class="nav-number">2.</span> <span class="nav-text">异步编程的优势与难点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">2.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难点"><span class="nav-number">2.2.</span> <span class="nav-text">难点</span></a></li></ol></li></ol></div>
             
 
           </div>
