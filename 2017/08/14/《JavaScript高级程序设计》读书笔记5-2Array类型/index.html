@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,系统学习,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="与其他语言不同的是，ECMAScript数组的每一项可以保存任何类型的数据。">
+<meta name="keywords" content="JavaScript,系统学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计》读书笔记5.2Array类型">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="与其他语言不同的是，ECMAScript数组的每一项可以保存任何类型的数据。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-18T05:20:39.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记5.2Array类型">
+<meta name="twitter:description" content="与其他语言不同的是，ECMAScript数组的每一项可以保存任何类型的数据。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/">
+
+
+
+
+
+  <title>《JavaScript高级程序设计》读书笔记5.2Array类型 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《JavaScript高级程序设计》读书笔记5.2Array类型</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T20:59:08+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《JavaScript高级程序设计》/" itemprop="url" rel="index">
+                    <span itemprop="name">《JavaScript高级程序设计》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  与其他语言不同的是，ECMAScript数组的每一项可以保存任何类型的数据。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>与其他语言不同的是，ECMAScript数组的每一项可以保存任何类型的数据。</strong></p>
+<ul>
+<li><h5 id="两种创建数组方式：Array构造函数、数组字面量表示法"><a href="#两种创建数组方式：Array构造函数、数组字面量表示法" class="headerlink" title="两种创建数组方式：Array构造函数、数组字面量表示法"></a>两种创建数组方式：<code>Array</code>构造函数、数组字面量表示法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);            <span class="comment">//创建一个包含3项的数组</span></span><br><span class="line"><span class="keyword">var</span> names=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"libowen"</span>);     <span class="comment">//创建一个包含1项，即字符串"libowen"的数组</span></span><br><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];  <span class="comment">//创建一个包含3个字符串的数组</span></span><br><span class="line"><span class="keyword">var</span> names=[];                       <span class="comment">//创建一个空数组</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="读取和设置数组，使用-索引值"><a href="#读取和设置数组，使用-索引值" class="headerlink" title="读取和设置数组，使用[ 索引值 ]"></a>读取和设置数组，使用[ 索引值 ]</h5></li>
+<li><h5 id="数组length属性的特点（动态）："><a href="#数组length属性的特点（动态）：" class="headerlink" title="数组length属性的特点（动态）："></a>数组<code>length</code>属性的特点（<strong>动态</strong>）：</h5><ul>
+<li><p>设置<code>length</code>属性，可以从数组的末尾移除项或向数组中添加新项.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line">colors.length=<span class="number">2</span>;    <span class="comment">//移除最后一项</span></span><br><span class="line">alert(colors[<span class="number">2</span>]);   <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line">colors[<span class="number">99</span>]=<span class="string">"black"</span>;   <span class="comment">//在位置99添加一种颜色</span></span><br><span class="line">alert(colors.length); <span class="comment">//100</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实际上，不使用缓存数组长度的方式比缓存版本要慢很多。</p>
+</li>
+<li><p><strong>数组长度只能通过length属性修改</strong>，<code>delete</code>不会改变长度。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-检测数组"><a href="#1-检测数组" class="headerlink" title="1.检测数组"></a>1.检测数组</h5><p><code>Array.isArray()</code>方法</p>
+<h5 id="2-转换方法"><a href="#2-转换方法" class="headerlink" title="2.转换方法"></a>2.转换方法</h5><ul>
+<li>可以显示调用<code>toLocaleString()</code>、<code>toString()</code>、<code>valueOf()</code>方法转换，都是返回由数组每个值的字符串形式拼接而成的一个逗号分隔的字符串。    </li>
+<li>后台则是调用<code>toString()</code>方法     </li>
+<li><code>join()</code>方法改变分隔符，如join(“||”)</li>
+</ul>
+<h5 id="3-栈方法-LIFO"><a href="#3-栈方法-LIFO" class="headerlink" title="3.栈方法(LIFO)"></a>3.栈方法(LIFO)</h5><ul>
+<li>栈中项的插入（叫做<strong>推入</strong>）和移除（叫做<strong>弹出</strong>），只发生在栈的顶部。</li>
+<li><code>push()</code>方法：接受任意数量参数，逐个添加到数组末尾，并返回修改后数组的长度。<strong>改变原数组</strong>。</li>
+<li><code>pop()</code>方法：从数组末尾移除最后一项，减少数组的<code>length</code>值，然后返回移除的项。<strong>改变原数组</strong>。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count=colors.push(<span class="string">"red"</span>,<span class="string">"green"</span>); <span class="comment">//推入两项</span></span><br><span class="line">alert(count);            <span class="comment">//2</span></span><br><span class="line">count=colors.push(<span class="string">"black"</span>); <span class="comment">//推入另一项</span></span><br><span class="line">alert(count);            <span class="comment">//3</span></span><br><span class="line"><span class="keyword">var</span> item=colors.pop()；</span><br><span class="line">alert(item);   <span class="comment">//"black"        //取得最后一项</span></span><br><span class="line">alert(colors.length);   <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="4-队列方法-FIFO"><a href="#4-队列方法-FIFO" class="headerlink" title="4.队列方法(FIFO)"></a>4.队列方法(FIFO)</h5><ul>
+<li><p>队列在列表的末端添加项，从列表的前端移除项。</p>
+</li>
+<li><p><code>shift()</code>移除数组中第一个项并返回该项，同时将数组长度减1。<strong>改变原数组</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count=colors.push(<span class="string">"red"</span>,<span class="string">"green"</span>); <span class="comment">//推入两项</span></span><br><span class="line">alert(count);            <span class="comment">//2</span></span><br><span class="line">count=colors.push(<span class="string">"black"</span>); <span class="comment">//推入另一项</span></span><br><span class="line">alert(count);            <span class="comment">//3</span></span><br><span class="line"><span class="keyword">var</span> item=colors.shift();</span><br><span class="line">alert(item);     <span class="comment">//"red"   //取得第一项</span></span><br><span class="line">alert(item.length);   <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>unshift()</code>可以在数组前添加任意个项并返回新数组的长度。<strong>改变原数组</strong>。与<code>pop()</code>联用。</p>
+</li>
+</ul>
+<h5 id="5-重排序方法"><a href="#5-重排序方法" class="headerlink" title="5.重排序方法"></a>5.重排序方法</h5><ul>
+<li><code>reverse()</code>:反转数组项的顺序。</li>
+<li><code>sort()</code>:默认情况下，按升序排列。但是通过比较字符串的方式来比较，容易出现问题。可以接受比较参数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">比较函数：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1,value2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(value1&lt;value2)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value1&gt;value2)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> values=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>];</span><br><span class="line">values.sort(compare);</span><br><span class="line">alert(values);     <span class="comment">//0,1,5,10,15</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="6-操作方法"><a href="#6-操作方法" class="headerlink" title="6.操作方法"></a>6.操作方法</h5><ul>
+<li><p><code>concat()</code>：先创建当前数组一个副本，然后将接受到的参数添加到这个副本的末尾，最后返回新构建的数组。<strong>不会改变原数组</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2=colors.concat(<span class="string">"yellow"</span>,[<span class="string">"blacke"</span>,<span class="string">"brown"</span>]);</span><br><span class="line">alert(colors);      <span class="comment">//red,green,blue</span></span><br><span class="line">alert(colors2);     <span class="comment">//red,green,blue,yellow,black,brown</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>slice()</code>：截取数组。一个参数，截取参数指定位置到数组末尾所有项。两个参数，参数指定位置的第一项、参数末项前一个位置。<strong>不会改变原数组</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>,<span class="string">"yellow"</span>,<span class="string">"purple"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2=colors.slice(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> colors3=colors.slice(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">alert(colors2);    <span class="comment">//green,blue,yellow,purple</span></span><br><span class="line">alert(colors3);    <span class="comment">//green,blue,yellow</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>splice()</code>：向数组的中部插入项。始终返回一个数组，该数组包含从原始数组删除的项，<strong>改变原数组</strong>。</p>
+<ul>
+<li>删除：2个参数。删除位置和删除项数。</li>
+<li>插入：3个参数。起始位置、0、插入的项</li>
+<li>替换：3个参数。起始位置、删除的项数、插入的项<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>];</span><br><span class="line"><span class="keyword">var</span> removed=colors.splice(<span class="number">0</span>,<span class="number">1</span>);  <span class="comment">//删除第一项</span></span><br><span class="line">alert(colors);      <span class="comment">//green,blue</span></span><br><span class="line">alert(removed);     <span class="comment">//red  返回的数组</span></span><br><span class="line"></span><br><span class="line">removed=colors.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="string">"yellow"</span>,<span class="string">"orange"</span>);</span><br><span class="line">alert(colors);      <span class="comment">//green,yellow,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">//返回一个空数组</span></span><br><span class="line"></span><br><span class="line">removed=colors.splice(<span class="number">1</span>,<span class="number">1</span>,<span class="string">"red"</span>,<span class="string">"purple"</span>);</span><br><span class="line">alert(colors);      <span class="comment">//green,red,purple,orange,blue</span></span><br><span class="line">alert(removed);     <span class="comment">//yellow</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="以下方法支持浏览器最低版本：IE9-、FireFox2-、-Safari3-、Opera9-5-、Chrome"><a href="#以下方法支持浏览器最低版本：IE9-、FireFox2-、-Safari3-、Opera9-5-、Chrome" class="headerlink" title="以下方法支持浏览器最低版本：IE9+、FireFox2+、 Safari3+、Opera9.5+、Chrome"></a>以下方法支持浏览器最低版本：IE9+、FireFox2+、 Safari3+、Opera9.5+、Chrome</h4><h5 id="7-位置方法"><a href="#7-位置方法" class="headerlink" title="7.位置方法"></a>7.位置方法</h5><p><code>indexof()</code>和<code>lastIndexOf()</code></p>
+<h5 id="8-迭代方法-ECMAScript5"><a href="#8-迭代方法-ECMAScript5" class="headerlink" title="8.迭代方法( ECMAScript5)"></a>8.迭代方法( ECMAScript5)</h5><p>5种方法。每种方法接受2个参数：每一项上运行的函数和运行该函数的作用域对象——影响<code>this</code>值（可选）。<br>函数接受3个参数：数组项的值、该项在数组中的位置和数组对象本身。<br><strong>不会改变原数组中的值。</strong></p>
+<ul>
+<li><code>every()</code>:对数组中的每一项运行给定函数，如果该函数对每一项都返回<code>true</code>，则返回<code>true</code>。</li>
+<li><code>some()</code>：对数组中的每一项运行给定函数，如果该函数对任一项返回<code>true</code>，则返回<code>true</code>。</li>
+<li><code>filter()</code>：对数组中的每一项运行给定函数，返回该函数返回<code>true</code>的项组成的数组。</li>
+<li><code>map()</code>：对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组。</li>
+<li><code>forEach()</code>：对数组中的每一项运行给定函数，没有返回值。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> filternumbers=numbers.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (item&gt;<span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line">alert(filternumbers);    <span class="comment">//[3,4,5,4,3]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="9-归并方法"><a href="#9-归并方法" class="headerlink" title="9.归并方法"></a>9.归并方法</h5><p><code>reduce()</code>和<code>reduceRight()</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/" title="《JavaScript高级程序设计》读书笔记5.2Array类型">http://yoursite.com/2017/08/14/《JavaScript高级程序设计》读书笔记5-2Array类型/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/13/《JavaScript高级程序设计》读书笔记4-2执行环境及作用域/" rel="next" title="《JavaScript高级程序设计》读书笔记4.2执行环境及作用域">
+                <i class="fa fa-chevron-left"></i> 《JavaScript高级程序设计》读书笔记4.2执行环境及作用域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/15/《JavaScript高级程序设计》读书笔记5-5Function类型/" rel="prev" title="《JavaScript高级程序设计》读书笔记5.5Function类型">
+                《JavaScript高级程序设计》读书笔记5.5Function类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#两种创建数组方式：Array构造函数、数组字面量表示法"><span class="nav-number">1.</span> <span class="nav-text">两种创建数组方式：Array构造函数、数组字面量表示法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#读取和设置数组，使用-索引值"><span class="nav-number">2.</span> <span class="nav-text">读取和设置数组，使用[ 索引值 ]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组length属性的特点（动态）："><span class="nav-number">3.</span> <span class="nav-text">数组length属性的特点（动态）：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-检测数组"><span class="nav-number">4.</span> <span class="nav-text">1.检测数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-转换方法"><span class="nav-number">5.</span> <span class="nav-text">2.转换方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-栈方法-LIFO"><span class="nav-number">6.</span> <span class="nav-text">3.栈方法(LIFO)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-队列方法-FIFO"><span class="nav-number">7.</span> <span class="nav-text">4.队列方法(FIFO)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-重排序方法"><span class="nav-number">8.</span> <span class="nav-text">5.重排序方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-操作方法"><span class="nav-number">9.</span> <span class="nav-text">6.操作方法</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#以下方法支持浏览器最低版本：IE9-、FireFox2-、-Safari3-、Opera9-5-、Chrome"><span class="nav-number"></span> <span class="nav-text">以下方法支持浏览器最低版本：IE9+、FireFox2+、 Safari3+、Opera9.5+、Chrome</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#7-位置方法"><span class="nav-number">1.</span> <span class="nav-text">7.位置方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-迭代方法-ECMAScript5"><span class="nav-number">2.</span> <span class="nav-text">8.迭代方法( ECMAScript5)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-归并方法"><span class="nav-number">3.</span> <span class="nav-text">9.归并方法</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

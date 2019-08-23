@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="系统学习,CSS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="原生CSS实现的各种形状变化">
+<meta name="keywords" content="系统学习,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《CSS揭秘》第3章-形状">
+<meta property="og:url" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="原生CSS实现的各种形状变化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/adam-catlace.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/adam-catlace.jpg">
+<meta property="og:updated_time" content="2019-07-18T05:20:39.505Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《CSS揭秘》第3章-形状">
+<meta name="twitter:description" content="原生CSS实现的各种形状变化">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/adam-catlace.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/">
+
+
+
+
+
+  <title>《CSS揭秘》第3章-形状 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《CSS揭秘》第3章-形状</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T17:15:12+08:00">
+                2017-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《CSS揭秘》/" itemprop="url" rel="index">
+                    <span itemprop="name">《CSS揭秘》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  原生CSS实现的各种形状变化
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="自适应的椭圆"><a href="#自适应的椭圆" class="headerlink" title="自适应的椭圆"></a>自适应的椭圆</h2><blockquote>
+<p>border-radius 属性的基本用法</p>
+</blockquote>
+<h3 id="难题"><a href="#难题" class="headerlink" title="难题"></a>难题</h3><p>给任何正方形元素设置一个足够大的<code>border-radius</code>，就可以把它变成一个圆形。所用到的 CSS 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">background: #fb3; </span><br><span class="line">width: 200px; </span><br><span class="line">height: 200px; </span><br><span class="line">border-radius: 100px; /* &gt;= 正方形边长的一半 */</span><br></pre></td></tr></table></figure>
+
+<p>不过，我们往往不愿意对一个元素指定固定的宽度和高度，因为我们希望它能根据其内容自动调整并适应，进而控制圆：如果它的宽高相等，就显示为一个圆；如果宽高不等，就显示为一个椭圆。    </p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p><code>border-radius</code>，有一个鲜为人知的真相：     </p>
+<ol>
+<li>可以单独指定水平和垂直半径，只要用一个斜杠（/）分隔这两个值即可。</li>
+<li>可以接受百分比值。这个百分比值会基于元素的尺寸进行解析，即宽度用于水平半径的解析，而高度用于垂直半径的解析。这意味着相同的百分比可能会计算出不同的水平和垂直半径。    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">border-radius:50%/50%;</span><br><span class="line">```     </span><br><span class="line"></span><br><span class="line">#### 半椭圆</span><br><span class="line">我们需要给每个角指定不同的半径：</span><br><span class="line">- border-top-left-radius</span><br><span class="line">- border-top-right-radius</span><br><span class="line">- border-bottom-right-radius</span><br><span class="line">- border-bottom-left-radius</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>//沿横轴劈开的半椭圆<br>border-radius:50%/100% 100% 0 0;</p>
+<p>//沿纵轴劈开的半椭圆<br>border-radius:100% 0 0 100%/50%;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-14/78618757.jpg)</span><br><span class="line">![](http://img.aisss.top/17-12-14/24744463.jpg)     </span><br><span class="line">**注意** :当水平圆角或垂直圆角为0时，另一个就无所谓是多少。     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">#### 四分之一椭圆</span><br><span class="line">创建一个四分之一椭圆，其中一个角的水平和垂直半径值都需要是100%，而其他三个角都不能设为圆角。由于这四个角的半径在水平和垂直方向上都是相同的，我们甚至都不需要使用斜杠语法了。</span><br></pre></td></tr></table></figure>
+
+<p>border-radius:100% 0 0 0;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-14/76410207.jpg)         </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">## 平行四边形</span><br><span class="line">&gt; 基本的CSS变形</span><br><span class="line"></span><br><span class="line">### 难题</span><br><span class="line">我们可以通过 skew() 的变形属性来对这个矩形进行斜向拉伸，但是，这导致它的内容也发生了斜向变形，这很不好看，而且难读。      </span><br><span class="line">![](http://img.aisss.top/17-12-14/19855225.jpg)     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 嵌套元素方案</span><br><span class="line">我们可以对内容再应用一次反向的`skew()`变形，从而抵消容器的变形效果，但是需要多一层HTML元素。</span><br></pre></td></tr></table></figure>
+
+<a href="#yolo" class="button"> 
+    <div>Click me</div> 
+</a>
+.button { transform: skewX(-45deg); } 
+.button > div { transform: skewX(45deg); }
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">**注意** ：只对非行内元素有效。     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 伪元素方案</span><br><span class="line">我们也可以把所有样式（背景、边框等）应用到伪元素上，然后再对伪元素进行变形。        </span><br><span class="line">关键点：</span><br><span class="line">- 偏移量设置为0，使其拉伸至与宿主元素的尺寸</span><br><span class="line">- 设置`z-index: -1`，不遮蔽宿主元素</span><br></pre></td></tr></table></figure>
+
+<p>.button{<br>    position:relative;<br>}</p>
+<p>.button::before{<br>    content:’’;<br>    position:absolute;<br>    top:0;right:0;bottom:0;left:0;<br>    background:#58a;<br>    tansform:skew(45deg);<br>    z-inde:-1;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">这个技巧的关键在于:   </span><br><span class="line">*我们利用伪元素以及定位属性产生了一个方块，然后对伪元素设置样式，并将其放置在其宿主元素的下层。*</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">## 菱形图片</span><br><span class="line">&gt; 基本的CSS变形，平行四边形</span><br><span class="line">    </span><br><span class="line">### 难题</span><br><span class="line">当网页设计师想要实现这种设计风格时，他们通常不希望在图像处理软件中预先把图片裁好，可维护性太差。      </span><br><span class="line">    </span><br><span class="line">### 基于变形的方案</span><br><span class="line">需要把图片用一个`&lt;div&gt;`包裹起来，然后对其应用相反的`rotate()`变形样式</span><br></pre></td></tr></table></figure>
+
+<div class="picture"> 
+    <img src="adam-catlace.jpg" alt="..."> 
+</div>
+.picture { 
+    width: 400px; 
+    transform: rotate(45deg); 
+    overflow: hidden; 
+} 
+.picture > img { 
+    max-width: 100%; 
+    transform: rotate(-45deg); 
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">它并没有一步到位地直接达到我们期望的效果，而是裁成一个八角形。      </span><br><span class="line">![](http://img.aisss.top/17-12-15/46392692.jpg)     </span><br><span class="line">    </span><br><span class="line">主要问题在于`max-width:100%`这条声明。100%会被解析为容器（.picture）的边长。但是，我们想让图片的宽度与容器的对角线相等，而不是与边长相等。将`max-width`扩大1.41倍。   </span><br><span class="line">    </span><br><span class="line">如果用`scale()`变形样式来把这个图片放大，实际上会更加合理，原因如下：   </span><br><span class="line">- 图片的尺寸属性保留100%这个值，这样当浏览器不支持变形样式时仍然可以得到一个合理的布局</span><br><span class="line">- 通过`scale()`变形样式来缩放图片时，是以它的中心点进行缩放的。通过`width`属性来放大图片时，只会以它的左上角为原点进行缩放，从而迫使我们动用额外的负外边距来把图片的位置调整回来。</span><br><span class="line">        </span><br><span class="line">![](http://img.aisss.top/17-12-15/37275161.jpg)</span><br></pre></td></tr></table></figure>
+
+<div class="picture"> 
+    <img src="adam-catlace.jpg" alt="..."> 
+</div>
+.picture{
+    width:400px;
+    transform:rotate(45deg);
+    overflow:hidden;
+}
+.picture>img{
+    max-width:100%;
+    transform:roate(-45deg) scale(1.42);
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 裁切路径方案</span><br><span class="line">它的主要思路是使用`clip-path`属性，但支持性不好。   </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">## 切角效果</span><br><span class="line">&gt; CSS渐变、background-size、“条纹背景”</span><br><span class="line">    </span><br><span class="line">### 难题</span><br><span class="line">把角切掉不仅是为了省钱，它还是一种非常流行的设计风格，不论是在印刷媒介还是在网页设计中都是如此。               </span><br><span class="line">但是，目前的 CSS 仍然无法做到只用一行简单直观的代码就生成这样的效果。这导致绝大多数网页开发者倾向于使用背景图片来达到目的。          </span><br><span class="line">    </span><br><span class="line">### 解决方案</span><br><span class="line">第一种方案来自于无所不能的 CSS 渐变。假设我们只需要一个角被切掉的效果，其中最大的窍门在于充分利用渐变的一大特性：    </span><br><span class="line">渐变可以接受一个角度作为方向，而且色标的位置信息也可以是绝对的长度值，这一点丝毫不受容器尺寸的影响。</span><br></pre></td></tr></table></figure>
+
+<p>background:#58a;<br>background:linear-gradient(-45deg,transparent 15px,#58a 0);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-15/87165453.jpg)     </span><br><span class="line">事实上，第一行声明并不是必需的，加上它是将其作为回退机制。      </span><br><span class="line">    </span><br><span class="line">现在，假设我们想要两个角被切掉的效果，以底部的两个角为例</span><br></pre></td></tr></table></figure>
+
+<p>background: #58a;<br>background:<br>    linear-gradient(-45deg, transparent 15px, #655 0)<br>        right,<br>    linear-gradient(45deg, transparent 15px, #58a 0)<br>        left;<br>background-size: 50% 100%;<br>background-repeat: no-repeat; //如果不关闭，每层渐变图案各自平铺了两次。这导致我们的两层渐变背景仍然是相互覆盖的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/72570681.jpg)     </span><br><span class="line">    </span><br><span class="line">下面是4个切角效果</span><br></pre></td></tr></table></figure>
+
+<p>background:#58a;<br>background:<br>    linear-gradient(135deg,transparent 15px,#58a 0) top left,<br>    linear-gradient(-135deg,transparent 15px,#58a 0) top right,<br>    linear-gradient(45deg,transparent 15px,#58a 0) bottom left,<br>    linear-gradient(-45deg,transparent 15px,#58a 0) bottom right;<br>background-size:50% 50%;<br>background-repeat:no-repeat;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/67549746.jpg)     </span><br><span class="line">    </span><br><span class="line">但是它的可维护性并不理想。我们在改变背景色时需要修改五处；而在改变切角尺寸时需要修改四处。    </span><br><span class="line">使用预处理器(sass)的 mixin 可以帮助我们减少代码的重复度。</span><br></pre></td></tr></table></figure>
+
+<p>@minin beveled-corners($bg,$tl:0,$tr:$tl,$bl:$tl,$br:$tr){<br>    background:$bg;<br>    backgrounnd:<br>        linear-gradient(135deg,transparent $tl,$bg 0) top left,<br>        linear-gradient(225deg,transparent $tr,$bg 0) top right,<br>        linear-gradient(45deg,transparent $bl,$bg 0) bottom left,<br>        linear-gradient(-45deg transparent $br,$bg 0) bottom right;<br>    background-size:50% 50%;<br>    background-repeat:no-repeat;<br>}</p>
+<p>//传入2~5 个参数调用<br>@include beveled-corners(#58a,15px,5px);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    </span><br><span class="line">### 弧形切角</span><br><span class="line">弧形切角（很多人也把这种效果称为“内凹圆角”，因为它看起来就像是圆角的反向版本），我们会用径向渐变：</span><br></pre></td></tr></table></figure>
+
+<p>background:#58a;<br>background:<br>    radial-gradient(circle at top left,transparent 15px,#58a 0) top left,<br>    radial-gradient(circle at top right,transparent 15px,#58a 0) top right,<br>    radial-gradient(circle at bottom left,transparent 15px,#58a 0) bottom left,<br>    radial-gradient(circle at bottom right,transparent 15px,#58a 0) bottom right;<br>background-size:50% 50%;<br>background-repeat:no-repeat;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/57969223.jpg)</span><br><span class="line">    </span><br><span class="line">### 内联SVG与border-image方案</span><br><span class="line">### 裁切路径方案</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">## 梯形标签页</span><br><span class="line">&gt; 基本的3D变形，平行四边形</span><br><span class="line"></span><br><span class="line">### 难题</span><br><span class="line">网页开发者如果没有用精心设计的背景图片来实现梯形，那多半就是在用边框来模拟梯形两侧的斜边。    </span><br><span class="line">尽管这个技巧为我们节省了背景图片所产生的额外HTTP请求，并且可以很容易地适应不同的宽度，但它还不是最佳方案。它用光了仅有的两个伪元素，而且在样式层面上也不够灵活。      </span><br><span class="line">    </span><br><span class="line">### 解决方案</span><br><span class="line">我们可以在 CSS 中用 3D 旋转来模拟出这个效果：</span><br></pre></td></tr></table></figure>
+
+<p>transform:perspective(.5em) rotateX(5deg);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/84181656.jpg)     </span><br><span class="line">整个元素应用 3D 变形的，因此它上面的文字也变形了。对元素使用了3D变形之后，其内部的变形效应是“不可逆转”的。    </span><br><span class="line">唯一可行的途径就是把变形效果作用在伪元素上。</span><br></pre></td></tr></table></figure>
+
+<p>.tab {<br>    position: relative;<br>    display: inline-block;<br>    padding: .5em 1em .35em;<br>    color: white;<br>} </p>
+<p>.tab::before {<br>    content: ‘’; /* 用伪元素来生成一个矩形 */<br>    position: absolute;<br>    top: 0; right: 0; bottom: 0; left: 0;<br>    z-index: -1;<br>    background: #58a;<br>    transform: perspective(.5em) rotateX(5deg);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ![](http://img.aisss.top/17-12-18/97165838.jpg)   </span><br><span class="line">    </span><br><span class="line">当我们没有设置`transform-origin`属性时，应用变形效果会让这个元素以它自身的中心线为轴进行空间上的旋转。因此，元素投射到2D屏幕上的尺寸会发生多种变化：它的宽度会增加，它所占据的位置会稍稍下移，它在高度上会有少许缩减。      </span><br><span class="line">为了让它的尺寸更好掌握，我们可以为它指定`transform-origin:bottom`;，当它在 3D 空间中旋转时，可以把它的底边固定住，只有高度会发生变化。    </span><br><span class="line">不过这样一来，高度的缩水会变得更加显眼。</span><br><span class="line">    </span><br><span class="line">我们还可以换种思路：通过变形属性来改变它的尺寸。我们会发现，垂直方向上的缩放程度（也就是`scaleY()`变形属性）在达到130% 左右时刚好可以补足它在高度上的缩水：</span><br></pre></td></tr></table></figure>
+
+<p>transform: scaleY(1.3) perspective(.5em)<br>           rotateX(5deg);<br>transform-origin: bottom;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/71829833.jpg)     </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">其实，当你开始为标签页增加一些样式的时候，这个技巧的独特优势才会逐渐显现出来。</span><br></pre></td></tr></table></figure>
+
+<p>nav &gt; a{<br>    position:relative;<br>    display:inline-block;<br>    padding: .3em 1em 0;<br>}</p>
+<p>nav &gt; a::before{<br>    content:’’;<br>    position:absoltue;<br>    top:0;left:0;right:0;bottom:0;<br>    z-index:-1;<br>    background:#ccc;<br>    background-image: linear-gradient(<br>                        hsla(0,0%,100%,.6),<br>                        hsla(0,0%,100%,0));<br>    border: 1px solid rgba(0,0,0,.4);<br>    border-bottom:none;<br>    border-radius: .5em .5em 0 0;<br>    border-shodaw: 0 .15em white inset;<br>    transform:perspective(.5em) rotateX(5deg);<br>    transform-origin:bottom;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-18/53850367.jpg)     </span><br><span class="line">    </span><br><span class="line">我们只需要把`transform-origin`改成bottom left或bottom right，就可以立即得到左侧倾斜或右侧倾斜的标签页。       </span><br><span class="line">![](http://img.aisss.top/17-12-18/75860253.jpg)     </span><br><span class="line">它存在一个非常大的缺点：斜边的角度依赖于元素的宽度。不过，，斜度的差异一般非常难以察觉。      </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">## 简单的拼图</span><br><span class="line">&gt; CSS渐变，基本的SVG，CSS动画，“条纹背景”，“只适用椭圆”</span><br><span class="line"></span><br><span class="line">饼图在过去很长一段时期内完全无法通过Web技术创建出来，即便是最简单的两种颜色的形态也不例外。      </span><br><span class="line">过去要实现饼图，要么动用一个外部的图像处理软件来为饼图中的多个值制作多张图片，要么动用那些专门为复杂图表而设计的JavaScript框架。      </span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">### 基于transform方案</span><br><span class="line">这个方案在结构层面是最佳选择：  </span><br><span class="line">它只需要一个元素作为容器，而其他部分是由伪元素、变形属性和 CSS 渐变来实现的。       </span><br><span class="line">    </span><br><span class="line">我们换种思路：  </span><br><span class="line">**把圆形的左右两部分指定为两种颜色，然后用伪元素覆盖上去，通过旋转来决定露出多大的扇区。**        </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">1. 第一步           </span><br><span class="line">为了把圆形的右半部分设置为棕色，我们要用到一个简单的线性渐变：</span><br></pre></td></tr></table></figure>
+
+<div class="pie"></div>
+
+<p>.pie {<br>    width: 100px; height: 100px;<br>    border-radius: 50%;<br>    background: yellowgreen;<br>    background-image: linear-gradient(right,transparent 50%,#655 0);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-19/83074108.jpg)         </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">2. 第二步               </span><br><span class="line">我们设置伪元素相对于整个饼图进行重叠。不过现在还没有设置任何样式，它还起不到遮盖的作用，暂时只是一个透明的矩形：</span><br></pre></td></tr></table></figure>
+
+<p>.pie::before{<br>    content:’’;<br>    display:block;<br>    margin-left:50%;<br>    height:100%;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-19/45613434.jpg)     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">3. 第三步                   </span><br><span class="line">在开始为它设置样式之前，我们还要再做一些观察和分析：</span><br><span class="line">- 应该给它指定绿色背景。在这里使用`background-color: inherit`声明可以避免代码的重</span><br><span class="line">复。</span><br><span class="line">- 它是绕着圆形的圆心来旋转的，对它自己来说，这个点就是它左边缘的中心点。因此，我们应该把它的`transform-origin`设置为`0 50%`，或者干脆写成`left`。</span><br><span class="line">- 因此要么给`.pie`设置`overﬂow:hidden`的样式，要么给这个伪元素指定合适的`border-radius`属性来把它变成一个半圆。</span><br></pre></td></tr></table></figure>
+
+<p>.pie::before{<br>    content:’’;<br>    display:block;<br>    margin-left:50%;<br>    height:100%;<br>    background-color:inherit;<br>    transform-origin:left;<br>    border-radius:0 100% 100% 0/50%;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-19/77845116.jpg)     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">4. 第四步       </span><br><span class="line">我们现在可以通过一个`rotate()`变形属性来让这个伪元素转起来。        </span><br><span class="line">![](http://img.aisss.top/17-12-19/24358896.jpg)         </span><br><span class="line">        </span><br><span class="line">我们的饼图在显示0到50%的比率时运作良好，但如果我们尝试显示60%的比率时（比如指定旋转值为 .6turn 时），结果就变成如下图所示了      </span><br><span class="line">![](http://img.aisss.top/17-12-19/85057715.jpg)         </span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">5. 第五步   </span><br><span class="line">我们就会发现，可以使用上述技巧的一个反向版本来实现这个范围内的比率：    </span><br><span class="line">设置一个棕色的伪元素，让它在 0 至 .5turn 的范围内旋转。</span><br></pre></td></tr></table></figure>
+
+<p>.pie::before{<br>    content:’’;<br>    display:block;<br>    margin-left:50%;<br>    height:100%;<br>    background:#655;<br>    transform-origin:left;<br>    border-radius:0 100% 100% 0/50%;<br>    transform:rotate(.1turn);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-19/709242.jpg)   </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">6. 第六步           </span><br><span class="line">由于已经找到了实现任意比率的方法，我们甚至可以用 CSS 动画来实现一个饼图从 0 变化到 100% 的动画，从而得到一个炫酷的进度指示器：</span><br></pre></td></tr></table></figure>
+
+<p>@keyframes spin{<br>    to {transform:rotate(.5turn);}<br>}</p>
+<p>@keyframes bg{<br>    50% {background:#655;}<br>}</p>
+<p>.pie::before{<br>    content:’’;<br>    display:block;<br>    margin-left:50%;<br>    height:100%;<br>    background-color:inherit;<br>    transform-origin:left;<br>    border-radius:0 100% 100% 0/50%;<br>    animation:spin 3s linear infinite,<br>              bg 6s step-end infinite;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        </span><br><span class="line">        </span><br><span class="line">我们怎样才能制作出多个不同比率的静态饼图呢？理想情况下，我们希望可以用这样的方式来</span><br><span class="line">书写结构：</span><br></pre></td></tr></table></figure>
+
+<div class="pie">20%</div>
+<div class="pie">60%</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">首先，我们需要探索如何用内联样式来实现这个需求；    </span><br><span class="line">接下来，我们就可以写一小段脚本来解析文本内容并把内联样式添加到元素上去。        </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">第一个挑战：             </span><br><span class="line">我们无法为伪元素设置内联样式。如何解决？                  </span><br><span class="line">用负的动画延时来直接跳至动画中的任意时间点，并且定格在那里。        </span><br><span class="line">    </span><br><span class="line">第二个挑战：        </span><br><span class="line">动画是作用在伪元素上的，但我们希望最终内联样式可以设置在 .pie 元素上。如何解决？     </span><br><span class="line">由于`&lt;div&gt;`上并没有任何动画效果，我们可以用内联样式的方式为其设置`animation-delay`属性，然后再在伪元素上应用`animation-delay: inherit`属性。      </span><br><span class="line">整体代码如下：</span><br></pre></td></tr></table></figure>
+
+<div class="pie" style="animation-delay: -20s"></div> 
+<div class="pie" style="animation-delay: -60s"></div>
+
+<p>@keyframes spin {<br>    to { transform: rotate(.5turn); }<br>} </p>
+<p>@keyframes bg {<br>    50% { background: #655; }<br>} </p>
+<p>.pie::before {<br>    /* [其余的样式代码保持原样] */<br>    animation: spin 50s linear infinite,<br>               bg 100s step-end infinite;<br>    animation-play-state: paused;<br>    animation-deplay:inherit;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此时，我们就可以再次优化结构，把饼图的比率写到元素的内容中，就像我们最开始所期望的那样；然后我们通过一段简单的脚本来把`animation-delay`写到内联样式中</span><br></pre></td></tr></table></figure>
+
+<p>$$(.pie).forEach(function(pie){<br>    var p=parseFloat(pie.textContent);<br>    pie.style.animationDelay=’-‘+p+’s’;<br>});</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">我们还可以进一步优化，把比率文字放置在饼图的中心处，从而方便用户选中它。为了实现这一点，我们需要进行以下步骤:</span><br><span class="line">- 把这个饼图的`height`换成`line-height`（或者添加一个跟`height`相等的`line-height`属性，但这会增加无意义的代码重复；其实`line-height`本身就可以起到设置高度的作用）。</span><br><span class="line">- 通过绝对定位来完成对伪元素的尺寸设置和定位操作，这样它就不会把文字推到下面了。</span><br><span class="line">- 增加`text-align: center`来实现文字的水平居中。            </span><br><span class="line">    </span><br><span class="line">最终代码看起来会是这样的：</span><br></pre></td></tr></table></figure>
+
+<p>.pie{<br>    position:relative;<br>    width:100px;<br>    line-height:100px;<br>    border-radius:50%;<br>    background:yellowgreen;<br>    background-image:linear-gradient(to right,transparent 50%,#655 0);<br>    color:transparent;<br>    text-align:center;<br>}</p>
+<p>@keyframes spin {<br>    to { transform: rotate(.5turn); }<br>}</p>
+<p>@keyframes bg {<br>    50% { background: #655; }<br>}</p>
+<p>.pie::before{<br>    position:absolute;<br>    top:0;left:50%;right:0;height:100%;<br>    border-radius:0 100% 100% 0/50%；<br>    background-color:inherit;<br>    transform-origin:left;<br>    animation:spin 50s linear infinite;<br>              bg 100s step-end infinite;<br>    animation-play-status:paused;<br>    animation-deplay:inherit;<br>}<br>```</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/" title="《CSS揭秘》第3章-形状">http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/13/《CSS揭秘》第2章-背景与边框/" rel="next" title="《CSS揭秘》第2章-背景与边框">
+                <i class="fa fa-chevron-left"></i> 《CSS揭秘》第2章-背景与边框
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/20/《CSS揭秘》第4章-视觉效果/" rel="prev" title="《CSS揭秘》第4章-视觉效果">
+                《CSS揭秘》第4章-视觉效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自适应的椭圆"><span class="nav-number">1.</span> <span class="nav-text">自适应的椭圆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题"><span class="nav-number">1.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

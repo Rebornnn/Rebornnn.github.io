@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="系统学习,CSS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="与交互相关">
+<meta name="keywords" content="系统学习,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《CSS揭秘》第6章-用户体验">
+<meta property="og:url" content="http://yoursite.com/2018/01/21/《CSS揭秘》第6章-用户体验/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="与交互相关">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.aisss.top/18-1-17/29443294.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-17/62432363.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/68879744.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/27741116.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/37951254.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/72935271.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/93534505.jpg">
+<meta property="og:image" content="http://img.aisss.top/18-1-20/15337698.jpg">
+<meta property="og:updated_time" content="2019-07-18T05:20:39.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《CSS揭秘》第6章-用户体验">
+<meta name="twitter:description" content="与交互相关">
+<meta name="twitter:image" content="http://img.aisss.top/18-1-17/29443294.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/21/《CSS揭秘》第6章-用户体验/">
+
+
+
+
+
+  <title>《CSS揭秘》第6章-用户体验 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/《CSS揭秘》第6章-用户体验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《CSS揭秘》第6章-用户体验</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T22:18:32+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《CSS揭秘》/" itemprop="url" rel="index">
+                    <span itemprop="name">《CSS揭秘》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  与交互相关
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="选用合适的鼠标光标"><a href="#选用合适的鼠标光标" class="headerlink" title="选用合适的鼠标光标"></a>选用合适的鼠标光标</h2><blockquote>
+<p>cursor</p>
+</blockquote>
+<h2 id="扩大可点击区域"><a href="#扩大可点击区域" class="headerlink" title="扩大可点击区域"></a>扩大可点击区域</h2><blockquote>
+<p>border、box-shadow、background-clip</p>
+</blockquote>
+<h3 id="难题"><a href="#难题" class="headerlink" title="难题"></a>难题</h3><p>对于那些较小的、难以瞄准的控件来说，如果不能把它的视觉尺寸直接放大，将其可点击区域（热区）向外扩张往往也可以带来可用性的提升。<br>还有一些时候，我们想让某个元素在鼠标接近窗口某侧时自动滑入。    </p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>扩张热区最简单的办法是为它设置一圈透明边框，因为鼠标对元素边框的交互也会触发鼠标事件，这一点是描边和投影所不及的。<br><img src="http://img.aisss.top/18-1-17/29443294.jpg" alt></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border</span>: 10<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是效果并不好，因为它同时让按钮变大了！原因在于背景在默认情况下会蔓延到边框的下层。简单好用的<code>background-clip</code>属性可以把背景限制在原本的区域之内，同时加边框只能用<code>box-shadow</code>，因为<code>border</code>已经被占用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">border: 10px solid transparent; </span><br><span class="line">box-shadow: 0 0 0 1px rgba(0,0,0,.3) inset; </span><br><span class="line">background-clip: padding-box;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-17/62432363.jpg" alt>      </p>
+<p>我们可能想给这个按钮再加一道真实的模糊化投影，来营造一种“浮出表面”的效果。此时用<code>box-shadow</code>把内嵌投影和（常规的）外部投影组合起来，将会得到一个怪异的效果，因为外部投影是绘<br>制在border box外部的，并且边框会影响布局。          </p>
+<p>我们放弃边框，然后改用另外一个特性来实现：伪元素同样可以代表其宿主元素来响应鼠标交互.<br>我们可以在按钮的上层覆盖一层透明的伪元素，并让伪元素在四个方向<br>上都比宿主元素大出 10px：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">button &#123; </span><br><span class="line">    position: relative;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">button::before &#123; </span><br><span class="line">    content: &apos;&apos;; </span><br><span class="line">    position: absolute; </span><br><span class="line">    top: -10px; right: -10px; </span><br><span class="line">    bottom: -10px; left: -10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个基于伪元素的解决方案极为灵活，我们基本上可以把热区设置为任何想要的尺寸、位置或形状，甚至可以脱离元素原有的位置！      </p>
+<h2 id="自定义复选框（暂不考虑）"><a href="#自定义复选框（暂不考虑）" class="headerlink" title="自定义复选框（暂不考虑）"></a>自定义复选框（暂不考虑）</h2><blockquote>
+<p>input[type=”checkbox”]<br>未完成，因为技巧中涉及到clip已被废弃</p>
+</blockquote>
+<h2 id="通过阴影来弱化背景"><a href="#通过阴影来弱化背景" class="headerlink" title="通过阴影来弱化背景"></a>通过阴影来弱化背景</h2><blockquote>
+<p>RGBA 颜色</p>
+</blockquote>
+<h3 id="难题-1"><a href="#难题-1" class="headerlink" title="难题"></a>难题</h3><p>很多时候，我们需要通过一层半透明的遮罩层来把后面的一切整体调暗，以便凸显某个特定的 UI 元素，引导用户关注。比如，登录框。这个效果最常见的实现方法就是增加一个额外的 HTML 元素用于遮挡背景，然后为它添加如下样式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.overlay &#123; /* 用于遮挡背景 */ </span><br><span class="line">    position: fixed; </span><br><span class="line">    top: 0; </span><br><span class="line">    right: 0; </span><br><span class="line">    bottom: 0; </span><br><span class="line">    left: 0; </span><br><span class="line">    background: rgba(0,0,0,.8); </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.lightbox &#123; /* 需要吸引用户注意的元素 */</span><br><span class="line">    position: absolute;</span><br><span class="line">    z-index: 1; </span><br><span class="line">    /* [其余样式] */ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法稳定可靠，但需要增加一个额外的 HTML 元素，这意味着该效果无法由 CSS 单独<br>实现。</p>
+<h3 id="伪元素方案"><a href="#伪元素方案" class="headerlink" title="伪元素方案"></a>伪元素方案</h3><p>我们可以用伪元素来消除额外的HTML 元素，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body.dimmed::before &#123; </span><br><span class="line">    position: fixed; </span><br><span class="line">    top: 0; </span><br><span class="line">    right: 0; </span><br><span class="line">    bottom: 0; </span><br><span class="line">    left: 0; </span><br><span class="line">    z-index: 1; </span><br><span class="line">    background: rgba(0,0,0,.8); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然可以直接在CSS层面操作，但又以下2个问题</p>
+<ol>
+<li>可移植性还不够好，因为<body> 元素上可能有其他需求已经占用了<code>::before</code>伪元素；</body></li>
+<li>还需要一点JavaScript来给<code>&lt;body&gt;</code>添加 dimmed 这个类。     </li>
+</ol>
+<p>改进方法：可以把遮罩层交给这个元素自己的<code>::before</code>伪元素来实现，就可以弥补这些不足了,同时还要给伪元素设置<code>z-index:  -1</code>，但是也有两个问题：</p>
+<ol>
+<li>无法对遮罩层的Z 轴层次进行细粒度的控制，可能会出现在这个元素的父元素或祖先元素之后</li>
+<li>伪元素无法绑定独立的 JavaScript 事件处理函数。</li>
+</ol>
+<h3 id="box-shadow方案"><a href="#box-shadow方案" class="headerlink" title="box-shadow方案"></a>box-shadow方案</h3><p>对于简单的应用场景和产品原型来说，我们可以利用<code>box-shadow</code>来达到调暗背景的效果：<br><code>box-shadow</code>的扩张参数可以把元素的投影向各个方向延伸放大。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: 0 0 0 999px rgba(0,0,0,.8);</span><br></pre></td></tr></table></figure>
+
+<p>但是它无法在较大的屏幕分辨率（&gt;2000px）下正常工作。</p>
+<h2 id="通过模糊来弱化背景"><a href="#通过模糊来弱化背景" class="headerlink" title="通过模糊来弱化背景"></a>通过模糊来弱化背景</h2><blockquote>
+<p>过渡动画，“毛玻璃效果”，“通过阴影来弱化背景”</p>
+</blockquote>
+<h3 id="难题-2"><a href="#难题-2" class="headerlink" title="难题"></a>难题</h3><p>弱化背景有另外一种更加优雅的方法，就是把关键元素之外的一切都模糊掉，用来配合（或取代）阴影效果，如下图所示。这个效果的真实感更强，因为它营造出了 <strong>景深效果</strong> ：当我们的视线聚焦在距离较近的物体上时，远处的背景就是虚化的。<br><img src="http://img.aisss.top/18-1-20/68879744.jpg" alt><br>不过，这种方法的实现难度也更高。这跟“毛玻璃效果”一节中的问题非常类似，但我们无法在这里直接套用那里的解决方案，因为处在这个对话框下层的可能是任何元素，而不一定只有一张背景图片。那我们该怎么办？</p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>很遗憾，我们还是得动用一个额外的 HTML 元素来实现这个效果：<br>需要把页面上除了关键元素之外的一切都包裹起来，这样就可以只对这个容器元素进行模糊处理了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;main&gt;Bacon Ipsum dolor sit amet...&lt;/main&gt; </span><br><span class="line">&lt;dialog&gt; </span><br><span class="line">    O HAI, I&apos;m a dialog. Click on me to dismiss. </span><br><span class="line">&lt;/dialog&gt; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main.de-emphasized &#123; </span><br><span class="line">    filter: blur(5px); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-20/27741116.jpg" alt><br>现在这个模糊效果是突然出现的，给人一种突兀的感觉。<br>由于 CSS 滤镜是可以设置动画的，我们可以让页面背景的模糊过程以过渡动画的形式来呈现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main &#123; </span><br><span class="line">    transition: .6s filter; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">main.de-emphasized &#123; </span><br><span class="line">    filter: blur(5px); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="滚动提示"><a href="#滚动提示" class="headerlink" title="滚动提示"></a>滚动提示</h2><blockquote>
+<p>CSS 渐变，background-size</p>
+</blockquote>
+<h3 id="难题-3"><a href="#难题-3" class="headerlink" title="难题"></a>难题</h3><p>滚动条是一种常见的界面控件，用来提示一个元素除了可以看到的内容之外，还包含了更多内容。它往往太过笨重，在视觉上喧宾夺主。但滚动条对于元素内容可滚动的提示作用仍然是十分有用的，哪怕对于那些没有发生交互的元素也是如此；而且这种提示方式十分巧妙。</p>
+<h3 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h3><p>先设置需要滚动的的结构样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt; </span><br><span class="line">    &lt;li&gt;Ada Catlace&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Alan Purring&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Schrödingcat&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Tim Purrners-Lee&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;WebKitty&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Json&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Void&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Neko&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;NaN&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Cat5&lt;/li&gt; </span><br><span class="line">    &lt;li&gt;Vector&lt;/li&gt; </span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ul&#123;</span><br><span class="line">    overflow: auto; </span><br><span class="line">    width: 10em; </span><br><span class="line">    height: 8em; </span><br><span class="line">    padding: .3em .5em; </span><br><span class="line">    border: 1px solid silver;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，有趣的事情即将发生。我们用一个径向渐变在顶部添加一条阴影：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background: radial-gradient(at top, rgba(0,0,0,.2), </span><br><span class="line">                           transparent 70%) no-repeat; </span><br><span class="line">background-size: 100% 15px;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-20/37951254.jpg" alt><br>现在，当我们滚动列表时，这条阴影会一直停留在相同的位置。这正是背景图像的默认行为：它的位置是相对于元素固定的，不论元素的内容是否发生了滚动。有没有办法让背景图像跟着元素的内容一起滚动呢？<br>问题的答案是我们需要两层背景：<br>一层用来生成那条阴影，另一层基本上就是一个用来遮挡阴影的白色矩形，其作用类似于遮罩层。成阴影的那层背景将具有默认的<code>background-attachment</code>值（scroll），因为我们希望<br>它总是保持在原位。我们把遮罩背景的<code>background-attachment</code>属性设置为local，这样它就会在我们滚动到最顶部时盖住阴影，在向下滚动时跟着滚动，从而露出阴影。      </p>
+<p>我们会用一道线性渐变来生成这个矩形的遮罩，并让它的颜色与容器的<br>背景色保持一致（这里是白色）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">background: linear-gradient(white, white), </span><br><span class="line">            radial-gradient(at top, rgba(0,0,0,.2), </span><br><span class="line">                            transparent 70%); </span><br><span class="line">background-repeat: no-repeat; </span><br><span class="line">background-size: 100% 15px; </span><br><span class="line">background-attachment: local, scroll;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-20/72935271.jpg" alt><br>这好像已经达到我们想要的效果了，但还有一个很大的缺点：当我们只是滚动了一点距离时，阴影露出的方式非常生硬和突兀。有没有办法让它变得平滑一些？<br>别忘了我们的“遮罩层”是一层（逐渐淡化的）线性渐变，只要把它修改为一段从white到透明白色 （hsla(0,0%,100%,0)或rgba(255,255,255,0)）的真正的渐变图案，就可以让阴影的显现过程变得平滑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background: linear-gradient(white, hsla(0,0%,100%,0)), </span><br><span class="line">            radial-gradient(at top, rgba(0,0,0,.2), </span><br><span class="line">                            transparent 70%);</span><br></pre></td></tr></table></figure>
+
+<p>不过，它仍然有一个严重的缺陷：当我们滚动到最顶部的时候，这个“遮罩层”再也无法完整地遮住阴影了。这个问题也是可以解决的，我们只要把 white 色标向下移动一点,经过一番试验之后，50px 似乎是一个合理的数值。最终的代码如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">background: linear-gradient(white 30%, transparent), </span><br><span class="line">            radial-gradient(at 50% 0, rgba(0,0,0,.2), </span><br><span class="line">                            transparent 70%); </span><br><span class="line">background-repeat: no-repeat; </span><br><span class="line">background-size: 100% 50px, 100% 15px; </span><br><span class="line">background-attachment: local, scroll;</span><br></pre></td></tr></table></figure>
+
+<p>当然，为了完整地实现这个效果，我们还需要再用两层渐变来实现底部的阴影和它配套的遮罩，但逻辑是完全一致的。</p>
+<h2 id="交互式的图片对比控件"><a href="#交互式的图片对比控件" class="headerlink" title="交互式的图片对比控件"></a>交互式的图片对比控件</h2><blockquote>
+<p>resize</p>
+</blockquote>
+<h3 id="难题-4"><a href="#难题-4" class="headerlink" title="难题"></a>难题</h3><p>有时，我们需要展示两张图片的外观差异，有一种更友好的解决方案叫作“图片对比滑动控件” 。这个控件会把两张图片叠加起来，允许用户拖动分割条来控制这两张图片的显露区域。<br>有没有一种简单的方法可以实现这个控件呢？实际上，方法不止一种！</p>
+<h3 id="CSS-resize-方案"><a href="#CSS-resize-方案" class="headerlink" title="CSS resize 方案"></a>CSS resize 方案</h3><p>仔细想一想就会发现，图片对比滑动控件基本上可以理解为两层结构：<br>下层是一张固定的图片；上层的图片则可以在水平方向上调整大小，从而或多或少地显露出下层图片。      </p>
+<p><code>resize</code>，这个属性实际上适用于任何元素，只要它的<code>overflow</code>属性不是 visible。对几乎所有元素来说，<code>resize</code>默认都是设置为 none 的，即禁用调整大小的特性。除了 both 之外，这个属性接受的值还有 horizontal 和 vertical，它们可以限制元素调整大小的方向。         </p>
+<p>我们的第一个念头可能是列出两个<code>&lt;img&gt;</code>元素。但是，直接对一个<code>&lt;img&gt;</code>元素应用 resize 看起来会很怪异，因为直接调整图片大小会导致其变形失真。如果用一个<code>&lt;div&gt;</code>作为它的容器，再对这个容器应用 resize属性，那就合理多了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;image-slider&quot;&gt; </span><br><span class="line">    &lt;div&gt; </span><br><span class="line">        &lt;img src=&quot;adamcatlace-before.jpg&quot; alt=&quot;Before&quot; /&gt; </span><br><span class="line">    &lt;/div&gt; </span><br><span class="line">    &lt;img src=&quot;adamcatlace-after.jpg&quot; alt=&quot;After&quot; /&gt; </span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.image-slider &#123; </span><br><span class="line">    position:relative; </span><br><span class="line">    display: inline-block; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.image-slider &gt; div &#123; </span><br><span class="line">    position: absolute; </span><br><span class="line">    top: 0; bottom: 0; left: 0; </span><br><span class="line">    width: 50%; /* 初始宽度 */ </span><br><span class="line">    overflow: hidden; /* 让它可以裁切图片 */ </span><br><span class="line">    resize:horizontal;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.image-slider img &#123; display: block; &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-20/93534505.jpg" alt>          </p>
+<p>我们已经可以拖动这个手柄来随心所欲地调整上层图片的宽度了！不过，在稍作尝试之后，我们还是会发现一些缺点:</p>
+<ul>
+<li>可以把 <div> 的宽度拉伸到超过图片宽度的程度</div></li>
+<li>调节手柄不容易辨认</li>
+</ul>
+<p>第一个问题：是比较容易解决的。我们要做的就是把它的 max-width 指<br>定为 100%。<br>第二个问题：用一个伪元素覆盖在调节手柄之上。这一方面可以很方便地设置样式；另一方面，即使在不加<code>pointer-events: none</code>的情况下，这个伪元素也不会干扰调节手柄的功能。因此，一个跨浏<br>览器的调节手柄美化方案只需要把一个假的调节手柄覆盖在它上面。<br>到了这一步，我们就可以尽情地对它设置样式了。比如说，如果我们想把它设置<br>为一个白色三角形，并且让它跟图片的边缘保持5px 的间隙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.image-slider &gt; div::before &#123; </span><br><span class="line">    content: &apos;&apos;; </span><br><span class="line">    position: absolute; </span><br><span class="line">    bottom: 0; right: 0; </span><br><span class="line">    width: 12px; height: 12px; </span><br><span class="line">    background: white; </span><br><span class="line">    cursor: ew-resize; </span><br><span class="line">    padding: 5px; </span><br><span class="line">    background: linear-gradient(-45deg, white 50%, transparent 0);</span><br><span class="line">    background-clip: content-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以对这两张图片应用<code>user-select:none</code>，这样即使用户在没有点中调节手柄的情况下拖动鼠标，也不会误选图片。把所有想法综合到一起，最终的代码如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">.image-slider &#123; </span><br><span class="line">    position:relative; </span><br><span class="line">    display: inline-block; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.image-slider &gt; div &#123; </span><br><span class="line">    position: absolute; </span><br><span class="line">    top: 0; bottom: 0; left: 0; </span><br><span class="line">    width: 50%; </span><br><span class="line">    max-width: 100%;</span><br><span class="line"> overflow: hidden; </span><br><span class="line">    resize: horizontal; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.image-slider &gt; div::before &#123; </span><br><span class="line">    content: &apos;&apos;; </span><br><span class="line">    position: absolute; </span><br><span class="line">    bottom: 0; right: 0; </span><br><span class="line">    width: 12px; height: 12px; </span><br><span class="line">    padding: 5px; </span><br><span class="line">    background: </span><br><span class="line">        linear-gradient(-45deg, white 50%, transparent 0); </span><br><span class="line">    background-clip: content-box; </span><br><span class="line">    cursor: ew-resize; </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">.image-slider img &#123; </span><br><span class="line">    display: block; </span><br><span class="line">    user-select: none; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.aisss.top/18-1-20/15337698.jpg" alt>      </p>
+<h3 id="范围输入控件方案"><a href="#范围输入控件方案" class="headerlink" title="范围输入控件方案"></a>范围输入控件方案</h3><p>以后精进CSS水平时再深入研究</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/01/21/《CSS揭秘》第6章-用户体验/" title="《CSS揭秘》第6章-用户体验">http://yoursite.com/2018/01/21/《CSS揭秘》第6章-用户体验/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/《FreeCodeCamp中级算法题总结》/" rel="next" title="《FreeCodeCamp中级算法题总结》">
+                <i class="fa fa-chevron-left"></i> 《FreeCodeCamp中级算法题总结》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/18/防抖与节流函数/" rel="prev" title="防抖与节流函数">
+                防抖与节流函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#选用合适的鼠标光标"><span class="nav-number">1.</span> <span class="nav-text">选用合适的鼠标光标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩大可点击区域"><span class="nav-number">2.</span> <span class="nav-text">扩大可点击区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题"><span class="nav-number">2.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义复选框（暂不考虑）"><span class="nav-number">3.</span> <span class="nav-text">自定义复选框（暂不考虑）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过阴影来弱化背景"><span class="nav-number">4.</span> <span class="nav-text">通过阴影来弱化背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题-1"><span class="nav-number">4.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪元素方案"><span class="nav-number">4.2.</span> <span class="nav-text">伪元素方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#box-shadow方案"><span class="nav-number">4.3.</span> <span class="nav-text">box-shadow方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过模糊来弱化背景"><span class="nav-number">5.</span> <span class="nav-text">通过模糊来弱化背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题-2"><span class="nav-number">5.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-1"><span class="nav-number">5.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动提示"><span class="nav-number">6.</span> <span class="nav-text">滚动提示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题-3"><span class="nav-number">6.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-2"><span class="nav-number">6.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互式的图片对比控件"><span class="nav-number">7.</span> <span class="nav-text">交互式的图片对比控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难题-4"><span class="nav-number">7.1.</span> <span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-resize-方案"><span class="nav-number">7.2.</span> <span class="nav-text">CSS resize 方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围输入控件方案"><span class="nav-number">7.3.</span> <span class="nav-text">范围输入控件方案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
