@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="系统学习,node,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="TCP HTTP">
+<meta name="keywords" content="系统学习,node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入浅出node.js》读书笔记6-1网络编程">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/《深入浅出node-js》读书笔记6-1网络编程/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="TCP HTTP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.aisss.top/FkDDxpAyose34YtA1Irp_19zri8A">
+<meta property="og:updated_time" content="2019-09-07T08:42:21.086Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入浅出node.js》读书笔记6-1网络编程">
+<meta name="twitter:description" content="TCP HTTP">
+<meta name="twitter:image" content="http://img.aisss.top/FkDDxpAyose34YtA1Irp_19zri8A">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/23/《深入浅出node-js》读书笔记6-1网络编程/">
+
+
+
+
+
+  <title>《深入浅出node.js》读书笔记6-1网络编程 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/《深入浅出node-js》读书笔记6-1网络编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《深入浅出node.js》读书笔记6-1网络编程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T23:57:27+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/《深入浅出node-js》/" itemprop="url" rel="index">
+                    <span itemprop="name">《深入浅出node.js》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  TCP HTTP
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Node是一个面向网络而生的平台，它具有事件驱动、无阻塞、单线程等特性，具备良好的可伸缩性，使它十分轻量，适合在分布式网络中扮演各种各样的角色。<br>Node只需几行代码即可构建服务器，无需额外的容器。<br>Node提供net、dgram、http、https4个模块，分别用于TCP、UDP、HTTP、HTTPS。适用于服务器和客户端。</p>
+<h2 id="构建TCP服务"><a href="#构建TCP服务" class="headerlink" title="构建TCP服务"></a>构建TCP服务</h2><p>TCP服务在网络应用中十分常见，目前大多数的应用都是基于TCP搭建而成。</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP全名为传输控制协议，在OSI模型中属于传输层协议。TCP协议是面向连接的协议，其显著的特征是在传输之前需要3次握手形成会话。只有形成会话之后，服务器端和客户端之间才能互相发送数据。<br><img src="http://img.aisss.top/FkDDxpAyose34YtA1Irp_19zri8A" alt></p>
+<h3 id="创建TCP服务器端"><a href="#创建TCP服务器端" class="headerlink" title="创建TCP服务器端"></a>创建TCP服务器端</h3><p>创建一个TCP服务端来接受网络请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = net.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 新的连接</span></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        socket.write(<span class="string">'你好'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    socket.write(<span class="string">"欢迎光临《深入浅出node.js》示例：\n"</span>); </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8124</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server bound'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过net模块自行构建客户端进行会话，测试上面构建的TCP服务的代码，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>);</span><br><span class="line"><span class="keyword">var</span> client = net.connect(&#123;<span class="attr">port</span>: <span class="number">8124</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'client connected'</span>);</span><br><span class="line">    client.write(<span class="string">'world!\r\n'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString());</span><br><span class="line">    client.end();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">client.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'client disconnected'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="TCP服务的事件"><a href="#TCP服务的事件" class="headerlink" title="TCP服务的事件"></a>TCP服务的事件</h3><h4 id="1-服务器事件"><a href="#1-服务器事件" class="headerlink" title="1. 服务器事件"></a>1. 服务器事件</h4><p>对于通过<code>net.createServer()</code>创建的服务器而言，它是一个EventEmitter实例，它的自定义事件有如下几种：</p>
+<ul>
+<li>listening: 在调用<code>server.listen()</code>绑定端口或者Domain Socket后触发。</li>
+<li>connection: 每个客户端套接字连接到服务器时触发，简洁写法为通过<code>net.createServer()</code>的最后一个参数传递。</li>
+<li>close： 当服务器关闭时触发，在调用<code>server.close()</code>后，服务器将停止接受新的套接字连接，但保持当前存在但连接，等待所有连接都断开后，会触发该事件。</li>
+<li>error: 当服务器发送异常时，将会触发该事件。比如侦听一个使用中的端口，将会触发一个异常，如果不侦听error事件，服务器将会抛出异常。</li>
+</ul>
+<h4 id="2-连接事件"><a href="#2-连接事件" class="headerlink" title="2. 连接事件"></a>2. 连接事件</h4><p>服务器可以同时与多个客户端保持连接，对于每个连接而言是典型的可读可写Stream对象。Stream对象可以用于服务队与客户端之间的通信，既可以通过data事件从一端读取另一端发来的数据，也可以通过<code>write()</code>方法从一端向另一端发送数据。它具有以下自定义事件：</p>
+<ul>
+<li>data: 当一端用<code>write()</code>发送数据时，另一端会触发data事件，事件传递的数据即是<code>write()</code>发送的数据。</li>
+<li>end: 当连接中的任意一端发送了FIN数据时，将会触发该事件。</li>
+<li>connect: 该事件用于客户端，当套接字与服务器连接成功时会被触发。</li>
+<li>drain: 当任意一端调用<code>write()</code>发送数据时，当前这端会触发该事件。</li>
+<li>error: 当异常发生时，触发该事件。</li>
+<li>close： 当套接字完全关闭时，触发该事件。</li>
+<li>timeout： 当一定时间后连接不再活跃时，该事件会被触发，通知用户当前该连接已经闲置了。</li>
+</ul>
+<p>另外，TCP套接字是可读可写的Stream对象，可以利用<code>pipe()</code>方法巧妙地实现管道操作，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = net.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</span><br><span class="line">    socket.write(<span class="string">'Echo server\r\n'</span>)</span><br><span class="line">    socket.pipe()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在node中， 默认开启Nagle算法，可以调用<code>socket.setNoDelay(true)</code>去掉Nagle算法，使得<code>write()</code>可以立即发生数据到网络中。</p>
+<h2 id="构建UDP服务"><a href="#构建UDP服务" class="headerlink" title="构建UDP服务"></a>构建UDP服务</h2><p>UDP又称用户数据包协议，也属于网路传输层。UDP与TCP最大的不同是UDP不是面向连接的。TCP一旦建立，所有的会话都基于连接完成，客户端如果要与另一个TCP服务通信，需要另创建一个套接字来完成连接。但在UDP中，一个套接字可以与多个UDP服务通信。它虽然提供面向事务的简单不可靠信息传输服务，在网络差的情况下存在丢包严重的问题，但是由于它无须连接，资源消耗低，处理快速且灵活，所以常常用在偶尔丢一两个数据包也不会产生重大影响的场景，比如音频、视频、DNS等。DNS服务即是基于它实现的。</p>
+<h3 id="创建UDP套接字"><a href="#创建UDP套接字" class="headerlink" title="创建UDP套接字"></a>创建UDP套接字</h3><p>UDP套接字一旦创建，既可以作为客户端发生数据，也可以作为服务器接收数据。下面代码创建UDP套接字：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>);</span><br><span class="line"><span class="keyword">var</span> socket = dgram.createSocket(<span class="string">'udp4'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建UDP服务器端"><a href="#创建UDP服务器端" class="headerlink" title="创建UDP服务器端"></a>创建UDP服务器端</h3><p>若想让UDP套接字接收网络消息，只要调用<code>dgram.bind(post, [address])</code>方法对网卡和端口进行绑定即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = dgram.createSocket(<span class="string">'udp4'</span>);</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">msg, rinfo</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server got: '</span> + msg + <span class="string">' from'</span> + rinfo.address + <span class="string">':'</span> + rinfo.port);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'listening'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> address = server.address();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server listening'</span> + address.address + <span class="string">':'</span> + address.port);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.bind(<span class="number">41234</span>)</span><br></pre></td></tr></table></figure>
+
+<p>该套接字将接收所用网卡上41234端口上的消息。在绑定完成后，将触发listening事件。</p>
+<h3 id="创建UDP客户端"><a href="#创建UDP客户端" class="headerlink" title="创建UDP客户端"></a>创建UDP客户端</h3><p>我们创建一个客户端与服务端进行对话：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> message = <span class="keyword">new</span> Buffer(<span class="string">'深入浅出Node.js'</span>);</span><br><span class="line"><span class="keyword">var</span> client = dgram.createSocket(<span class="string">'udp4'</span>);</span><br><span class="line">client.send(message, <span class="number">0</span>, message.length, <span class="number">41234</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, bytes</span>)</span>&#123;</span><br><span class="line">    client.close();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>当套接字对象用在客户端时，可以调用<code>send()</code>方法，<a href="http://nodejs.cn/api/dgram.html#dgram_socket_send_msg_offset_length_port_address_callback" target="_blank" rel="noopener">文档</a></p>
+<h3 id="UDP套接字事件"><a href="#UDP套接字事件" class="headerlink" title="UDP套接字事件"></a>UDP套接字事件</h3><p>UDP套接字只是一个Event Emitter实例，而非Stream的实例。它具备如下自定义事件：</p>
+<ul>
+<li>message： 当UDP套接字侦听网卡端口后，接收到消息时触发该事件，触发携带当数据为消息Buffer对象和一个远程地址信息。</li>
+<li>listening: 当UDP套接字开始侦听时触发事件。</li>
+<li>close： 调用<code>close()</code>方法时触发该事件，并不再触发message事件。如需再次触发message事件，重新绑定即可。</li>
+<li>error： 当异常发生时触发该事件，如果不侦听，异常将直接抛出，使进程退出。</li>
+</ul>
+<h2 id="构建HTTP服务"><a href="#构建HTTP服务" class="headerlink" title="构建HTTP服务"></a>构建HTTP服务</h2><p>Node提供基本的http和https模块用于HTTP和HTTPS的封装。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">    res.end(<span class="string">'Hello World\n'</span>);</span><br><span class="line">&#125;).listen(<span class="number">1337</span>, <span class="string">'127.0.0.1'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server running at http://127.0.0.1:1337/'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP模块"><a href="#HTTP模块" class="headerlink" title="HTTP模块"></a>HTTP模块</h3><p>Node中，HTTP服务与TCP服务有区别在于：<br>开启keep live后，一个TCP会话可以用于多次请求和响应。<br>TCP服务以connection为单位进行服务，HTTP服务以request为单位进行服务。http模块即是将connection到request的过程进行封装。</p>
+<h4 id="1-HTTP请求"><a href="#1-HTTP请求" class="headerlink" title="1. HTTP请求"></a>1. HTTP请求</h4><p>对于TCP连接的读操作，http模块将其封装为ServerRequest对象。<br>请求行会被<code>http_parse</code>解析为<code>req.method</code>,<code>req.url</code>,<code>req.httpVersion</code>属性.<br>请求报文头部被解析为<code>req.headers</code>。<br>请求报名实体则抽象为一个只读流对象，如果业务逻辑需要读取报文体中的数据，则需要在这个数据流结束后才能进行操作。如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buffers = [];</span><br><span class="line">    req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">trunk</span>)</span>&#123;</span><br><span class="line">        buffers.push(thrunk);</span><br><span class="line">    &#125;).on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> buffer = Buffer.concat(buffers);</span><br><span class="line">        <span class="comment">//TODO</span></span><br><span class="line">        res.end(<span class="string">'Hello world'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-HTTP响应"><a href="#2-HTTP响应" class="headerlink" title="2. HTTP响应"></a>2. HTTP响应</h4><p>HTTP响应封装流对底层连接对写操作，可以将其看成一个可写对流对象。<br><code>res.setHeader()</code>,<code>res.writeHead()</code>用于设置响应报文头部。<br><code>res.write()</code>,<code>res.end()</code>用于设置响应报文实体。 </p>
+<h4 id="3-HTTP服务事件"><a href="#3-HTTP服务事件" class="headerlink" title="3. HTTP服务事件"></a>3. HTTP服务事件</h4><p>HTTP服务器也是一个EventEmitter实例，也抽象一些事件，以供应用层使用。</p>
+<ul>
+<li>connection: <a href="http://nodejs.cn/api/http.html#http_event_connection" target="_blank" rel="noopener">文档</a></li>
+<li>request: <a href="http://nodejs.cn/api/http.html#http_event_request" target="_blank" rel="noopener">文档</a></li>
+<li>close: <a href="http://nodejs.cn/api/http.html#http_server_close_callback" target="_blank" rel="noopener">文档</a></li>
+<li>checkContinue: <a href="http://nodejs.cn/api/http.html#http_event_checkcontinue" target="_blank" rel="noopener">文档</a></li>
+<li>connect: <a href="http://nodejs.cn/api/http.html#http_event_connect_1" target="_blank" rel="noopener">文档</a></li>
+<li>upgrade: <a href="http://nodejs.cn/api/http.html#http_event_upgrade_1" target="_blank" rel="noopener">文档</a></li>
+<li>clientError: <a href="http://nodejs.cn/api/http.html#http_event_clienterror" target="_blank" rel="noopener">文档</a></li>
+</ul>
+<h3 id="HTTP客户端"><a href="#HTTP客户端" class="headerlink" title="HTTP客户端"></a>HTTP客户端</h3><p><code>http.request(options, connect)</code>，用于构造HTTP客户端。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> options = &#123; </span><br><span class="line">    hostname: <span class="string">'127.0.0.1'</span>, </span><br><span class="line">    port: <span class="number">1334</span>,</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> req = http.request(options, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'STATUS: '</span> + res.statusCode); </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'HEADERS: '</span> + <span class="built_in">JSON</span>.stringify(res.headers)); res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">    res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123; </span><br><span class="line">        <span class="built_in">console</span>.log(chunk);</span><br><span class="line">    &#125;); </span><br><span class="line">&#125;);</span><br><span class="line">req.end();</span><br></pre></td></tr></table></figure>
+
+<p>options参数决定了这个HTTP请求头中的内容，<a href="http://nodejs.cn/api/http.html#http_http_request_options_callback" target="_blank" rel="noopener">文档</a>.     </p>
+<h4 id="1-HTTP代理"><a href="#1-HTTP代理" class="headerlink" title="1. HTTP代理"></a>1. HTTP代理</h4><p>和服务器端的实现一样，http提供的<code>ClientRequest</code>对象也是基于TCP层实现的。在keeplive的情况下，一个底层会话连接可以多次用于请求。为了重用TCP连接，http模块包含一个默认的客户端代理对象<code>http.globalAgent</code>。它对每个服务端（host + port）创建的连接进行了管理，默认情况下，通过<code>ClientRequest</code>对象对同一个服务器端发起对HTTP请求最多可以创建5个连接。在options中可以设置自定义的agent对象，解除默认连接限制。    </p>
+<h4 id="2-HTTP客户端事件"><a href="#2-HTTP客户端事件" class="headerlink" title="2. HTTP客户端事件"></a>2. HTTP客户端事件</h4><p>与服务队对应，HTTP客户端也有相应的事件：</p>
+<ul>
+<li>response: <a href="http://nodejs.cn/api/http.html#http_event_response" target="_blank" rel="noopener">文档</a></li>
+<li>socket: <a href="http://nodejs.cn/api/http.html#http_event_socket" target="_blank" rel="noopener">文档</a></li>
+<li>connect: <a href="http://nodejs.cn/api/http.html#http_event_connect" target="_blank" rel="noopener">文档</a></li>
+<li>upgrade: <a href="http://nodejs.cn/api/http.html#http_event_upgrade" target="_blank" rel="noopener">文档</a></li>
+<li>continue: <a href="http://nodejs.cn/api/http.html#http_event_continue" target="_blank" rel="noopener">文档</a>  </li>
+</ul>
+<h2 id="构建WebSocket服务"><a href="#构建WebSocket服务" class="headerlink" title="构建WebSocket服务"></a>构建WebSocket服务</h2><p>Node与WebSocket协议是绝配：</p>
+<ul>
+<li>WebSocket客户端基于事件的编程模型与Node的自定义事件相差无几；</li>
+<li>WebSocket实现了客户端与服务端之间的长连接，而Node事件驱动的方式十分擅长与大量的客户端保持高并发连接。</li>
+</ul>
+<p>WebSocket与传统HTTP有如下好处：</p>
+<ul>
+<li>客户端与服务端只建立一个TCP连接，更少的连接请求；</li>
+<li>WebSocket服务器可以推送数据到客户端；</li>
+<li>更轻量级的协议头，减少数据传送量。    </li>
+</ul>
+<p>WebSocket在客户端的应用示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://127.0.0.1:12010/updates'</span>);</span><br><span class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(socket.bufferedAmount === <span class="number">0</span>) &#123;</span><br><span class="line">            socket.send(getUpdateData());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">50</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//TODO</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>WebSocket协议主要分为：握手和数据传输。<br>WebSocket是在TCP上定义独立的协议，但是WebSocket的握手部分是有HTTP完成的。</p>
+<h3 id="WebSocket握手"><a href="#WebSocket握手" class="headerlink" title="WebSocket握手"></a>WebSocket握手</h3><p>客户端建立连接时，通过HTTP发起请求报文，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET /chat HTTP/1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ== Sec-WebSocket-Protocol: chat, superchat Sec-WebSocket-Version: 13</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/08/23/《深入浅出node-js》读书笔记6-1网络编程/" title="《深入浅出node.js》读书笔记6-1网络编程">http://yoursite.com/2019/08/23/《深入浅出node-js》读书笔记6-1网络编程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统学习/" rel="tag"># 系统学习</a>
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/23/《深入浅出node-js》读书笔记5-1理解Buffer/" rel="next" title="《深入浅出node.js》读书笔记5-1理解Buffer">
+                <i class="fa fa-chevron-left"></i> 《深入浅出node.js》读书笔记5-1理解Buffer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建TCP服务"><span class="nav-number">1.</span> <span class="nav-text">构建TCP服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">1.1.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建TCP服务器端"><span class="nav-number">1.2.</span> <span class="nav-text">创建TCP服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP服务的事件"><span class="nav-number">1.3.</span> <span class="nav-text">TCP服务的事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-服务器事件"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 服务器事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-连接事件"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 连接事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建UDP服务"><span class="nav-number">2.</span> <span class="nav-text">构建UDP服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建UDP套接字"><span class="nav-number">2.1.</span> <span class="nav-text">创建UDP套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建UDP服务器端"><span class="nav-number">2.2.</span> <span class="nav-text">创建UDP服务器端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建UDP客户端"><span class="nav-number">2.3.</span> <span class="nav-text">创建UDP客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP套接字事件"><span class="nav-number">2.4.</span> <span class="nav-text">UDP套接字事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建HTTP服务"><span class="nav-number">3.</span> <span class="nav-text">构建HTTP服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP模块"><span class="nav-number">3.1.</span> <span class="nav-text">HTTP模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-HTTP请求"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. HTTP请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HTTP响应"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. HTTP响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-HTTP服务事件"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. HTTP服务事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP客户端"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-HTTP代理"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. HTTP代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HTTP客户端事件"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. HTTP客户端事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建WebSocket服务"><span class="nav-number">4.</span> <span class="nav-text">构建WebSocket服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket握手"><span class="nav-number">4.1.</span> <span class="nav-text">WebSocket握手</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
