@@ -129,7 +129,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/adam-catlace.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/12/19/《CSS揭秘》第3章-形状/adam-catlace.jpg">
-<meta property="og:updated_time" content="2019-07-18T05:20:39.505Z">
+<meta property="og:updated_time" content="2019-10-18T07:56:41.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《CSS揭秘》第3章-形状">
 <meta name="twitter:description" content="原生CSS实现的各种形状变化">
@@ -435,10 +435,10 @@
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p><code>border-radius</code>，有一个鲜为人知的真相：     </p>
 <ol>
 <li>可以单独指定水平和垂直半径，只要用一个斜杠（/）分隔这两个值即可。</li>
-<li>可以接受百分比值。这个百分比值会基于元素的尺寸进行解析，即宽度用于水平半径的解析，而高度用于垂直半径的解析。这意味着相同的百分比可能会计算出不同的水平和垂直半径。    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">border-radius:50%/50%;</span><br><span class="line">```     </span><br><span class="line"></span><br><span class="line">#### 半椭圆</span><br><span class="line">我们需要给每个角指定不同的半径：</span><br><span class="line">- border-top-left-radius</span><br><span class="line">- border-top-right-radius</span><br><span class="line">- border-bottom-right-radius</span><br><span class="line">- border-bottom-left-radius</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>可以接受百分比值。这个百分比值会基于元素的尺寸进行解析，即宽度用于水平半径的解析，而高度用于垂直半径的解析。这意味着相同的百分比可能会计算出不同的水平和垂直半径。    </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">border-radius:50%/50%;</span><br><span class="line">```     </span><br><span class="line"></span><br><span class="line">#### 半椭圆</span><br><span class="line">我们需要给每个角指定不同的半径：</span><br><span class="line">- border-top-left-radius</span><br><span class="line">- border-top-right-radius</span><br><span class="line">- border-bottom-right-radius</span><br><span class="line">- border-bottom-left-radius</span><br></pre></td></tr></table></figure>
+
 <p>//沿横轴劈开的半椭圆<br>border-radius:50%/100% 100% 0 0;</p>
 <p>//沿纵轴劈开的半椭圆<br>border-radius:100% 0 0 100%/50%;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">![](http://img.aisss.top/17-12-14/78618757.jpg)</span><br><span class="line">![](http://img.aisss.top/17-12-14/24744463.jpg)     </span><br><span class="line">**注意** :当水平圆角或垂直圆角为0时，另一个就无所谓是多少。     </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">#### 四分之一椭圆</span><br><span class="line">创建一个四分之一椭圆，其中一个角的水平和垂直半径值都需要是100%，而其他三个角都不能设为圆角。由于这四个角的半径在水平和垂直方向上都是相同的，我们甚至都不需要使用斜杠语法了。</span><br></pre></td></tr></table></figure>
