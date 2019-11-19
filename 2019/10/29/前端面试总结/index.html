@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,面试,学习,指南,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="主要针对前端面试内容、面试技巧的总结">
+<meta name="keywords" content="前端,面试,学习,指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试总结">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/前端面试总结/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="主要针对前端面试内容、面试技巧的总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.aisss.top/FlF6psiOOHwpRxNcr2l_tS4jeJ3A">
+<meta property="og:image" content="http://img.aisss.top/FvPGXe41Vk8T5pOsWFMIEbWEnze5">
+<meta property="og:updated_time" content="2019-11-19T09:13:22.129Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端面试总结">
+<meta name="twitter:description" content="主要针对前端面试内容、面试技巧的总结">
+<meta name="twitter:image" content="http://img.aisss.top/FlF6psiOOHwpRxNcr2l_tS4jeJ3A">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/29/前端面试总结/">
+
+
+
+
+
+  <title>前端面试总结 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/前端面试总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端面试总结</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T18:05:10+08:00">
+                2019-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  主要针对前端面试内容、面试技巧的总结
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前端基础"><a href="#前端基础" class="headerlink" title="前端基础"></a>前端基础</h1><h2 id="HTML基础"><a href="#HTML基础" class="headerlink" title="HTML基础"></a>HTML基础</h2><h3 id="DOCTYPE的作用是什么？"><a href="#DOCTYPE的作用是什么？" class="headerlink" title="DOCTYPE的作用是什么？"></a>DOCTYPE的作用是什么？</h3><p>html5标准网页声明，告知浏览器的解析器用什么文档标准解析文档，不同的渲染模式会影响到css甚至js的脚本解析。必须声明在第一行。<br>文档解析类型：</p>
+<ul>
+<li>标准模式：W3C标准</li>
+<li>怪异模式： 浏览器自己标准</li>
+</ul>
+<h2 id="CSS基础"><a href="#CSS基础" class="headerlink" title="CSS基础"></a>CSS基础</h2><h3 id="CSS选择器的优先级是怎么样的？"><a href="#CSS选择器的优先级是怎么样的？" class="headerlink" title="CSS选择器的优先级是怎么样的？"></a>CSS选择器的优先级是怎么样的？</h3><p>内联 &gt; id选择器 &gt; 类选择器 &gt; 标签选择器， 权重从左到右依次减小。</p>
+<h3 id="link和-import区别？"><a href="#link和-import区别？" class="headerlink" title="link和@import区别？"></a>link和@import区别？</h3><ul>
+<li>link是xhtml元素，@import是css提供的(需要IE5以上)</li>
+<li>页面加载时，link会同时被加载；@import引用的css等到页面加载完再加载</li>
+<li>link的样式权重高于@import</li>
+</ul>
+<h3 id="如何理解z-index？"><a href="#如何理解z-index？" class="headerlink" title="如何理解z-index？"></a>如何理解z-index？</h3><p>css中的z-index属性控制重叠元素的垂直叠加顺序，默认元素的z-index为0，修改z-index来控制元素的图层位置，而且z-index仅在定位元素(position不等于static)中生效。</p>
+<h3 id="如何理解层叠上下文？"><a href="#如何理解层叠上下文？" class="headerlink" title="如何理解层叠上下文？"></a>如何理解层叠上下文？</h3><h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>层叠上下文是HTML元素的三维概念，这些HTML元素在一条假想的相对于面向用户的z轴上叠放排列，HTML元素依据其自身优先级顺序占用层叠上下文的空间。</p>
+<h4 id="作用是什么？"><a href="#作用是什么？" class="headerlink" title="作用是什么？"></a>作用是什么？</h4><p>该元素的所有后代元素相对于该祖先元素都有其自己的叠放顺序。</p>
+<h4 id="如何产生"><a href="#如何产生" class="headerlink" title="如何产生?"></a>如何产生?</h4><p>触发一下条件则会产生层叠上下文:</p>
+<ul>
+<li>根元素(HTML)</li>
+<li>z-index 值不为 “auto”的</li>
+<li>opacity 属性值小于 1 的元素（参考 the specification for opacity），</li>
+<li>transform 属性值不为 “none”的元素</li>
+<li>mix-blend-mode 属性值不为 “normal”的元素，</li>
+<li>filter值不为“none”的元素,</li>
+<li>perspective值不为“none”的元素，</li>
+<li>isolation 属性被设置为 “isolate”的元素，</li>
+<li>position: fixed</li>
+<li>在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值</li>
+<li>webkit-overflow-scrolling 属性被设置 “touch”的元素</li>
+</ul>
+<h3 id="你对盒模型的理解？"><a href="#你对盒模型的理解？" class="headerlink" title="你对盒模型的理解？"></a>你对盒模型的理解？</h3><h4 id="是什么？-1"><a href="#是什么？-1" class="headerlink" title="是什么？"></a>是什么？</h4><p>当一个文档进行布局的时候，浏览器的渲染引擎会根据标准盒模型将所有元素渲染为一个矩形盒子。CSS决定盒子的大小、位置、颜色、背景、边框····<br>盒模型由content、padding、border、margin组成。  </p>
+<h4 id="box-sizeing-content-box-border-box"><a href="#box-sizeing-content-box-border-box" class="headerlink" title="box-sizeing: content-box border-box"></a>box-sizeing: content-box border-box</h4><h3 id="谈谈对BFC的理解？"><a href="#谈谈对BFC的理解？" class="headerlink" title="谈谈对BFC的理解？"></a>谈谈对BFC的理解？</h3><h4 id="是什么？-2"><a href="#是什么？-2" class="headerlink" title="是什么？"></a>是什么？</h4><p>BFC是块级格式上下文，页面中一个独立的渲染区域，让处于内部的元素与外部的元素互相隔离。</p>
+<h4 id="如何形成？"><a href="#如何形成？" class="headerlink" title="如何形成？"></a>如何形成？</h4><ul>
+<li>根元素</li>
+<li>position不为static</li>
+<li>float不为none</li>
+<li>overflow不为visible</li>
+<li>display: inline-block table-cell table-caption<h4 id="作用是什么？-1"><a href="#作用是什么？-1" class="headerlink" title="作用是什么？"></a>作用是什么？</h4></li>
+<li>防止margin重叠</li>
+<li>消除浮动的副作用<ul>
+<li>防止文字环绕</li>
+<li>防止高度坍塌</li>
+</ul>
+</li>
+</ul>
+<h3 id="伪类和伪元素的区别是什么？"><a href="#伪类和伪元素的区别是什么？" class="headerlink" title="伪类和伪元素的区别是什么？"></a>伪类和伪元素的区别是什么？</h3><h4 id="是什么？-3"><a href="#是什么？-3" class="headerlink" title="是什么？"></a>是什么？</h4><p>伪类（pseudo-class） 是一个以冒号(:)作为前缀，被添加到一个选择器末尾的关键字，当你希望样式在特定状态下才被呈现到指定的元素时，你可以往元素的选择器后面加上对应的伪类。</p>
+<p>伪元素用于创建一些不在文档树中的元素，并为其添加样式。比如说，我们可以通过::before来在一个元素前增加一些文本，并为这些文本添加样式。虽然用户可以看到这些文本，但是这些文本实际上不在文档树中。</p>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>伪类是通过在元素选择器上加入伪类改变元素状态，而伪元素通过对元素的操作进行对元素的改变。    </p>
+<h2 id="js基础"><a href="#js基础" class="headerlink" title="js基础"></a>js基础</h2><h3 id="js的作用域链理解吗？"><a href="#js的作用域链理解吗？" class="headerlink" title="js的作用域链理解吗？"></a>js的作用域链理解吗？</h3><p>js是词法作用域(静态作用域)，声明的作用域在编译阶段就已经确定。<br>js在执行时会创建执行上下文，执行上下文中的词法环境会包含外层词法环境的引用，通过引用可以获取外层词法环境的变量，这些引用层层串联最终指向全局环境，因此形成作用域连。s</p>
+<h3 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h3><p>两个重大差异： </p>
+<ul>
+<li>CommonJS模块输出的是一个值的拷贝，ES6模块输出的是值的引用</li>
+<li>CommonJS模块是运行时加载，ES6模块是编译时输出接口</li>
+</ul>
+<h3 id="为什么会有BigInt的提案？"><a href="#为什么会有BigInt的提案？" class="headerlink" title="为什么会有BigInt的提案？"></a>为什么会有BigInt的提案？</h3><p><code>Number.MAX_SAFE_INTEGER</code>，表示最大安全数字</p>
+<h3 id="0-1-0-2-为什么不等于0-3"><a href="#0-1-0-2-为什么不等于0-3" class="headerlink" title="0.1 + 0.2 为什么不等于0.3?"></a>0.1 + 0.2 为什么不等于0.3?</h3><p>JS的Number类型是双精度浮点数，遵循IEEE 754标准。    </p>
+<p>以0.1转换IEEE 754标准为例，会有3个阶段：</p>
+<ul>
+<li>0.1转换为二进制表示</li>
+<li>二进制用科学计数法表示</li>
+<li>科学计数法表示的二进制转换为IEEE 754标准表示<br>问题出在第三步，以IEEE 754标准转换后的0.1换成十进制，变成0.100000000000000005551115123126</li>
+</ul>
+<h3 id="谈谈你对原型链的理解？"><a href="#谈谈你对原型链的理解？" class="headerlink" title="谈谈你对原型链的理解？"></a>谈谈你对原型链的理解？</h3><h4 id="先谈原型对象"><a href="#先谈原型对象" class="headerlink" title="先谈原型对象"></a>先谈原型对象</h4><p>绝大部分函数(少数内建函数除外)都会有一个prototype属性，这个属性指向函数的原型对象，当调用构造函数创建实例时,该实例的内部将包含一个内部<code>__proto__</code>属性，指向构造函数的原型对象。所有被创建的实例都会共享原型对象，这些实例可以访问原型对象的属性。</p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><p>原因是每个对象都有<code>__proto__</code>属性，此属性指向该对象的构造函数的原型。<br>对象可以通过<code>__proto__</code>与上游的构造函数的原型对象连接起来，而上游的原型对象也有一个<code>__proto__</code>，这样形成了原型链。</p>
+<h3 id="谈谈你对原型链的理解？-1"><a href="#谈谈你对原型链的理解？-1" class="headerlink" title="谈谈你对原型链的理解？"></a>谈谈你对原型链的理解？</h3><p>this的指向不是在编写时确定的，而是在执行时确定的，同时，this的指向遵循一定的规则。</p>
+<ul>
+<li>默认规则，指向全局对象</li>
+<li>隐式调用，函数被调用的位置存在上下文对象时，指向这个上下文对象</li>
+<li>显示调用(apply, call, bind)，指向指定的对象</li>
+<li>new调用，优先级最高，用 new 调用一个构造函数，会创建一个新对象,this会自动绑定到这个新对象</li>
+</ul>
+<blockquote>
+<p>补充<br>箭头函数与传统函数的差异：  </p>
+<ul>
+<li>没有<code>this</code>、<code>super</code>、<code>new.target</code>绑定  它们的值由外围最近一层非箭头函数决定。</li>
+<li>不能通过<code>new</code>调用  箭头函数没有<code>[[Construct]]</code>方法，所以不能被用作构造函数</li>
+<li>没有原型</li>
+<li>不支持<code>arguments</code>对象</li>
+<li>不支持重复的命名参数</li>
+</ul>
+</blockquote>
+<h3 id="async-await是什么？"><a href="#async-await是什么？" class="headerlink" title="async/await是什么？"></a>async/await是什么？</h3><p>async函数，就是Generator函数的语法糖，它建立在Promise上，并且与所有现有的Promise的API兼容。</p>
+<ol>
+<li>Async——声明一个异步函数</li>
+</ol>
+<ul>
+<li>自动将常规函数转换为Promise，返回值也是一个Promise对象</li>
+<li>只有asyn函数内部的异步操作执行完，才会执行then方法指定的回调函数</li>
+<li>异步函数内部可以使用await</li>
+</ul>
+<ol start="2">
+<li>Await——暂停异步的功能执行</li>
+</ol>
+<ul>
+<li>放置在Promise调用之前，await强制代码等待，直到Promise完成并返回结果</li>
+<li>只能与Promise一起使用，不适用回调</li>
+<li>只能在async函数内调用</li>
+</ul>
+<h2 id="浏览器与新技术"><a href="#浏览器与新技术" class="headerlink" title="浏览器与新技术"></a>浏览器与新技术</h2><h3 id="浏览器是如何渲染UI的？"><a href="#浏览器是如何渲染UI的？" class="headerlink" title="浏览器是如何渲染UI的？"></a>浏览器是如何渲染UI的？</h3><ol>
+<li>浏览器获取HTML文件，然后对文件进行解析，形成DOMTree</li>
+<li>与此同时，进行CSS解析，形成Style Rules</li>
+<li>接着将DOMTree和Style Rules合成为Render Tree</li>
+<li>然后进入布局(layout)阶段，也就是为每个节点分配一个应出现在屏幕上的确切坐标</li>
+<li>随后调用GPU进行绘制(Paint)，遍历Render Tree的节点，并将元素呈现出来</li>
+</ol>
+<p><img src="http://img.aisss.top/FlF6psiOOHwpRxNcr2l_tS4jeJ3A" alt></p>
+<h3 id="DOM-Tree是如何建立的？"><a href="#DOM-Tree是如何建立的？" class="headerlink" title="DOM Tree是如何建立的？"></a>DOM Tree是如何建立的？</h3><ol>
+<li>转码：浏览器将接收到的二进制数据按照指定编码格式转化为HTML字符串</li>
+<li>生成TOKEN：浏览器会将HTML字符串解析成Tokens</li>
+<li>构建Nodes：对Node添加特定的属性，通过指针确定Node的父、子、兄弟关系和所属treeScope</li>
+<li>生成Dom Tree: 通过node包含的指针确定的关系构建出DOM Tree</li>
+</ol>
+<p><img src="http://img.aisss.top/FvPGXe41Vk8T5pOsWFMIEbWEnze5" alt></p>
+<h1 id="前端基础笔试"><a href="#前端基础笔试" class="headerlink" title="前端基础笔试"></a>前端基础笔试</h1><h2 id="javascript笔试部分"><a href="#javascript笔试部分" class="headerlink" title="javascript笔试部分"></a>javascript笔试部分</h2><h3 id="实现防抖函数-debounce"><a href="#实现防抖函数-debounce" class="headerlink" title="实现防抖函数(debounce)"></a>实现防抖函数(debounce)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计时器版本</span></span><br><span class="line"><span class="keyword">const</span> debounce = <span class="function">(<span class="params">fn, ms = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">..args</span>) =&gt;</span> &#123;</span><br><span class="line">        clearTimer(timer);</span><br><span class="line">        timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, args)</span><br><span class="line">        &#125;, ms)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 时间差版本</span></span><br><span class="line"><span class="keyword">const</span> debounce = <span class="function">(<span class="params">fn, delay</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="keyword">if</span>(now - last &gt;= delay) &#123;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, args)</span><br><span class="line">        &#125;</span><br><span class="line">        last = now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现节流函数-throttle"><a href="#实现节流函数-throttle" class="headerlink" title="实现节流函数(throttle)"></a>实现节流函数(throttle)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计时器版本</span></span><br><span class="line"><span class="keyword">const</span> throttle = <span class="function">(<span class="params">fn, delay</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">..args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(timer) <span class="keyword">return</span>;</span><br><span class="line">        timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">            timer = <span class="literal">null</span>;</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//简易版，在delay时间内只执行一次</span></span><br><span class="line"><span class="keyword">const</span> throttle = <span class="function">(<span class="params">fn, delay</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">..args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(now - last &gt;= delay) &#123;</span><br><span class="line">            last = now;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//升级版，时间间隔小于delay时设置一个定时器</span></span><br><span class="line"><span class="keyword">const</span> throttle = <span class="function">(<span class="params">fn, delay</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">..args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(now - last &gt;= delay) &#123;</span><br><span class="line">            last = now;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, args)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                last = now;</span><br><span class="line">                fn.apply(<span class="keyword">this</span>, args)</span><br><span class="line">            &#125;, delay)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/29/前端面试总结/" title="前端面试总结">http://yoursite.com/2019/10/29/前端面试总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/指南/" rel="tag"># 指南</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/27/《深入浅出Node-js》读书笔记10-1产品化/" rel="next" title="《深入浅出Node.js》读书笔记10-1产品化">
+                <i class="fa fa-chevron-left"></i> 《深入浅出Node.js》读书笔记10-1产品化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端基础"><span class="nav-number">1.</span> <span class="nav-text">前端基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML基础"><span class="nav-number">1.1.</span> <span class="nav-text">HTML基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOCTYPE的作用是什么？"><span class="nav-number">1.1.1.</span> <span class="nav-text">DOCTYPE的作用是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS基础"><span class="nav-number">1.2.</span> <span class="nav-text">CSS基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS选择器的优先级是怎么样的？"><span class="nav-number">1.2.1.</span> <span class="nav-text">CSS选择器的优先级是怎么样的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link和-import区别？"><span class="nav-number">1.2.2.</span> <span class="nav-text">link和@import区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解z-index？"><span class="nav-number">1.2.3.</span> <span class="nav-text">如何理解z-index？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解层叠上下文？"><span class="nav-number">1.2.4.</span> <span class="nav-text">如何理解层叠上下文？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么？"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用是什么？"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何产生"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">如何产生?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你对盒模型的理解？"><span class="nav-number">1.2.5.</span> <span class="nav-text">你对盒模型的理解？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么？-1"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#box-sizeing-content-box-border-box"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">box-sizeing: content-box border-box</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈对BFC的理解？"><span class="nav-number">1.2.6.</span> <span class="nav-text">谈谈对BFC的理解？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么？-2"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何形成？"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">如何形成？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用是什么？-1"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">作用是什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类和伪元素的区别是什么？"><span class="nav-number">1.2.7.</span> <span class="nav-text">伪类和伪元素的区别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是什么？-3"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js基础"><span class="nav-number">1.3.</span> <span class="nav-text">js基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js的作用域链理解吗？"><span class="nav-number">1.3.1.</span> <span class="nav-text">js的作用域链理解吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-模块与-CommonJS-模块的差异"><span class="nav-number">1.3.2.</span> <span class="nav-text">ES6 模块与 CommonJS 模块的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么会有BigInt的提案？"><span class="nav-number">1.3.3.</span> <span class="nav-text">为什么会有BigInt的提案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0-1-0-2-为什么不等于0-3"><span class="nav-number">1.3.4.</span> <span class="nav-text">0.1 + 0.2 为什么不等于0.3?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈你对原型链的理解？"><span class="nav-number">1.3.5.</span> <span class="nav-text">谈谈你对原型链的理解？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先谈原型对象"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">先谈原型对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型链"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">原型链</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈你对原型链的理解？-1"><span class="nav-number">1.3.6.</span> <span class="nav-text">谈谈你对原型链的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async-await是什么？"><span class="nav-number">1.3.7.</span> <span class="nav-text">async/await是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器与新技术"><span class="nav-number">1.4.</span> <span class="nav-text">浏览器与新技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器是如何渲染UI的？"><span class="nav-number">1.4.1.</span> <span class="nav-text">浏览器是如何渲染UI的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-Tree是如何建立的？"><span class="nav-number">1.4.2.</span> <span class="nav-text">DOM Tree是如何建立的？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端基础笔试"><span class="nav-number">2.</span> <span class="nav-text">前端基础笔试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript笔试部分"><span class="nav-number">2.1.</span> <span class="nav-text">javascript笔试部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现防抖函数-debounce"><span class="nav-number">2.1.1.</span> <span class="nav-text">实现防抖函数(debounce)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现节流函数-throttle"><span class="nav-number">2.1.2.</span> <span class="nav-text">实现节流函数(throttle)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
