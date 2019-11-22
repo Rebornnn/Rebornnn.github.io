@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,面试,学习,指南,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="javascript执行机制、内存管、Event Loop、不可变数据">
+<meta name="keywords" content="前端,面试,学习,指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试之原理部分">
+<meta property="og:url" content="http://yoursite.com/2019/11/21/前端面试之前端原理/index.html">
+<meta property="og:site_name" content="博言">
+<meta property="og:description" content="javascript执行机制、内存管、Event Loop、不可变数据">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.aisss.top/FlicrBTXJttLCZqFgFULolOx2ZwI">
+<meta property="og:image" content="http://img.aisss.top/FpjZ68oyGxdR08UpNS0yjOEdmiPi">
+<meta property="og:image" content="http://img.aisss.top/FqSj4-XKc31r87LazYz8WB8PhUby">
+<meta property="og:image" content="http://img.aisss.top/FmilK4NnA98rDLbBd8vkpjfAvQRx">
+<meta property="og:image" content="http://img.aisss.top/Ft7_b2yCcyqB30275Shzl3y8Dfns">
+<meta property="og:image" content="http://img.aisss.top/Flx72NFIM_WnvRbIj3IzJ-jx2UH0">
+<meta property="og:image" content="http://img.aisss.top/FvIyTgiM0EgD6PfXcwZnGw0t7_rU">
+<meta property="og:image" content="http://img.aisss.top/FvQbTpKirQb0EtJaFMFCB7xNkFIW">
+<meta property="og:image" content="http://img.aisss.top/FlXjmjkFCnT4gQtJzXi_PpP2u-De">
+<meta property="og:image" content="http://img.aisss.top/FoE85oLPlsEaC2J3CQZmgAUawo4u">
+<meta property="og:updated_time" content="2019-11-22T06:34:20.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端面试之原理部分">
+<meta name="twitter:description" content="javascript执行机制、内存管、Event Loop、不可变数据">
+<meta name="twitter:image" content="http://img.aisss.top/FlicrBTXJttLCZqFgFULolOx2ZwI">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/21/前端面试之前端原理/">
+
+
+
+
+
+  <title>前端面试之原理部分 | 博言</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?92f54da1f7f5e55bd4b19d3111f903de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博言</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry. Stay foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/前端面试之前端原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liborn">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博言">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端面试之原理部分</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-21T17:17:25+08:00">
+                2019-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  javascript执行机制、内存管、Event Loop、不可变数据
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript的运行机制"><a href="#JavaScript的运行机制" class="headerlink" title="JavaScript的运行机制"></a>JavaScript的运行机制</h1><p>本节你需要搞清楚以下问题：</p>
+<ul>
+<li>作用域链本质上是如何产生的？</li>
+<li>this是如何绑定的？</li>
+<li>JavaScript代码运行原理是什么？</li>
+<li>闭包产生的原因？</li>
+</ul>
+<h2 id="JavaScript的执行环境"><a href="#JavaScript的执行环境" class="headerlink" title="JavaScript的执行环境"></a>JavaScript的执行环境</h2><p>在了解JavaScript运行机制之前，我们需要搞清楚几个主要概念。  </p>
+<h3 id="JavaScript引擎-JavaScript-Engine"><a href="#JavaScript引擎-JavaScript-Engine" class="headerlink" title="JavaScript引擎(JavaScript Engine)"></a>JavaScript引擎(JavaScript Engine)</h3><p>目前市面上的JavaScript引擎：</p>
+<ul>
+<li>V8 — 开源，由 Google 开发，用 C ++ 编写</li>
+<li>Rhino — 由 Mozilla 基金会管理，开源，完全用 Java 开发</li>
+<li>SpiderMonkey — 是第一个支持 Netscape Navigator 的 JavaScript 引擎，目前正供 Firefox 使用</li>
+<li>JavaScriptCore — 开源，以Nitro形式销售，由苹果为Safari开发</li>
+<li>KJS — KDE 的引擎，最初由 Harri Porten 为 KDE 项目中的 Konqueror 网页浏览器开发</li>
+<li>Chakra (JScript9) — Internet Explorer</li>
+<li>Chakra (JavaScript) — Microsoft Edge</li>
+<li>Nashorn, 作为 OpenJDK 的一部分，由 Oracle Java 语言和工具组编写</li>
+<li>JerryScript —  物联网的轻量级引擎 </li>
+</ul>
+<p><img src="http://img.aisss.top/FlicrBTXJttLCZqFgFULolOx2ZwI" alt><br>V8引擎由两个主要部件组成:<br>emory Heap(内存堆) — 内存分配地址的地方<br>Call Stack(调用堆栈) — 代码执行的地方</p>
+<h3 id="JavaScript运行时（JavaScript-Runtime）"><a href="#JavaScript运行时（JavaScript-Runtime）" class="headerlink" title="JavaScript运行时（JavaScript Runtime）"></a>JavaScript运行时（JavaScript Runtime）</h3><p>想让JavaScript真正运作起来，单单靠JavaScript Engine是不够的，JavaScript Engine的工作是编译并执行 JavaScript 代码，完成内存分配、垃圾回收等,但是缺乏与外部交互的能力。</p>
+<p>比如单靠一个V8引擎是无法进行ajax请求、设置定时器、响应事件等操作的，这就需要JavaScript运行时（JavaScript Runtime）的帮助，它为 JavaScript 提供一些对象或机制，使它能够与外界交互。</p>
+<p>比如，虽然Chrome和node都是用了V8引擎，但是他们的运行时却不同，比如process、fs浏览器都无法提供。</p>
+<h3 id="可执行代码"><a href="#可执行代码" class="headerlink" title="可执行代码"></a>可执行代码</h3><p>一段js代码的运行可以分为2个阶段：</p>
+<ul>
+<li>编辑阶段<ul>
+<li>分词/词法分析（Token）</li>
+<li>解析/语法分析（Parsing）</li>
+<li>预编译（解释）</li>
+</ul>
+</li>
+<li>执行阶段<br>  js并非简单的一行行解释执行，而是将js代码分为一块块的可执行代码块进行执行，那么如何划分代码块？<br>  目前有三大类代码块：<ul>
+<li>函数代码块（Function code）</li>
+<li>全局代码块（Global code）</li>
+<li>eval代码块（Eval code）</li>
+</ul>
+</li>
+</ul>
+<h2 id="JavaScript执行"><a href="#JavaScript执行" class="headerlink" title="JavaScript执行"></a>JavaScript执行</h2><p>先看一个简单的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'cxk'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;name&#125;</span> like singing dancing and rap`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>思考一下，javascript是如何执行它的呢？</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>上面的代码声明被存放在<code>堆</code>中。如图：<br><img src="http://img.aisss.top/FpjZ68oyGxdR08UpNS0yjOEdmiPi" alt><br>此时虽然变量和函数都被声明了，但是函数还没执行，我们现在执行<code>say</code>函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'cxk'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;name&#125;</span> like singing dancing and rap`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">say(name)</span><br></pre></td></tr></table></figure>
+
+<h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>我们声明的函数与变量被储存在『内存堆』中，而当我们要执行的时候，就必须借助于『调用栈』来解决问题。如图：<br><img src="http://img.aisss.top/FqSj4-XKc31r87LazYz8WB8PhUby" alt>        </p>
+<p>那么是不是将函数压入栈内就结束了？肯定没有这么简单，这里需 要在引入一个概念，执行上下文(execution context)。    </p>
+<h3 id="执行上下文-execution-context"><a href="#执行上下文-execution-context" class="headerlink" title="执行上下文(execution context)"></a>执行上下文(execution context)</h3><p>执行上下文在代码块执行前创建，作为代码块的基本执行环境，那么执行上下文分为几种？<br>前面我们提到过，JavaScript中有三种可执行代码块，当然也对应着三种执行上下文。    </p>
+<ul>
+<li>全局执行上下文 —— 这是基础上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：创建一个全局的 window 对象（浏览器的情况下），并且设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</li>
+<li>函数执行上下文 —— 每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建。</li>
+<li>Eval执行上下文 —— 执行在 eval 内部的代码也会有它属于自己的执行上下文，除非你想搞黑魔法，不然不要轻易使用它。  </li>
+</ul>
+<p>那么，这个执行上下文到底包含哪些东西呢？如何运作的呢？<br>执行上下文分为两个阶段：    </p>
+<ul>
+<li>创建阶段</li>
+<li>执行阶段</li>
+</ul>
+<p>我们主要讨论创建阶段，执行阶段的主要工作就是分配变量。</p>
+<h3 id="执行上下文的创建阶段"><a href="#执行上下文的创建阶段" class="headerlink" title="执行上下文的创建阶段"></a>执行上下文的创建阶段</h3><p>执行上下文的创建阶段主要解决以下三点：</p>
+<ul>
+<li>决定this的指向</li>
+<li>创建词法环境（LexicalEnvironment）</li>
+<li>创建变量环境（VariableEnvironment）   </li>
+</ul>
+<p>伪代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExecutionContext = &#123;</span><br><span class="line">    ThisBinding = &lt;<span class="keyword">this</span> value&gt;,</span><br><span class="line">    LexicalEnvirnoment = &#123;...&#125;,</span><br><span class="line">    VariableEnvirnoment = &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h4><p><code>this</code>的指向是在代码执行阶段确定的，所谓的「代码执行阶段」正是「执行上下文的创建阶段」。<br>默认情况下this指向全局对象，还有隐士绑定、显示绑定、new调用3种规则。    </p>
+<h4 id="词法环境-LexicalEnvironment"><a href="#词法环境-LexicalEnvironment" class="headerlink" title="词法环境(LexicalEnvironment)"></a>词法环境(LexicalEnvironment)</h4><p>词法环境分为三大类：</p>
+<ul>
+<li>全局环境：全局环境的外部环境引用是<code>null</code>，它拥有内建的Object/Array/等、在环境记录器内的原型函数（关联全局对象，比如 <code>window</code>对象）还有任何用户定义的全局变量，并且<code>this</code>的值指向全局对象。</li>
+<li>模块环境：包含模块顶级声明的绑定以及模块显式导入的绑定。 模块环境的外部环境是全局环境。</li>
+<li>函数环境：函数内部用户定义的变量存储在环境记录器中，外部引用既可以是其它函数的内部词法环境，也可以是全局词法环境。</li>
+</ul>
+<p>词法环境本身包括两个部分：</p>
+<ul>
+<li>『环境记录器（Environment Record）』是存储变量和函数声明的实际位置</li>
+<li>『外部环境的引用（outer Lexical Environment）』指它可以访问其父级词法环境（即作用域）</li>
+</ul>
+<p>对于『环境记录器』而言，它又分为两个主要的环境记录器类型：</p>
+<ul>
+<li>声明式环境记录器（DecarativeEnvironmentRecord）：范围包含函数定义，变量声明，try…catch等，<br>此类型对应起范围内包含的声明定义的标识符集</li>
+<li>对象式环境记录器（ObjectEnvironmentRecord）：由程序级别的（Program）对象、声明、with语句等创建，与称为其绑定对象的对象相关联，此类型对应于其绑定对象的属性名称的字符串标识符名称集    </li>
+</ul>
+<p>比如我们在全局声明一个函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么他的词法环境可以这样标表示（下图我们省略了this绑定、变量环境等信息，便于理解）：<br><img src="http://img.aisss.top/FmilK4NnA98rDLbBd8vkpjfAvQRx" alt></p>
+<h4 id="变量环境-VariableEnvironment"><a href="#变量环境-VariableEnvironment" class="headerlink" title="变量环境(VariableEnvironment)"></a>变量环境(VariableEnvironment)</h4><p>变量环境的定义在es5标准和es6标准是略有不同的，我们采用es6的标准。</p>
+<p>变量环境也是一个词法环境，但不同的是词法环境被用来存储函数声明和变量（let 和 const）绑定，而变量环境只用来存储 var 变量绑定。</p>
+<h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><p>我们就先把本节开头的例子再拓展一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'cxk'</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> bgm = <span class="string">'ji ni tai mei'</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">play</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> content = <span class="string">`<span class="subst">$&#123;name&#125;</span> like singing dancing and rap, <span class="subst">$&#123;bgm&#125;</span>`</span></span><br><span class="line">        <span class="keyword">return</span> content</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> content = say&#123;name&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们就一步步复盘一下上述代码是如何执行的（不考虑解析、预解释等操作，只考虑执行）：  </p>
+<h4 id="1-变量name和函数声明say被存放在堆中"><a href="#1-变量name和函数声明say被存放在堆中" class="headerlink" title="1. 变量name和函数声明say被存放在堆中"></a>1. 变量<code>name</code>和函数声明<code>say</code>被存放在堆中</h4><p><img src="http://img.aisss.top/Ft7_b2yCcyqB30275Shzl3y8Dfns" alt></p>
+<h4 id="2-创建全局可执行上下文"><a href="#2-创建全局可执行上下文" class="headerlink" title="2. 创建全局可执行上下文"></a>2. 创建全局可执行上下文</h4><p>全局上下文的伪代码如下：<br><img src="http://img.aisss.top/Flx72NFIM_WnvRbIj3IzJ-jx2UH0" alt>      </p>
+<p>示意图：<br><img src="http://img.aisss.top/FvIyTgiM0EgD6PfXcwZnGw0t7_rU" alt>  </p>
+<h4 id="3-创建函数执行上下文"><a href="#3-创建函数执行上下文" class="headerlink" title="3. 创建函数执行上下文"></a>3. 创建函数执行上下文</h4><p>say函数的执行上下文伪代码如下:<br><img src="http://img.aisss.top/FvQbTpKirQb0EtJaFMFCB7xNkFIW" alt>  </p>
+<h4 id="4-创建say函数体内的函数执行上下文"><a href="#4-创建say函数体内的函数执行上下文" class="headerlink" title="4. 创建say函数体内的函数执行上下文"></a>4. 创建say函数体内的函数执行上下文</h4><p>play函数的执行上下文伪代码如下：<br><img src="http://img.aisss.top/FlXjmjkFCnT4gQtJzXi_PpP2u-De" alt>      </p>
+<p>示意图如下：<br><img src="http://img.aisss.top/FoE85oLPlsEaC2J3CQZmgAUawo4u" alt>  </p>
+<h4 id="5-开始执行"><a href="#5-开始执行" class="headerlink" title="5. 开始执行"></a>5. 开始执行</h4><p>将上下文中的变量赋值，然后执行代码，执行完栈顶的<code>play</code>函数后弹出，接着执行<code>say</code>函数，完毕后弹出。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们通过本文了解了相关的JavaScript执行机制，现在可以回答这几个问题了。</p>
+<ol>
+<li><p>this是怎么被绑定的?<br>创建可执行上下文的时候，根据代码的执行条件，来判断分别进行默认绑定、隐式绑定、显示绑定等。</p>
+</li>
+<li><p>作用域链是怎么形成的？<br>可执行上下文中的词法环境中含有外部词法环境的引用，我们可以通过这个引用获取外部词法环境的变量、声明等，这些引用串联起来一直指向全局的词法环境，因此形成链作用域链。</p>
+</li>
+<li><p>闭包是怎么形成的？<br>可执行上下文中的词法环境含有外部词法环境的引用，我们可以通过这个引用获取外部词法环境的变量、声明等。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="liborn wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信二维码，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    liborn
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/11/21/前端面试之前端原理/" title="前端面试之原理部分">http://yoursite.com/2019/11/21/前端面试之前端原理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/指南/" rel="tag"># 指南</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/29/前端面试之前端基础/" rel="next" title="前端面试总结">
+                <i class="fa fa-chevron-left"></i> 前端面试总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/22/前端面试之计算机基础/" rel="prev" title="前端面试之计算机基础">
+                前端面试之计算机基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="liborn">
+          <p class="site-author-name" itemprop="name">liborn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">84</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Rebornnn" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/1628588307" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://l15927137339@gmail.com" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                      Google
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript的运行机制"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的运行机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript的执行环境"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript的执行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript引擎-JavaScript-Engine"><span class="nav-number">1.1.1.</span> <span class="nav-text">JavaScript引擎(JavaScript Engine)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript运行时（JavaScript-Runtime）"><span class="nav-number">1.1.2.</span> <span class="nav-text">JavaScript运行时（JavaScript Runtime）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可执行代码"><span class="nav-number">1.1.3.</span> <span class="nav-text">可执行代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript执行"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.2.1.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用栈"><span class="nav-number">1.2.2.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行上下文-execution-context"><span class="nav-number">1.2.3.</span> <span class="nav-text">执行上下文(execution context)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行上下文的创建阶段"><span class="nav-number">1.2.4.</span> <span class="nav-text">执行上下文的创建阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this指向"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">this指向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词法环境-LexicalEnvironment"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">词法环境(LexicalEnvironment)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量环境-VariableEnvironment"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">变量环境(VariableEnvironment)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行过程"><span class="nav-number">1.2.5.</span> <span class="nav-text">执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-变量name和函数声明say被存放在堆中"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1. 变量name和函数声明say被存放在堆中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建全局可执行上下文"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">2. 创建全局可执行上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-创建函数执行上下文"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">3. 创建函数执行上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-创建say函数体内的函数执行上下文"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">4. 创建say函数体内的函数执行上下文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-开始执行"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">5. 开始执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liborn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
