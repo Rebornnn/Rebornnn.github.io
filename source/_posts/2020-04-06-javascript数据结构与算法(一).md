@@ -7,6 +7,8 @@ tags:
   - javascript
   - 数据结构
   - 学习
+  - 栈
+  - 队列
 description: javascript对象来模拟栈和队列
 ---
 
