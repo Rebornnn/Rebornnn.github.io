@@ -61,18 +61,18 @@ class LinkedList {
       if (index === 0) {
         this.head = current.next;
       } else {
-        let previous;
-        for (let i = 0; i < index; i++) {
-          previous = current;
-          current = current.next;
-        }
-        // 将previous与current的下一项链接起来:跳过current，从而移除它
-        previous.next = current.next;
+        // let previous;
+        // for (let i = 0; i < index; i++) {
+        //   previous = current;
+        //   current = current.next;
+        // }
+        // // 将previous与current的下一项链接起来:跳过current，从而移除它
+        // previous.next = current.next;
 
         // 使用getElementAt重构
-        // let previous = this.getElementAt(index - 1)
-        // current = previous.next;
-        // previous.next = current.next
+        let previous = this.getElementAt(index - 1);
+        current = previous.next;
+        previous.next = current.next;
       }
       this.count--;
       return current.element;
@@ -247,14 +247,157 @@ class DoublyLinkedList extends LinkedList {
 ```
 
 ## 循环链表
+
 ```javascript
 class circleLinkedList extends LinkedList {
   constructor(equalsFn = defaultEquals) {
-    super(equalsFn)
+    super(equalsFn);
   }
 
+  // 在任意位置插入元素
   insert(element, index) {
-    
+    if (index >= 0 && index < this.count) {
+      const node = new Node(element);
+      const current = this.head;
+      if (index === 0) {
+        if (thi.head == null) {
+          this.head = node;
+          node.next = this.head;
+        } else {
+          node.next = current;
+          current = this.getElementAt(this.size() - 1);
+          // 更新最后一个元素
+          this.head = node;
+          current.next = this.head;
+        }
+      } else {
+        const previous = this.getElementAt(index - 1);
+        const current = previous.next;
+        node.next = current;
+        previous.next = node;
+      }
+      this.count++;
+      return true;
+    }
+    return undefined;
+  }
+
+  // 从链表的特定位置移除一个元素
+  removeAt(index) {
+    // 检查越界值
+    if (index >= 0 && index < this.count) {
+      let current = this.head;
+      // 移除第一项
+      if (index === 0) {
+        if (this.size() === 0) {
+          this.head = undefined;
+        } else {
+          const removed = this.head;
+          current = this.getElementAt(this.size() - 1);
+          this.head = this.head.next;
+          current.next = this.head;
+          current = removed; // 更新 current 变量的引用，这样就能返回它(行{6})来表示移除元素的值。
+        }
+      } else {
+        // 使用getElementAt重构
+        let previous = this.getElementAt(index - 1);
+        current = previous.next;
+        previous.next = current.next;
+      }
+      this.count--;
+      return current.element; // 行{6}
+    }
+    return undefined;
+  }
+}
+```
+
+## 有序链表
+
+**有序链表** 是指保持元素有序的链表结构。除了使用排序算法之外，我们还可以将元素插入到
+正确的位置来保证链表的有序性。
+
+```javascript
+const Compare = { LESS_THAN: -1, BIGGER_THAN: 1 };
+
+function defaultCompare(a, b) {
+  if (a === b) {
+    return 0;
+  }
+  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
+}
+class SortedLinkedList extends LinkedList {
+  constructor(equalsFn = defaultEquals, compareFn = defaultCompare) {
+    super(equalsFn);
+    this.compareFn = compareFn;
+  }
+
+  insert(element, index = 0) {
+    if (this.isEmpty()) {
+      return super.insert(element, 0);
+    }
+    const pos = this.getIndexNextSortedElement(element);
+    return super.insert(element, pos);
+  }
+
+  getIndexNextSortedElement(element) {
+    let current = this.head;
+    let i = 0;
+    for (; i < this.size() && current; i++) {
+      const comp = this.compareFn(element, current.element);
+      if (comp === Compare.LESS_THAN) {
+        return i;
+      }
+      current = current.next;
+    }
+    return i;
+  }
+}
+```
+
+## 创建 StackLinkedlist 类
+
+用链表模拟栈数据结构
+
+```javascript
+class StackLinkedList {
+  constructor() {
+    this.items = new DoublyLinkedList();
+  }
+
+  push(element) {
+    this.items.push(element);
+  }
+
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    const result = this.items.removeAt(this.size() - 1);
+    return result;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.items.getElementAt(this.size() - 1).element;
+  }
+
+  isEmpty() {
+    return this.items.isEmpty();
+  }
+
+  size() {
+    return this.items.size();
+  }
+
+  clear() {
+    this.items.clear();
+  }
+
+  toString() {
+    return this.items.toString();
   }
 }
 ```
