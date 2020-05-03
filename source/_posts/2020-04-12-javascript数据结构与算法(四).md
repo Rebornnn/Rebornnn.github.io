@@ -222,50 +222,80 @@ class HashTableSeparateChaining {
 ```
 
 ### 线性探查
-线性探查：它处理冲突的方法是将元素直接存储到表中，而不是在单独的数据结构中。    
+
+线性探查：它处理冲突的方法是将元素直接存储到表中，而不是在单独的数据结构中。  
 当想向表中某个位置添加一个新元素的时候，如果索引为 position 的位置已经被占据了，就尝试 position+1 的位置。如果 position+1 的位置也被占据了，就尝试 position+2 的位 置，以此类推，直到在散列表中找到一个空闲的位置。
+
 ```javascript
 class HashTableLinearProbing {
   constructor(toStrFn = defaultToString) {
-    this.toStrFn = toStrFn
-    this.table = {}
+    this.toStrFn = toStrFn;
+    this.table = {};
   }
 
   put(key, value) {
     if (key != null && value != null) {
-      const position = this.hashCode(key)
-      if(this.table[position] == null) {
-        this.table[position] = new ValuePair(key, value)
+      const position = this.hashCode(key);
+      if (this.table[position] == null) {
+        this.table[position] = new ValuePair(key, value);
       } else {
         let index = position + 1;
-        while(this.table[index] != null) {
-          index++
+        while (this.table[index] != null) {
+          index++;
         }
-        this.table[index] = new ValuePair(key, value)
+        this.table[index] = new ValuePair(key, value);
       }
     }
-    return true
+    return true;
   }
 
   get(key) {
-    const position = this.hasCode(key)
-    if(this.table[position] != null) {
-      return this.table[position].value
+    const position = this.hasCode(key);
+    if (this.table[position] != null) {
+      return this.table[position].value;
     }
     let index = position + 1;
-    while(this.table[index] != null && this.table[index].key !== key) {
-      index++
+    while (this.table[index] != null && this.table[index].key !== key) {
+      index++;
     }
-    if(this.table[index] != null && this.table[index].key === key) {
-      return this.table[position].value
+    if (this.table[index] != null && this.table[index].key === key) {
+      return this.table[position].value;
     }
-    return undefined
+    return undefined;
   }
 
   remove(key) {
-    const position = this.hasCode(key)
-    if(this.table[position] != null) {
-      
+    const position = this.hashCode(key);
+    if (this.table[position] != null) {
+      if (this.table[position].key === key) {
+        delete this.table[position];
+        this.verifyRemoveSideEffect(key, position);
+        return true;
+      }
+      let index = position + 1;
+      while (this.table[index] != null && this.table[index].key !== key) {
+        index++;
+      }
+      if (this.table[index] != null && this.table[index].key === key) {
+        delete this.table[index];
+        this.verifyRemoveSideEffect(key, index);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  verifyRemoveSideEffect(key, removedPosition) {
+    const hash = this.hashCode(key);
+    let index = removedPosition + 1;
+    while (this.table[index] != null) {
+      const posHash = this.hashCode(this.table[index].key);
+      if (posHash <= hash || posHash <= removedPosition) {
+        this.table[removedPosition] = this.table[index];
+        delete this.table[index];
+        removedPosition = index;
+      }
+      index++;
     }
   }
 }
