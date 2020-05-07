@@ -398,10 +398,9 @@ removeNode(node, key) {
   }
   return node
 }
-````
+```
 
-
-### 红黑树
+#### 红黑树
 **红黑树**也是一个自平衡二叉搜索树。
 红黑树适用于多次插入和删除。  
 在红黑树中，每个节点都遵循以下规则：
@@ -411,3 +410,175 @@ removeNode(node, key) {
 - 如果一个节点是红的，那么它的两个子节点都是黑的
 - 不能有两个相邻的红节点，一个红节点不能有红的父节点或子节点
 - 从给定的节点到它的后代节点（NULL叶节点）的所有路径包含相同数量的黑色节点
+
+```javascript
+class RedBlackNode extends Node {
+  constructor(key) {
+    super(key);
+    this.key = key;
+    this.color = Colors.RED;
+    this.parent = null;
+  }
+
+  isRed() {
+    return this.color === Colors.RED;
+  } 
+}
+
+class RedBlackTree extends BinarySearchTree {
+  constructor(compareFn = defaultCompare) {
+    super(compareFn)
+    this.compareFn = compareFn
+    this.root = null
+  }
+
+  insert(key) {
+    if(this.root == null) {
+      this.root = new RedBlackNode(key)
+      this.root.color = Colors.Black
+    } else {
+      const newNode = this.insertNode(this.root, key)
+      this.fixTreeProperties(newNode)
+    }
+  }
+
+  insertNode(node, key) {
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      if(node.left == null) {
+        node.left = new RedBlackNode(key)
+        node.left.parent = node
+        return node.left
+      } else {
+        return this.insertNode(node.left, key)
+      }
+    } else if(node.right == null) {
+      node.right = new RedBlackNode(key)
+      node.right.parent = node
+      return node.right
+    } else {
+      return this.insertNode(node.right, key)
+    }
+  }
+}
+```
+##### 在插入节点后验证红黑树属性
+要验证红黑树是否还是平衡的以及满足它的所有要求，我们需要使用两个概念:
+- 重新填色
+- 旋转
+
+在节点的叔节点颜色为黑时，也就是说仅仅重新填色是不够的，树是不平衡的，那么我们需要进行旋转操作。    
+- 左-左(LL):父节点是祖父节点的左侧子节点，节点是父节点的右侧子节点(情形 2A)
+- 左-右(LR):父节点是祖父节点的左侧子节点，节点是父节点的左侧子节点(情形 3A)
+- 右-右(RR):父节点是祖父节点的右侧子节点，节点是父节点的左侧子节点(情形 2B)
+- 右-左(RL):父节点是祖父节点的右侧子节点，节点是父节点的右侧子节点(情形 3B)
+
+情形2A：
+![](http://img.aisss.top/FgtUfLTFOXGTfugEG_WyAuOrDyx7)    
+
+情形2A进行左旋转后会变成情形3A：
+情形3A：
+![](http://img.aisss.top/FlKdmumITf7YVrDoa7D-KdW3tXyM)
+
+情形2B：
+![](http://img.aisss.top/Fos6A2QfEOyvwj4vS5yfYbSHm3IZ)  
+
+情形3B：
+![](http://img.aisss.top/Fknc6B6idNknAvYX94AOIQVJU3Uz)
+
+```javascript
+fixTreeProperties(node) {
+  while(node && node.parent && node.parent.color.isRed() && node.color !== Colors.BLACK) {
+    let parent = node.parent
+    const grandParent = node.parent.parent
+
+    // 情形A:父节点是左侧子节点
+    if(grandParent && grandParent.left === parent) {
+      const uncle = grandParent.right
+      // 情形1A:叔节点也是红色——只需要重新填色
+      if(uncle && uncle.color === Colors.RED) {
+        grandParent.color = Colors.RED
+        parent.color = Colors.Black
+        uncle.color = Colors.Black
+        node = grandParent
+      } else {
+        // 情形2A:节点是右侧子节点--左旋转
+        if(node === parent.right) {
+          this.rorationRR(parent)
+          node = parent
+          parent = node.parent
+        }
+        // 情形3A:节点是左侧子节点--右旋转
+        this.rotationLL(grandParent)
+        parent.color = Colors.BLACK
+        grandParent.color = Colors.RED
+      }
+    } else { // 情形B: 父节点是右侧子节点
+      const uncle = grandparent.left
+      // 情形1B:叔节点也是红色——只需要重新填色
+      if(uncle && uncle.color === Colors.RED) {
+        grandParent.color = Colors.RED
+        parent.color = Colors.Black
+        uncle.color = Colors.Black
+        node = grandParent
+      } else {
+        // 情形2B:节点是右侧子节点--右旋转
+        if(node === parent.left) {
+          this.rotationLL()
+          node = parent
+          parent = node.parent
+        }
+        // 情形3B:节点是左侧子节点--左旋转
+        this.rotationRR(grandParent)
+        parent.color = Colors.BLACK
+        grandParent.color = Colors.RED
+        node = parent
+      }
+    }
+  }
+  this.root.color = Colors.BLACK
+}
+```
+
+##### 红黑树旋转
+在插入算法中，我们只使用了右右旋转和左左旋转。逻辑和 AVL 树是一样，但是，由于我们保存了父节点的引用，需要将引用更新为旋转后的新父节点
+```javascript
+rotationLL(node) {
+  const tmp = node.left
+  node.left = = tmp.right
+  if(tmp.right && tmp.right.key) {
+    tmp.right.parent = node
+  }
+  tmp.parent = node.parent
+  if(!node.parent) {
+    this.root = tmp
+  } else {
+    if(node === node.parent.left) {
+      node.parent.left = tmp
+    } else {
+      node.parent.right = tmp
+    }
+  }
+  tmp.right = node
+  node.parent = tmp
+}
+
+rotationRR(node) {
+  const tmp = node.right
+  node.right = tmp.left
+  if(tmp.left && tmp.left.key) {
+    tmp.left.parent = node
+  }
+  tmp.parent = node.parent
+  if(!node.parent) {
+    this.root = tmp
+  } else {
+    if(node === node.parent.left) {
+      node.parent.left = tmp
+    } else {
+      node.parent.right = tmp
+    }
+  }
+  tmp.left = node
+  node.parent = tmp
+}
+```
