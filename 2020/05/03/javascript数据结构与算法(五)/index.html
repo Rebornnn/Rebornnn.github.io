@@ -144,7 +144,7 @@
 <meta property="og:image" content="http://img.aisss.top/FlKdmumITf7YVrDoa7D-KdW3tXyM">
 <meta property="og:image" content="http://img.aisss.top/Fos6A2QfEOyvwj4vS5yfYbSHm3IZ">
 <meta property="og:image" content="http://img.aisss.top/Fknc6B6idNknAvYX94AOIQVJU3Uz">
-<meta property="og:updated_time" content="2020-05-07T08:13:55.261Z">
+<meta property="og:updated_time" content="2020-05-08T02:32:49.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript数据结构与算法5">
 <meta name="twitter:description" content="树，存储需要快速查找的数据的非顺序数据结构">
@@ -435,8 +435,8 @@
 
 <h3 id="移除一个节点"><a href="#移除一个节点" class="headerlink" title="移除一个节点"></a>移除一个节点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">remove(key) &#123;</span><br><span class="line">  <span class="keyword">this</span>.root = <span class="keyword">this</span>.removeNode(<span class="keyword">this</span>.root, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">removeNode(node, key) &#123;</span><br><span class="line"><span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.compareFn(node.key, key) === Compare.LESS_THAN) &#123;</span><br><span class="line">    node.left = <span class="keyword">this</span>.removeNode(node.left, key)</span><br><span class="line">    <span class="keyword">return</span> node</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.compareFn(node.key, key) === Compare.BIGGER_THAN) &#123;</span><br><span class="line">    node.right = <span class="keyword">this</span>.removeNode(node.right, key)</span><br><span class="line">    <span class="keyword">return</span> node</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 移除一个叶节点</span></span><br><span class="line">    <span class="keyword">if</span>(node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">      node = <span class="literal">null</span></span><br><span class="line">      <span class="keyword">return</span> node</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 移除有一个左侧或者右侧子节点的节点</span></span><br><span class="line">    <span class="keyword">if</span>(node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">      node = node.left</span><br><span class="line">      <span class="keyword">return</span> node</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(node.left == <span class="literal">null</span>) &#123;</span><br><span class="line">      node = node.right</span><br><span class="line">      <span class="keyword">return</span> node</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 移除有两个子节点的节点</span></span><br><span class="line">    <span class="keyword">const</span> aux = <span class="keyword">this</span>.minNode(node.right)</span><br><span class="line">    node.key = aux.key</span><br><span class="line">    node.right = <span class="keyword">this</span>.removeNode(node.right, aux.key)</span><br><span class="line">    <span class="keyword">return</span> node</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="自平衡树"><a href="#自平衡树" class="headerlink" title="自平衡树"></a>自平衡树</h2><p><strong>AVL 树</strong>是一种自平衡二叉搜索树，意思是任何一个节点左右两侧子树的高度之差最多为 1。</p>
-<h3 id="Adelson-Velskii-Landi-树-AVL-树"><a href="#Adelson-Velskii-Landi-树-AVL-树" class="headerlink" title="Adelson-Velskii-Landi 树(AVL 树)"></a>Adelson-Velskii-Landi 树(AVL 树)</h3><p>AVL 树是一种自平衡树。添加或移除节点时，AVL 树会尝试保持自平衡。任意一个节点（不论深度）的左子树和右子树高度最多相差 1.添加或移除节点时，AVL 树会尽可能尝试转换为完全树。</p>
+<h2 id="自平衡树"><a href="#自平衡树" class="headerlink" title="自平衡树"></a>自平衡树</h2><p><strong>AVL树</strong>是一种自平衡二叉搜索树，意思是任何一个节点左右两侧子树的高度之差最多为 1。</p>
+<h3 id="Adelson-Velskii-Landi-树-AVL-树"><a href="#Adelson-Velskii-Landi-树-AVL-树" class="headerlink" title="Adelson-Velskii-Landi 树(AVL 树)"></a>Adelson-Velskii-Landi 树(AVL 树)</h3><p>AVL树是一种自平衡树。添加或移除节点时，AVL 树会尝试保持自平衡。任意一个节点（不论深度）的左子树和右子树高度最多相差1。添加或移除节点时，AVL 树会尽可能尝试转换为完全树。</p>
 <h4 id="节点的高度和平衡因子"><a href="#节点的高度和平衡因子" class="headerlink" title="节点的高度和平衡因子"></a>节点的高度和平衡因子</h4><p>节点的高度：从节点到其任意子节点的边的最大值。如图：<br><img src="http://img.aisss.top/Fnut3toXeg6Zw91SNm2teTNEbOOG" alt></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getNodeHeight(node) &#123;</span><br><span class="line">  <span class="keyword">if</span>(node == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max(<span class="keyword">this</span>.getNodeHeight(node.left), <span class="keyword">this</span>.getNodeHeight(node.right)) + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -569,6 +569,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/05/07/javascript数据结构与算法(六)/" rel="prev" title="javascript数据结构与算法6">
+                javascript数据结构与算法6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -665,7 +669,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-count">91</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -687,7 +691,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
