@@ -9,7 +9,7 @@ tags:
 description: 堆，一种特殊堆二叉树数据结构
 ---
 
-## 二叉堆数据结构
+# 二叉堆数据结构
 
 二叉堆是一种特殊的二叉树，有以下两个特性：
 
@@ -17,9 +17,9 @@ description: 堆，一种特殊堆二叉树数据结构
 - 二叉堆不是最小堆就是最大堆。最小堆允许你快速导出树的最小值，最大堆允许你快速 导出树的最大值。所有的节点都大于等于(最大堆)或小于等于(最小堆)每个它的子节点。这叫作**堆特性**。  
   ![](http://img.aisss.top/FrfQJLg2DzJs3vnBiWdaE6y1i01m)
 
-### 创建最小堆类
+## 创建最小堆类
 
-#### 二叉树的数组表示
+### 二叉树的数组表示
 
 二叉树有两种表示方式。第一种是使用一个动态的表示方式，也就是指针(用节点表示)， 在上一章使用过。第二种是使用一个数组，通过索引值检索父节点、左侧和右侧子节点的值。下图展示了两种不同的表示方式。
 ![](http://img.aisss.top/FtWjU-4f0JtjvcY9kvkR9G5ySj3D)  
@@ -49,7 +49,7 @@ class MinHeap {
 }
 ```
 
-#### 向堆中插入值
+### 向堆中插入值
 
 向堆中插入值是指将值插入堆的底部叶节点再执行 siftUp 方法，表示我们将要将这个值和它的父节点进行交换，直到父节点小于这个插入的值。这个上移操作也被称为 up head、percolate up、bubble up、heapify up 或 cascade up。
 ![](http://img.aisss.top/FsSfQ5aKY95VDKvye6OMmkcUtf5w)
@@ -95,7 +95,7 @@ findMinimum() {
 }
 ```
 
-#### 导出堆中的最小值或最大值
+### 导出堆中的最小值或最大值
 
 移除最小值(最小堆)或最大值(最大堆)表示移除数组中的第一个元素(堆的根节点)。 在移除后，我们将堆的最后一个元素移动至根部并执行 siftDown 函数，表示我们将交换元素直到堆的结构正常。这个下移操作也被称为 sink down、percolate down、bubble down、heapify down 或 cascade down。
 ![](http://img.aisss.top/FjfVTYIjTffTM-Mwi6mjqe1P2zy-)
@@ -133,7 +133,7 @@ shiftDown(index) {
 }
 ```
 
-### 创建最大堆类
+## 创建最大堆类
 
 可以扩展 MinHeap 类来继承我们在本章创建的所有代码，并在需要时进行反向的比较
 
@@ -150,7 +150,7 @@ class MaxHeap extends MinHeap {
 }
 ```
 
-## 堆排序算法
+# 堆排序算法
 
 我们可以使用二叉堆数据结构来帮助我们创建一个非常著名的排序算法:堆排序算法。它包含下面三个步骤。
 
