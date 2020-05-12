@@ -404,8 +404,233 @@ graph.addEdge("F", "E");
 
 const result = DFS(graph);
 ```
-![](http://img.aisss.top/Fu_fFMwEoo5lXC1Ew622uRT9Dl3I)      
+
+![](http://img.aisss.top/Fu_fFMwEoo5lXC1Ew622uRT9Dl3I)
 
 以倒序来排序完成时间数组，这便得出了该图的拓扑排序，如下所示
+
 ```javascript
+const fTimes = result.finished;
+s = "";
+for (let i = 0; i < myVertices.length; i++) {
+  let max = 0;
+  let maxName = null;
+  if (fTimes[myVertices[i]] > max) {
+    max = fTimes[myVertices[i]];
+    maxName = myVertices[i];
+  }
+  s += " - " + maxName;
+  delete fTimes[maxName];
+}
+console.log(s);
+```
+
+# 最短路径算法
+
+Dijkstra 算法和 Floyd-Warshall 算法
+
+## Dijkstra 算法
+
+Dijkstra 算法是一种计算从单个源到所有其他源的最短路径的贪心算法，这意味着我们可以用它来计算从图的一个顶点到其余各顶点的最短路径。
+![](http://img.aisss.top/FofZNw3BrdMPwvNDmvUCHczqHpNW)
+
+```javascript
+// 上图的邻接矩阵
+var graph = [
+  [0, 2, 4, 0, 0, 0],
+  [0, 0, 2, 4, 2, 0],
+  [0, 0, 0, 0, 3, 0],
+  [0, 0, 0, 0, 0, 2],
+  [0, 0, 0, 3, 0, 2],
+  [0, 0, 0, 0, 0, 0],
+];
+
+const minDistance = (dist, visited) => {
+  let min = INF;
+  let minIndex = -1;
+  for (let v = 0; v < visited.length; v++) {
+    if (visited[v] === false && dist[v] <= min) {
+      min = dist[v];
+      minIndex = v;
+    }
+  }
+  return minIndex;
+};
+
+// Dijkstra算法
+const INF = Number.MAX_SAFE_INTEGER;
+
+const dijkstra = (graph, src) => {
+  const dist = [];
+  const visited = [];
+  const { length } = graph;
+  for (let i = 0; i < length; i++) {
+    dist[i] = INF;
+    visited[i] = false;
+  }
+  dist[src] = 0;
+  for (let i = 0; i < length - 1; i++) {
+    const u = minDistance(dist, visited);
+    visited[u] = true;
+    for (let v = 0; v < length; v++) {
+      if (
+        !visited[v] &&
+        graph[u][v] !== 0 &&
+        dist[u] != INF &&
+        dist[u] + graph[u][v] < dist[v]
+      ) {
+        dist[v] = dist[u] + graph[u][v];
+      }
+    }
+  }
+  return dist;
+};
+```
+
+## Floyd-Warshall 算法
+Floyd-Warshall 算法是一种计算图中所有最短路径的动态规划算法。通过该算法，我们可以找出从所有源到所有顶点的最短路径。
+```javascript
+const floyWarshall = graph => {
+  const dist = []
+  const {length} = graph
+  for(let i = 0; i < length; i++) {
+    dist[i] = []
+    for(let j = 0; j < length; j++) {
+      if(i === j) {
+        dist[i][j] = 0
+      } else if(!isFinite(graph[i][j])) {
+        dist[i][j] = Infinity
+      } else {
+        dist[i][j] = graph[i][j]
+      }
+    }
+  }
+
+  for(let k = 0; k < length; k++) {
+    for(let i = 0; i < length; i++) {
+      for(let j = 0; j < length; j++) {
+        if(dist[i][k] + dist[k][j] < dist[i][j]) {
+          dist[i][j] = dist[i][k] + dist[k][j]
+        }
+      }
+    }
+  }
+  return dists
+}
+```
+
+# 最小生成树
+最小生成树(MST)问题是网络设计中常见的问题。想象一下，你的公司有几间办公室，要以最低的成本实现办公室电话线路相互连通，以节省资金，最好的办法是什么?    
+
+这也可以应用于岛桥问题。设想你要在 n 个岛屿之间建造桥梁，想用最低的成本实现所有岛 屿相互连通。    
+
+这两个问题都可以用 MST 算法来解决，其中的办公室或者岛屿可以表示为图中的一个顶点， 边代表成本。下面有一个图的例子，其中较粗的边是一个 MST 的解决方案。
+
+![](http://img.aisss.top/FjlvYxxgdRlZX1goiIZukV8E1trN)
+
+两种主要的求最小生成树的算法：Prim算法和kruskal算法
+
+## Prim算法
+Prim 算法是一种求解加权无向连通图的 MST 问题的贪心算法。它能找出一个边的子集，使得其构成的树包含图中所有顶点，且边的权值之和最小。
+```javascript
+const INF = Number.MAX_SAFE_INTEGER
+
+const minKey = (graph, key, visited) => {
+  // Initialize min value
+  let min = INF;
+  let minIndex = 0;
+  for (let v = 0; v < graph.length; v++) {
+    if (visited[v] === false && key[v] < min) {
+      min = key[v];
+      minIndex = v;
+    }
+  }
+  return minIndex;
+};
+
+const prim = graph => {
+  const parent = []
+  const key = []
+  const visited = []
+  const {length} = graph
+  for(let i = 0; i < length; i++) {
+    key[i] = INF
+    visited[i] = false
+  }
+  key[0] = 0
+  parent[0] = -1
+  for(let i = 0; i < length - 1; i++) {
+    const u = minKey(graph, key, visited)
+    visited[u] = true
+    for(let v = 0; v < length; v++) {
+      if(graph[u][v] && !visited[v] && graph[u][v] < key[v]) {
+        parent[v] = u
+        key[v] = graph[u][v]
+      }
+    }
+  }
+  return parent
+}
+```
+## Kruskal 算法
+也是一种求加权无向连通图的MST的贪心算法
+```javascript
+const INF = Number.MAX_SAFE_INTEGER;
+
+const find = (i, parent) => {
+  while (parent[i]) {
+    i = parent[i]; 
+  }
+  return i;
+};
+
+const union = (i, j, parent) => {
+  if (i !== j) {
+    parent[j] = i;
+    return true;
+  }
+  return false;
+};
+
+const initializeCost = graph => {
+  const cost = [];
+  const { length } = graph;
+  for (let i = 0; i < length; i++) {
+    cost[i] = [];
+    for (let j = 0; j < length; j++) {
+      if (graph[i][j] === 0) {
+        cost[i][j] = INF;
+      } else {
+        cost[i][j] = graph[i][j];
+      }
+    }
+  }
+  return cost;
+};
+
+const kruskal = graph => {
+  const {length} = graph
+  const parent = []
+  let ne = 0
+  let a;let b; let u;let v;
+  const cost = initializeCost(graph)
+  while(ne < length - 1) {
+    for(let i = 0,min = INF; i < length; i++) {
+      for(let j = 0; j < length; j++) {
+        if(cost[i][j] < min) {
+          min = cost[i][j]
+          a = u =i
+          b = u =j
+        }
+      }
+    }
+    u = find(u, parent)
+    v = find(v, parent)
+    if(union(u,vparent)) {
+      ne++
+    }
+    cost[a][b] = cost[b][a] = INF
+  }
+  return parent
+}
 ```
