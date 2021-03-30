@@ -129,7 +129,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/04/23/58fc4c2c89a5f.png">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/04/24/58fe0c5f038af.png">
-<meta property="og:updated_time" content="2019-07-18T05:20:39.490Z">
+<meta property="og:updated_time" content="2021-03-30T08:51:19.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计》读书笔记6.2创建对象">
 <meta name="twitter:description" content="面向对象编程，先要创建对象，创建对象有哪几种方法呢？">
@@ -436,7 +436,8 @@
 <li>构造函数必须以大写字母开头</li>
 <li>要创建新实例，必须使用<code>new</code>操作符，会经历4个步骤<ul>
 <li>创建一个新对象</li>
-<li>将构造函数的作用域赋给新对象（this指向了这个新对象）</li>
+<li>新对象原型链接到构造函数原型对象</li>
+<li>将构造函数的作用域赋给新对象（this绑定到这个新对象）</li>
 <li>执行构造函数中的代码（为这个新对象添加属性）</li>
 <li>返回新对象</li>
 </ul>
@@ -837,7 +838,7 @@
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

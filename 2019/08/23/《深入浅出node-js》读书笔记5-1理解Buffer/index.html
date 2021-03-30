@@ -127,7 +127,7 @@
 <meta property="og:site_name" content="博言">
 <meta property="og:description" content="Buffer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-23T11:02:33.259Z">
+<meta property="og:updated_time" content="2021-03-30T08:51:19.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入浅出node.js》读书笔记5-1理解Buffer">
 <meta name="twitter:description" content="Buffer">
@@ -426,7 +426,7 @@
 <h2 id="Buffer结构"><a href="#Buffer结构" class="headerlink" title="Buffer结构"></a>Buffer结构</h2><p>Buffer是一个像Array的对象，但主要用于操作字节。<br>从模块结构和对象结构但层面来认识它。</p>
 <h3 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h3><p>Buffer是典型但Javascript和C++结合模块，它将性能相关部分用于C++实现，将非性能相关的部分用于Javascript实现。<br>Node在启动时就已加载Buffer，无须通过<code>require()</code>引入。</p>
 <h3 id="Buffer对象"><a href="#Buffer对象" class="headerlink" title="Buffer对象"></a>Buffer对象</h3><p>Buffer对象类似于数组，它的元素为16进制的两位数，即0到255的数值。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Buffer.from('深入浅出node.js'),'utf-8');</span><br><span class="line">&lt;Buffer e6 b7 b1 e5 85 a5 e6 b5 85 e5 87 ba 6e 6f 64 65 2e 6a 73&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(Buffer.from('深入浅出node.js','utf-8'));</span><br><span class="line">&lt;Buffer e6 b7 b1 e5 85 a5 e6 b5 85 e5 87 ba 6e 6f 64 65 2e 6a 73&gt;</span><br></pre></td></tr></table></figure>
 
 <p>不同编码的字符串占用的元素个数各不相同。中文字在UTF-8编码下占用<strong>3个元素</strong>，字母和半角标点占用<strong>1个元素</strong>。<br>元素赋值规则</p>
 <ul>
@@ -741,7 +741,7 @@
         <div class="copyright">
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
