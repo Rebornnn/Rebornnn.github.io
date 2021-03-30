@@ -22,7 +22,7 @@ Node在启动时就已加载Buffer，无须通过`require()`引入。
 ### Buffer对象
 Buffer对象类似于数组，它的元素为16进制的两位数，即0到255的数值。
 ```shell
-console.log(Buffer.from('深入浅出node.js'),'utf-8');
+console.log(Buffer.from('深入浅出node.js','utf-8'));
 <Buffer e6 b7 b1 e5 85 a5 e6 b5 85 e5 87 ba 6e 6f 64 65 2e 6a 73> 
 ```
 不同编码的字符串占用的元素个数各不相同。中文字在UTF-8编码下占用**3个元素**，字母和半角标点占用**1个元素**。     
